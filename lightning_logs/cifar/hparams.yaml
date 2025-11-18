@@ -1,0 +1,9 @@
+dropout_rate: 0.08013534570671837
+kernel_size: 5
+learning_rate: 0.0001326875210850645
+num_filters:
+- 256
+- 32
+- 32
+- 256
+optimizer_name: RMSprop

@@ -1,0 +1,18 @@
+[project]
+name = "tenstorrent"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = [
+    "lightning>=2.5.6",
+    "matplotlib>=3.10.7",
+    "openpyxl>=3.1.5",
+    "optuna>=4.6.0",
+    "optuna-integration[pytorch-lightning]>=4.6.0",
+    "pandas>=2.3.3",
+    "ruff>=0.14.5",
+    "scikit-learn>=1.7.2",
+    "seaborn>=0.13.2",
+    "torch>=2.9.1",
+    "torchmetrics>=1.8.2",
+    "torchvision>=0.24.1",
+]
