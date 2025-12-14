@@ -2,6 +2,9 @@
                     TENSTORRENT SERVER - ИНСТРУКЦИЯ
 ================================================================================
 
+git clone https://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@github.com/xkuze/Tenstorrent.git
+
+
 ДАННЫЕ ДЛЯ ПОДКЛЮЧЕНИЯ:
 ------------------------
 Сервер:    10.30.0.207
