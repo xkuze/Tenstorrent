@@ -29,7 +29,7 @@ class CIFAR10DataModule(L.LightningDataModule):
     def setup(self, stage=None):
         # Load full train dataset (50k images)
         cifar_full_train = datasets.CIFAR10(
-            root=self.data_dir, train=True, transform=self.transform
+            root=self.data_dir, train=True, transform=self.transform, download=True
         )
 
         # Split train into train (45k) and val (5k) - 90/10 split
@@ -43,7 +43,7 @@ class CIFAR10DataModule(L.LightningDataModule):
 
         # Load test dataset (10k images)
         self.cifar_test = datasets.CIFAR10(
-            root=self.data_dir, train=False, transform=self.transform
+            root=self.data_dir, train=False, transform=self.transform, download=True
         )
 
     def train_dataloader(self):

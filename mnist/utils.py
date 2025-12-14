@@ -29,7 +29,7 @@ class MNISTDataModule(L.LightningDataModule):
     def setup(self, stage=None):
         # Load full train dataset (60k images)
         mnist_full_train = datasets.MNIST(
-            root=self.data_dir, train=True, transform=self.transform
+            root=self.data_dir, train=True, transform=self.transform, download=True
         )
 
         # Split train into train (54k) and val (6k) - 90/10 split
@@ -43,7 +43,7 @@ class MNISTDataModule(L.LightningDataModule):
 
         # Load test dataset (10k images)
         self.mnist_test = datasets.MNIST(
-            root=self.data_dir, train=False, transform=self.transform
+            root=self.data_dir, train=False, transform=self.transform, download=True
         )
 
     def train_dataloader(self):
