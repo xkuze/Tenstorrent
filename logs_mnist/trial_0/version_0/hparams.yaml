@@ -1,0 +1,6 @@
+dropout_rate: 0.4479581409193824
+hidden_sizes:
+- 128
+- 512
+learning_rate: 0.00045432232726163506
+optimizer_name: RMSprop

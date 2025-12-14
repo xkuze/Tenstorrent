@@ -1,0 +1,254 @@
+[
+  {
+    "number": 17,
+    "value": 0.9783333539962769,
+    "params": {
+      "n_hidden_layers": 1,
+      "hidden_size_0": 512,
+      "dropout_rate": 0.37371144652214017,
+      "learning_rate": 0.0007042407699854573,
+      "batch_size": 32,
+      "optimizer": "RMSprop"
+    }
+  },
+  {
+    "number": 15,
+    "value": 0.9778333306312561,
+    "params": {
+      "n_hidden_layers": 1,
+      "hidden_size_0": 512,
+      "dropout_rate": 0.3439725086553721,
+      "learning_rate": 0.0007844023096068821,
+      "batch_size": 32,
+      "optimizer": "RMSprop"
+    }
+  },
+  {
+    "number": 13,
+    "value": 0.9763333201408386,
+    "params": {
+      "n_hidden_layers": 1,
+      "hidden_size_0": 512,
+      "dropout_rate": 0.15562541641442149,
+      "learning_rate": 0.00024615791758025315,
+      "batch_size": 32,
+      "optimizer": "RMSprop"
+    }
+  },
+  {
+    "number": 16,
+    "value": 0.9753333330154419,
+    "params": {
+      "n_hidden_layers": 1,
+      "hidden_size_0": 512,
+      "dropout_rate": 0.2824973875284571,
+      "learning_rate": 0.00021061247597275936,
+      "batch_size": 32,
+      "optimizer": "RMSprop"
+    }
+  },
+  {
+    "number": 4,
+    "value": 0.9733333587646484,
+    "params": {
+      "n_hidden_layers": 1,
+      "hidden_size_0": 512,
+      "dropout_rate": 0.43772987094330434,
+      "learning_rate": 0.0019368260013877716,
+      "batch_size": 64,
+      "optimizer": "Adam"
+    }
+  },
+  {
+    "number": 3,
+    "value": 0.9731666445732117,
+    "params": {
+      "n_hidden_layers": 2,
+      "hidden_size_0": 128,
+      "hidden_size_1": 256,
+      "dropout_rate": 0.12853884026939733,
+      "learning_rate": 0.0003370029954102187,
+      "batch_size": 32,
+      "optimizer": "RMSprop"
+    }
+  },
+  {
+    "number": 6,
+    "value": 0.9728333353996277,
+    "params": {
+      "n_hidden_layers": 1,
+      "hidden_size_0": 256,
+      "dropout_rate": 0.4190234679015759,
+      "learning_rate": 0.006704434065658196,
+      "batch_size": 64,
+      "optimizer": "SGD"
+    }
+  },
+  {
+    "number": 18,
+    "value": 0.9728333353996277,
+    "params": {
+      "n_hidden_layers": 1,
+      "hidden_size_0": 512,
+      "dropout_rate": 0.3450519661246701,
+      "learning_rate": 0.0006890143834678861,
+      "batch_size": 32,
+      "optimizer": "RMSprop"
+    }
+  },
+  {
+    "number": 19,
+    "value": 0.9725000262260437,
+    "params": {
+      "n_hidden_layers": 2,
+      "hidden_size_0": 256,
+      "hidden_size_1": 128,
+      "dropout_rate": 0.36998210572174406,
+      "learning_rate": 0.0006123685662869481,
+      "batch_size": 32,
+      "optimizer": "RMSprop"
+    }
+  },
+  {
+    "number": 7,
+    "value": 0.9713333249092102,
+    "params": {
+      "n_hidden_layers": 2,
+      "hidden_size_0": 512,
+      "hidden_size_1": 256,
+      "dropout_rate": 0.07572978042087203,
+      "learning_rate": 0.003985521817928755,
+      "batch_size": 64,
+      "optimizer": "SGD"
+    }
+  },
+  {
+    "number": 12,
+    "value": 0.9706666469573975,
+    "params": {
+      "n_hidden_layers": 3,
+      "hidden_size_0": 128,
+      "hidden_size_1": 256,
+      "hidden_size_2": 256,
+      "dropout_rate": 0.2012736664018484,
+      "learning_rate": 0.0013769312812281498,
+      "batch_size": 64,
+      "optimizer": "Adam"
+    }
+  },
+  {
+    "number": 9,
+    "value": 0.9695000052452087,
+    "params": {
+      "n_hidden_layers": 2,
+      "hidden_size_0": 512,
+      "hidden_size_1": 128,
+      "dropout_rate": 0.4542039507866699,
+      "learning_rate": 0.00038981618599438425,
+      "batch_size": 128,
+      "optimizer": "RMSprop"
+    }
+  },
+  {
+    "number": 10,
+    "value": 0.9676666855812073,
+    "params": {
+      "n_hidden_layers": 3,
+      "hidden_size_0": 512,
+      "hidden_size_1": 512,
+      "hidden_size_2": 512,
+      "dropout_rate": 0.22717755761054625,
+      "learning_rate": 0.0020691872901294987,
+      "batch_size": 64,
+      "optimizer": "Adam"
+    }
+  },
+  {
+    "number": 0,
+    "value": 0.9649999737739563,
+    "params": {
+      "n_hidden_layers": 2,
+      "hidden_size_0": 128,
+      "hidden_size_1": 512,
+      "dropout_rate": 0.4479581409193824,
+      "learning_rate": 0.00045432232726163506,
+      "batch_size": 128,
+      "optimizer": "RMSprop"
+    }
+  },
+  {
+    "number": 8,
+    "value": 0.9628333449363708,
+    "params": {
+      "n_hidden_layers": 3,
+      "hidden_size_0": 128,
+      "hidden_size_1": 64,
+      "hidden_size_2": 128,
+      "dropout_rate": 0.2998647942757648,
+      "learning_rate": 0.0008063375236938905,
+      "batch_size": 32,
+      "optimizer": "RMSprop"
+    }
+  },
+  {
+    "number": 14,
+    "value": 0.95333331823349,
+    "params": {
+      "n_hidden_layers": 1,
+      "hidden_size_0": 512,
+      "dropout_rate": 0.30390541143561994,
+      "learning_rate": 0.001991022536421252,
+      "batch_size": 64,
+      "optimizer": "SGD"
+    }
+  },
+  {
+    "number": 5,
+    "value": 0.9514999985694885,
+    "params": {
+      "n_hidden_layers": 1,
+      "hidden_size_0": 256,
+      "dropout_rate": 0.41644390748335175,
+      "learning_rate": 0.004441006879357272,
+      "batch_size": 32,
+      "optimizer": "Adam"
+    }
+  },
+  {
+    "number": 11,
+    "value": 0.9508333206176758,
+    "params": {
+      "n_hidden_layers": 1,
+      "hidden_size_0": 64,
+      "dropout_rate": 0.010819102827711369,
+      "learning_rate": 0.0001533402396133799,
+      "batch_size": 32,
+      "optimizer": "RMSprop"
+    }
+  },
+  {
+    "number": 1,
+    "value": 0.9503333568572998,
+    "params": {
+      "n_hidden_layers": 1,
+      "hidden_size_0": 64,
+      "dropout_rate": 0.15134580249750607,
+      "learning_rate": 0.009099038747811313,
+      "batch_size": 128,
+      "optimizer": "Adam"
+    }
+  },
+  {
+    "number": 2,
+    "value": 0.9495000243186951,
+    "params": {
+      "n_hidden_layers": 2,
+      "hidden_size_0": 128,
+      "hidden_size_1": 64,
+      "dropout_rate": 0.3541947465519358,
+      "learning_rate": 0.00011352632585350042,
+      "batch_size": 32,
+      "optimizer": "Adam"
+    }
+  }
+]

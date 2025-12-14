@@ -1,19 +1,23 @@
 import optuna
 from optuna.integration import PyTorchLightningPruningCallback
 import lightning as L
-from lightning.pytorch.callbacks import ModelCheckpoint, EarlyStopping
+from lightning.pytorch.callbacks import ModelCheckpoint, EarlyStopping, LearningRateMonitor
+from lightning.pytorch.loggers import CSVLogger, TensorBoardLogger
 from pathlib import Path
+import json
+from datetime import datetime
 
 from mnist.model import MLP
 from mnist.utils import MNISTDataModule
 
 
 # Config
-N_TRIALS = 5
+N_TRIALS = 20  # Increased for better search
 EPOCHS_PER_TRIAL = 5
-FINAL_EPOCHS = 20
+FINAL_EPOCHS = 30
 DATA_DIR = "./data"
 SAVE_DIR = "weights_mnist"
+LOG_DIR = "logs_mnist"
 
 
 def objective(trial: optuna.Trial):
@@ -38,9 +42,12 @@ def objective(trial: optuna.Trial):
         optimizer_name=optimizer,
     )
 
+    # Logger for each trial
+    csv_logger = CSVLogger(LOG_DIR, name=f"trial_{trial.number}")
+
     checkpoint_callback = ModelCheckpoint(
         dirpath=SAVE_DIR,
-        filename=f"trial_{trial.number}_{{epoch}}_{{val_acc:.2f}}",
+        filename=f"trial_{trial.number}_{{epoch}}_{{val_acc:.4f}}",
         monitor="val_acc",
         mode="max",
         save_top_k=1,
@@ -53,18 +60,20 @@ def objective(trial: optuna.Trial):
         accelerator="auto",
         devices=1,
         callbacks=[checkpoint_callback, pruning_callback],
-        enable_progress_bar=False,
+        enable_progress_bar=True,
         enable_model_summary=False,
-        logger=False,
+        logger=csv_logger,
     )
 
     trainer.fit(model, dm)
-    # print(f"Trial {trial.number} finished with val_acc: {trainer.callback_metrics['val_acc']}")
 
-    return trainer.callback_metrics["val_acc"].item()
+    val_acc = trainer.callback_metrics["val_acc"].item()
+    print(f"  Trial {trial.number}: {hidden_sizes}, dropout={dropout:.2f}, lr={lr:.6f}, opt={optimizer} -> val_acc={val_acc*100:.2f}%")
+
+    return val_acc
 
 
-def train_best_model(best_params):
+def train_best_model(best_params, trial_number=0):
     """Train final model with best params from Optuna search"""
     n_hidden_layers = best_params["n_hidden_layers"]
     hidden_sizes = [best_params[f"hidden_size_{i}"] for i in range(n_hidden_layers)]
@@ -72,7 +81,6 @@ def train_best_model(best_params):
     learning_rate = best_params["learning_rate"]
     batch_size = best_params["batch_size"]
     optimizer_name = best_params["optimizer"]
-    # print(f"Debug - best_params: {best_params}")
 
     print(
         f"\nTraining final model: {hidden_sizes}, dropout={dropout_rate:.2f}, lr={learning_rate:.6f}, batch={batch_size}, opt={optimizer_name}"
@@ -87,30 +95,38 @@ def train_best_model(best_params):
         optimizer_name=optimizer_name,
     )
 
+    # Loggers
+    csv_logger = CSVLogger(LOG_DIR, name="final_model")
+    tb_logger = TensorBoardLogger(LOG_DIR, name="tensorboard")
+
+    # Save top-20 best checkpoints
     checkpoint_callback = ModelCheckpoint(
         dirpath=SAVE_DIR,
-        filename="best_model_{epoch}_{val_acc:.2f}",
+        filename="top20_{epoch}_{val_acc:.4f}",
         monitor="val_acc",
         mode="max",
-        save_top_k=1,
+        save_top_k=20,  # Save top-20 models
         save_last=True,
     )
 
     early_stop_callback = EarlyStopping(
         monitor="val_acc",
-        patience=5,
+        patience=10,
         mode="max",
         verbose=True,
     )
+
+    lr_monitor = LearningRateMonitor(logging_interval="epoch")
 
     trainer = L.Trainer(
         max_epochs=FINAL_EPOCHS,
         accelerator="auto",
         devices=1,
-        callbacks=[checkpoint_callback, early_stop_callback],
+        callbacks=[checkpoint_callback, early_stop_callback, lr_monitor],
         enable_progress_bar=True,
         enable_model_summary=True,
-        logger=True,
+        logger=[csv_logger, tb_logger],
+        log_every_n_steps=10,
     )
 
     trainer.fit(model, dm)
@@ -119,19 +135,45 @@ def train_best_model(best_params):
     best_val_acc = checkpoint_callback.best_model_score.item()
     test_acc = test_results[0]["test_acc"]
 
+    # Save the best model separately
     final_model_path = Path(SAVE_DIR) / "best_model.ckpt"
     trainer.save_checkpoint(final_model_path)
 
-    print(
-        f"\nResults: Val Acc={best_val_acc * 100:.2f}%, Test Acc={test_acc * 100:.2f}%, Model saved to {final_model_path}"
-    )
+    # Save parameters to JSON
+    params_path = Path(SAVE_DIR) / "best_params.json"
+    with open(params_path, "w") as f:
+        json.dump({
+            "hidden_sizes": hidden_sizes,
+            "dropout_rate": dropout_rate,
+            "learning_rate": learning_rate,
+            "batch_size": batch_size,
+            "optimizer": optimizer_name,
+            "val_acc": best_val_acc,
+            "test_acc": test_acc,
+            "timestamp": datetime.now().isoformat(),
+        }, f, indent=2)
+
+    print(f"\n{'='*60}")
+    print(f"Results")
+    print(f"{'='*60}")
+    print(f"Val Acc:  {best_val_acc * 100:.2f}%")
+    print(f"Test Acc: {test_acc * 100:.2f}%")
+    print(f"Model:    {final_model_path}")
+    print(f"Params:   {params_path}")
+    print(f"Logs:     {LOG_DIR}/")
+    print(f"Top-20:   {SAVE_DIR}/top20_*.ckpt")
+    print(f"{'='*60}")
 
     return model, best_val_acc
 
 
 def run_hyperparameter_search():
     """Run Optuna search to find best hyperparameters"""
-    print(f"\nOptuna search: {N_TRIALS} trials, {EPOCHS_PER_TRIAL} epochs each")
+    print(f"\n{'='*60}")
+    print(f"Optuna Hyperparameter Search")
+    print(f"{'='*60}")
+    print(f"Trials: {N_TRIALS}, Epochs per trial: {EPOCHS_PER_TRIAL}")
+    print(f"{'='*60}\n")
 
     study = optuna.create_study(
         direction="maximize",
@@ -144,15 +186,40 @@ def run_hyperparameter_search():
         show_progress_bar=True,
     )
 
-    print(
-        f"\nBest trial #{study.best_trial.number}: Val Acc={study.best_value * 100:.2f}%"
-    )
+    # Output top-20 best trials
+    print(f"\n{'='*60}")
+    print(f"Top 20 Trials")
+    print(f"{'='*60}")
+
+    sorted_trials = sorted(study.trials, key=lambda t: t.value if t.value else 0, reverse=True)
+    for i, trial in enumerate(sorted_trials[:20]):
+        if trial.value:
+            print(f"{i+1:2d}. Trial #{trial.number}: val_acc={trial.value*100:.2f}%")
+
+    print(f"\nBest trial #{study.best_trial.number}: Val Acc={study.best_value * 100:.2f}%")
+
+    # Save results of all trials
+    trials_path = Path(SAVE_DIR) / "all_trials.json"
+    trials_data = []
+    for trial in study.trials:
+        if trial.value:
+            trials_data.append({
+                "number": trial.number,
+                "value": trial.value,
+                "params": trial.params,
+            })
+
+    with open(trials_path, "w") as f:
+        json.dump(sorted(trials_data, key=lambda x: x["value"], reverse=True), f, indent=2)
+
+    print(f"All trials saved to: {trials_path}")
 
     return study.best_params
 
 
 if __name__ == "__main__":
     Path(SAVE_DIR).mkdir(parents=True, exist_ok=True)
+    Path(LOG_DIR).mkdir(parents=True, exist_ok=True)
 
     best_params = run_hyperparameter_search()
     final_model, final_accuracy = train_best_model(best_params)

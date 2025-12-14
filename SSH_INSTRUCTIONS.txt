@@ -1,64 +1,60 @@
 ================================================================================
-                    TENSTORRENT SERVER - ИНСТРУКЦИЯ
+                    TENSTORRENT SERVER - INSTRUCTIONS
 ================================================================================
 
-git clone https://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@github.com/xkuze/Tenstorrent.git
-
-git remote set-url origin https://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@github.com/xkuze/Tenstorrent.git
-
-ДАННЫЕ ДЛЯ ПОДКЛЮЧЕНИЯ:
+CONNECTION DATA:
 ------------------------
-Сервер:    10.30.0.207
-Логин:     ekaterina_kuzmina1
-Пароль:    (тот что ты сменила после первого входа)
-Порт:      22 (стандартный)
+Server:    10.30.0.207
+Login:     ekaterina_kuzmina1
+Password:  (the one you changed after first login)
+Port:      22 (standard)
 
-ВАЖНО: Нужен EPAM VPN если не в офисе!
+IMPORTANT: EPAM VPN required if not in the office!
 
 ================================================================================
-1. ПОДКЛЮЧЕНИЕ ПО SSH
+1. SSH CONNECTION
 ================================================================================
 
-ВАРИАНТ А - Терминал:
+OPTION A - Terminal:
 ---------------------
 ssh ekaterina_kuzmina1@10.30.0.207
 
-ВАРИАНТ Б - VS Code (удобнее):
+OPTION B - VS Code (more convenient):
 ------------------------------
-1. Установи расширение "Remote - SSH" (от Microsoft)
-2. Cmd+Shift+P → "Remote-SSH: Connect to Host..."
-3. Введи: ekaterina_kuzmina1@10.30.0.207
-4. Введи пароль
+1. Install extension "Remote - SSH" (by Microsoft)
+2. Cmd+Shift+P -> "Remote-SSH: Connect to Host..."
+3. Enter: ekaterina_kuzmina1@10.30.0.207
+4. Enter password
 
 ================================================================================
-2. ПОСЛЕ ПОДКЛЮЧЕНИЯ - АКТИВАЦИЯ ОКРУЖЕНИЯ
+2. AFTER CONNECTION - ENVIRONMENT ACTIVATION
 ================================================================================
 
 cd ~/tenstorrent
 source .venv/bin/activate
 
-Теперь ты в виртуальном окружении с ttnn.
+Now you are in the virtual environment with ttnn.
 
 ================================================================================
-3. ПРОВЕРКА ДОСТУПНЫХ УСТРОЙСТВ
+3. CHECKING AVAILABLE DEVICES
 ================================================================================
 
-uv run python -c "import ttnn; print(ttnn.get_device_ids())"
+python -c "import ttnn; print(ttnn.get_device_ids())"
 
-Выведет список: [0, 1, 2, 3, 4, 5, 6, 7]
-Локальные карты: 0, 1, 2, 3
-Remote карты: 4, 5, 6, 7
+Will output list: [0, 1, 2, 3, 4, 5, 6, 7]
+Local cards: 0, 1, 2, 3
+Remote cards: 4, 5, 6, 7
 
 ================================================================================
-4. ВЫБОР УСТРОЙСТВА
+4. SELECTING A DEVICE
 ================================================================================
 
-1. Напиши в Teams чат "TT Hardware Access" какой девайс хочешь использовать
-   Пример: "I'll use device 0"
+1. Write in Teams chat "TT Hardware Access" which device you want to use
+   Example: "I'll use device 0"
 
-2. Проверь что работает:
+2. Check that it works:
 
-uv run python -c "
+python -c "
 import ttnn
 device = ttnn.open_device(device_id=0)
 print('Device opened!')
@@ -66,50 +62,50 @@ ttnn.close_device(device)
 print('Done!')
 "
 
-(замени device_id=0 на свой номер)
+(replace device_id=0 with your number)
 
 ================================================================================
-5. ЗАПУСК СВОЕГО КОДА
+5. RUNNING YOUR CODE
 ================================================================================
 
 cd ~/tenstorrent
 source .venv/bin/activate
-uv run python my_script.py
+python my_script.py
 
 ================================================================================
-6. ЗАКРЫТИЕ SSH
+6. CLOSING SSH
 ================================================================================
 
 exit
 
-или Ctrl+D
+or Ctrl+D
 
-В VS Code: закрой окно или Cmd+Shift+P → "Remote: Close Remote Connection"
+In VS Code: close the window or Cmd+Shift+P -> "Remote: Close Remote Connection"
 
 ================================================================================
-7. КОПИРОВАНИЕ ФАЙЛОВ С МАКА НА СЕРВЕР
+7. COPYING FILES FROM MAC TO SERVER
 ================================================================================
 
-Выполняется С МАКА (не на сервере):
+Run FROM MAC (not on the server):
 
 scp /path/to/local/file.py ekaterina_kuzmina1@10.30.0.207:~/tenstorrent/
 
-Копирование папки:
+Copying a folder:
 scp -r /path/to/folder ekaterina_kuzmina1@10.30.0.207:~/tenstorrent/
 
 ================================================================================
-8. ПОЛЕЗНЫЕ ССЫЛКИ
+8. USEFUL LINKS
 ================================================================================
 
-Документация TT-NN:     https://docs.tenstorrent.com/tt-metal/latest/ttnn/index.html
-Главная документация:   https://docs.tenstorrent.com/
-Getting Started:        https://docs.tenstorrent.com/getting-started/README.html
+TT-NN Documentation:     https://docs.tenstorrent.com/tt-metal/latest/ttnn/index.html
+Main Documentation:      https://docs.tenstorrent.com/
+Getting Started:         https://docs.tenstorrent.com/getting-started/README.html
 
 ================================================================================
-9. КОНТАКТЫ
+9. CONTACTS
 ================================================================================
 
-По вопросам доступа: Yury Nikanchyk (yury_nikanchyk@epam.com)
-Чат для устройств:   "TT Hardware Access" в Teams
+For access questions: Yury Nikanchyk (yury_nikanchyk@epam.com)
+Device chat:          "TT Hardware Access" in Teams
 
 ================================================================================

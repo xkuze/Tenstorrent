@@ -1,0 +1,130 @@
+================================================================================
+DEVELOPER JOURNEY REPORT - TT-NN Implementation
+================================================================================
+Date: 2025-12-14
+Developer: Ekaterina Kuzmina
+Models: MNIST (MLP), CIFAR-10 (CNN)
+
+================================================================================
+PHASE 1: ENVIRONMENT SETUP & SANITY CHECK
+================================================================================
+
+Action: Install TT-NN and run basic examples
+Score: 4 (Great Experience)
+Time Spent: ~30 min
+Comment: TT-NN was pre-installed in the virtual environment. Activation with
+         "source .venv/bin/activate" worked smoothly. All dependencies resolved.
+
+Action: Verify Installation
+Score: 4 (Great Experience)
+Time Spent: ~5 min
+Comment: Basic ttnn import and device detection worked on first try.
+         Command: python -c "import ttnn; print(ttnn.get_device_ids())"
+
+================================================================================
+PHASE 2: IMPLEMENTATION
+================================================================================
+
+Action: Understanding TT-NN tensor layouts
+Score: 3 (Good Experience)
+Time Spent: ~60 min
+Comment: TILE_LAYOUT and bfloat16 dtype worked well for MLP layers.
+         Documentation was helpful for understanding layout choices.
+
+Action: Converting from PyTorch patterns
+Score: 3 (Good Experience)
+Time Spent: ~90 min
+Comment: Linear layers converted straightforwardly using ttnn.matmul and ttnn.add.
+         Weight transposition (weight.T) required for correct matrix multiplication.
+         ReLU activation mapped directly to ttnn.relu.
+
+Action: PyTorch to TT-NN conversion sequence
+Score: 3 (Good Experience)
+Time Spent: ~60 min
+Comment: Workflow: load PyTorch model -> extract weights -> convert to ttnn tensors
+         -> run operations on device -> convert back to PyTorch for validation.
+         CNN conv layers kept on CPU, FC layers on TT hardware (hybrid approach).
+
+Action: Weight conversion and initialization
+Score: 4 (Great Experience)
+Time Spent: ~30 min
+Comment: ttnn.from_torch() handled weight conversion seamlessly.
+         No issues with PyTorch checkpoint loading.
+
+Action: Validation - Compare outputs using PCC
+Score: 4 (Great Experience)
+Time Spent: ~15 min
+Comment: PCC validation successful on first run!
+         - MNIST: PCC = 0.999970 (> 0.99 PASS)
+         - CIFAR: PCC = 0.999976 (> 0.99 PASS)
+
+================================================================================
+PHASE 3: DEBUGGING AND PERFORMANCE
+================================================================================
+
+Action: Using tt-smi to manage and troubleshoot hardware
+Score: 3 (Good Experience)
+Time Spent: ~10 min
+Comment: tt-smi required separate installation (pip install tt-smi).
+         Once installed, tool worked correctly showing device status,
+         temperature, and memory usage. Clear output format.
+
+Action: Debugging tools and error messages
+Score: 3 (Good Experience)
+Time Spent: ~20 min
+Comment: Error messages from ttnn were generally clear. Device opening/closing
+         logs provided useful information about hardware topology.
+
+================================================================================
+PHASE 4: OVERALL ASSESSMENT
+================================================================================
+
+Score: 3 (Good Experience)
+Comment: Successfully implemented PyTorch to TT-NN conversion for both MLP and CNN
+         models. The workflow was clear once understood. Main learning curve was
+         understanding tensor layouts and weight transposition for matmul operations.
+         PCC > 0.99 achieved for both models, indicating high numerical accuracy.
+
+================================================================================
+RESULTS SUMMARY
+================================================================================
+
+Model       | PyTorch Acc | TT-NN Acc | PCC      | Status
+------------|-------------|-----------|----------|--------
+MNIST (MLP) | 100.00%     | 100.00%   | 0.999970 | PASS
+CIFAR (CNN) | 81.25%      | 81.25%    | 0.999976 | PASS
+
+================================================================================
+CODE STRUCTURE
+================================================================================
+
+tenstorrent/
+├── mnist/
+│   ├── model.py           # MLP model definition (PyTorch Lightning)
+│   ├── train.py           # Training with Optuna hyperparameter search
+│   ├── inference_ttnn.py  # TT-NN inference with PCC validation
+│   └── utils.py           # Data loading utilities
+├── cifar/
+│   ├── model.py           # CNN model definition (PyTorch Lightning)
+│   ├── train.py           # Training with Optuna hyperparameter search
+│   ├── inference_ttnn.py  # TT-NN inference with PCC validation
+│   └── utils.py           # Data loading utilities
+├── weights_mnist/         # Trained model checkpoints
+├── weights_cifar/         # Trained model checkpoints
+└── data/                  # Dataset files (in .gitignore)
+
+================================================================================
+BUGS FOUND
+================================================================================
+
+None. No bugs were encountered during this journey.
+
+================================================================================
+SUGGESTIONS FOR IMPROVEMENT
+================================================================================
+
+1. tt-smi could be pre-installed in the environment
+2. More examples of CNN layer conversion (Conv2d) would be helpful
+3. Consider adding ttnn.conv2d examples to documentation
+
+================================================================================

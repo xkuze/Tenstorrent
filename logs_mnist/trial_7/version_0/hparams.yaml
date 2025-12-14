@@ -1,0 +1,6 @@
+dropout_rate: 0.07572978042087203
+hidden_sizes:
+- 512
+- 256
+learning_rate: 0.003985521817928755
+optimizer_name: SGD

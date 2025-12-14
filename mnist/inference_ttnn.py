@@ -2,41 +2,27 @@
 MNIST inference on Tenstorrent hardware using TT-NN.
 
 ================================================================================
-ВЫБОР УСТРОЙСТВА (DEVICE)
+DEVICE SELECTION
 ================================================================================
 
-Доступные устройства: 0, 1, 2, 3 (локальные), 4, 5, 6, 7 (remote)
+Available devices: 0, 1, 2, 3 (local), 4, 5, 6, 7 (remote)
 
-1. Сначала напиши в Teams чат "TT Hardware Access":
-   "I'll use device 0" (или другой номер)
+1. First write in Teams chat "TT Hardware Access":
+   "I'll use device 0" (or another number)
 
-2. Запусти скрипт с нужным device_id:
-   uv run python -m mnist.inference_ttnn --device_id 0
+2. Run the script with the desired device_id:
+   python -m mnist.inference_ttnn --device_id 0
 
-3. Проверить доступные устройства:
+3. Check available devices:
    python -c "import ttnn; print(ttnn.get_device_ids())"
 
 ================================================================================
-ОТКЛЮЧЕНИЕ ОТ СЕРВЕРА
-================================================================================
-
-1. Выйти из виртуального окружения:
-   deactivate
-
-2. Отключиться от SSH:
-   exit
-   (или Ctrl+D)
-
-3. В VS Code:
-   Cmd+Shift+P -> "Remote: Close Remote Connection"
-
-================================================================================
-ИСПОЛЬЗОВАНИЕ
+USAGE
 ================================================================================
 
     cd ~/tenstorrent
     source .venv/bin/activate
-    uv run python -m mnist.inference_ttnn --device_id 0
+    python -m mnist.inference_ttnn --device_id 0
 """
 
 import argparse

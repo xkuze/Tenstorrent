@@ -1,67 +1,67 @@
-# Команды для работы с Tenstorrent
+# Commands for working with Tenstorrent
 
-## Подключение к серверу
+## Connecting to the server
 
 ```bash
-# SSH подключение
+# SSH connection
 ssh ekaterina_kuzmina1@10.30.0.207
 
-# Или через VS Code:
+# Or via VS Code:
 # Cmd+Shift+P -> "Remote-SSH: Connect to Host..."
-# Ввести: ekaterina_kuzmina1@10.30.0.207
+# Enter: ekaterina_kuzmina1@10.30.0.207
 ```
 
-## Активация окружения
+## Activating the environment
 
 ```bash
 cd ~/tenstorrent
 source .venv/bin/activate
 ```
 
-## Выбор устройства (ВАЖНО!)
+## Selecting a device (IMPORTANT!)
 
-**Доступные устройства:** 0, 1, 2, 3 (локальные), 4, 5, 6, 7 (remote)
+**Available devices:** 0, 1, 2, 3 (local), 4, 5, 6, 7 (remote)
 
-1. **Сначала напиши в Teams чат "TT Hardware Access":**
+1. **First, write in Teams chat "TT Hardware Access":**
    ```
    I'll use device 2
    ```
 
-2. **Проверить доступные устройства:**
+2. **Check available devices:**
    ```bash
    python -c "import ttnn; print(ttnn.get_device_ids())"
    ```
 
-3. **Проверить что устройство работает:**
+3. **Check that the device works:**
    ```bash
    python -c "import ttnn; d = ttnn.open_device(2); print('OK'); ttnn.close_device(d)"
    ```
 
-## Запуск inference на Tenstorrent
+## Running inference on Tenstorrent
 
-### MNIST (MLP модель)
+### MNIST (MLP model)
 ```bash
 python -m mnist.inference_ttnn --device_id 2
 ```
 
-### CIFAR-10 (CNN модель)
+### CIFAR-10 (CNN model)
 ```bash
 python -m cifar.inference_ttnn --device_id 2
 ```
 
-### С другими параметрами
+### With other parameters
 ```bash
-# Другой checkpoint
+# Different checkpoint
 python -m mnist.inference_ttnn --device_id 2 --checkpoint weights_mnist/best_model.ckpt
 
-# Больше samples
+# More samples
 python -m mnist.inference_ttnn --device_id 2 --num_samples 100
 
-# Другой batch size
+# Different batch size
 python -m mnist.inference_ttnn --device_id 2 --batch_size 64
 ```
 
-## Обучение моделей (PyTorch)
+## Training models (PyTorch)
 
 ```bash
 # MNIST
@@ -71,65 +71,65 @@ python -m mnist.train
 python -m cifar.train
 ```
 
-## Git команды
+## Git commands
 
 ```bash
-# Статус
+# Status
 git status
 
-# Добавить все изменения
+# Add all changes
 git add .
 
-# Коммит
-git commit -m "описание изменений"
+# Commit
+git commit -m "description of changes"
 
 # Push
 git push
 ```
 
-## Отключение
+## Disconnecting
 
 ```bash
-# 1. Выйти из venv
+# 1. Exit venv
 deactivate
 
-# 2. Отключиться от SSH
+# 2. Disconnect from SSH
 exit
-# или Ctrl+D
+# or Ctrl+D
 
-# 3. В VS Code:
+# 3. In VS Code:
 # Cmd+Shift+P -> "Remote: Close Remote Connection"
 ```
 
-## Полезные команды
+## Useful commands
 
 ```bash
-# Посмотреть GPU/устройства
+# View GPU/devices
 tt-smi
 
-# Список установленных пакетов
+# List installed packages
 pip list | grep -i tt
 
-# Проверить версию PyTorch
+# Check PyTorch version
 python -c "import torch; print(torch.__version__)"
 ```
 
-## Структура проекта
+## Project structure
 
 ```
 ~/tenstorrent/
 ├── mnist/
-│   ├── model.py           # MLP модель
-│   ├── train.py           # Обучение
+│   ├── model.py           # MLP model
+│   ├── train.py           # Training
 │   ├── utils.py           # DataModule
-│   └── inference_ttnn.py  # Inference на TT
+│   └── inference_ttnn.py  # Inference on TT
 ├── cifar/
-│   ├── model.py           # CNN модель
-│   ├── train.py           # Обучение
+│   ├── model.py           # CNN model
+│   ├── train.py           # Training
 │   ├── utils.py           # DataModule
-│   └── inference_ttnn.py  # Inference на TT
-├── weights_mnist/         # Сохранённые веса MNIST
-├── weights_cifar/         # Сохранённые веса CIFAR
-├── info/                  # PDF с заданиями
-└── COMMANDS.md            # Этот файл
+│   └── inference_ttnn.py  # Inference on TT
+├── weights_mnist/         # Saved MNIST weights
+├── weights_cifar/         # Saved CIFAR weights
+├── info/                  # PDF with assignments
+└── COMMANDS.md            # This file
 ```

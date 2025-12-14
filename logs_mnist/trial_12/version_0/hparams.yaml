@@ -1,0 +1,7 @@
+dropout_rate: 0.2012736664018484
+hidden_sizes:
+- 128
+- 256
+- 256
+learning_rate: 0.0013769312812281498
+optimizer_name: Adam
