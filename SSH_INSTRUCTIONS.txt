@@ -4,6 +4,7 @@
 
 git clone https://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@github.com/xkuze/Tenstorrent.git
 
+git remote set-url origin https://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@github.com/xkuze/Tenstorrent.git
 
 ДАННЫЕ ДЛЯ ПОДКЛЮЧЕНИЯ:
 ------------------------
