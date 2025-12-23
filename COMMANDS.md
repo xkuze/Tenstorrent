@@ -4,11 +4,11 @@
 
 ```bash
 # SSH connection
-ssh ekaterina_kuzmina1@10.30.0.207
+ssh ekaterina_kuzmina1@10.30.147.170
 
 # Or via VS Code:
 # Cmd+Shift+P -> "Remote-SSH: Connect to Host..."
-# Enter: ekaterina_kuzmina1@10.30.0.207
+# Enter: ekaterina_kuzmina1@10.30.147.170
 ```
 
 ## Activating the environment
