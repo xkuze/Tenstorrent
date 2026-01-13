@@ -12,3 +12,6 @@ data/cifar-10-python.tar.gz
 *.tar.gz
 data/
 weights_unet/*.ckpt
+
+# Privat folders
+/EK
