@@ -1,0 +1,18 @@
+{
+    "cache_path": "/home/ekaterina_kuzmina1/.cache/ttnn",
+    "comparison_mode_pcc": 0.9998999834060669,
+    "comparison_mode_should_raise_exception": false,
+    "enable_comparison_mode": false,
+    "enable_detailed_buffer_report": true,
+    "enable_detailed_tensor_report": false,
+    "enable_fast_runtime_mode": false,
+    "enable_graph_report": false,
+    "enable_logging": true,
+    "enable_model_cache": false,
+    "model_cache_path": "/home/ekaterina_kuzmina1/.cache/ttnn/models",
+    "report_name": "unet_memory_report",
+    "report_path": "generated/ttnn/reports/unet_memory_report_jan13_2128",
+    "root_report_path": "generated/ttnn/reports",
+    "throw_exception_on_fallback": false,
+    "tmp_dir": "/tmp/ttnn"
+}
