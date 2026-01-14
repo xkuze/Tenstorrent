@@ -23,4 +23,5 @@ dependencies = [
     "opencv-python-headless>=4.9.0",
     "tensorboard>=2.15.0",
     "ttnn-visualizer>=0.67.2",
+    "git-filter-repo>=2.47.0",
 ]

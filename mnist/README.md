@@ -1,37 +1,35 @@
-# MNIST MLP - Task 1
+# MNIST
 
-## What I Implemented
+Handwritten digit classification (0-9). MLP architecture trained with Optuna hyperparameter search.
 
-- **Architecture**: Multi-layer perceptron with configurable hidden layers
-- **Framework**: PyTorch Lightning
-- **Hyperparameter Search**: Optuna with TPE algorithm
-- **Data Split**: 54k train / 6k validation / 10k test
-- **Optimization**: Adam, SGD, RMSprop
+## Structure
 
-## Hyperparameter Search
+```
+mnist/
+├── model.py          # MLP definition
+├── train.py          # Training with Optuna
+├── utils.py          # DataModule
+├── inference_ttnn.py # Inference on TensTorrent
+├── weights/          # Checkpoints
+└── logs/             # Training logs
+```
 
-Optuna tries different configurations:
+## Training
 
-- Number of hidden layers (1-3)
-- Layer sizes (64, 128, 256, 512 neurons)
-- Dropout rate (0.0-0.5)
-- Learning rate (0.0001-0.01)
-- Batch size (32, 64, 128)
-- Optimizer (Adam, SGD, RMSprop)
+```bash
+python -m mnist.train
+```
 
-It runs 5 trials with 5 epochs each, then picks the best configuration.
+Optuna searches through hidden layer sizes, dropout rates, learning rates, and optimizers. Best config trains for 30 epochs with early stopping.
 
-### Training Flow
+## Inference
 
-1. Run hyperparameter search (5 trials x 5 epochs)
-2. Find best configuration based on validation accuracy
-3. Train final model with best params for 20 epochs
-4. Use early stopping if validation accuracy stops improving
-5. Save best model checkpoint
-6. Test on test set and report final accuracy
+```bash
+python -m mnist.inference_ttnn --device_id 2
+```
 
-### Results
+Runs on TensTorrent hardware. Compares PyTorch vs TT-NN outputs using PCC metric.
 
-- Best validation accuracy: 97.9%
-- Test accuracy: 97.76%
-- Model saved to: weights_mnist/best_model.ckpt
+## Results
+
+Test accuracy: 97.76%

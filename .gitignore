@@ -11,9 +11,13 @@ wheels/
 data/cifar-10-python.tar.gz
 *.tar.gz
 data/
-weights_unet/*.ckpt
+# Model weights (too large for GitHub)
+*/weights/*.ckpt
+*/weights/*.pt
+*.ckpt
+*.pt
 
-# Privat folders
+# Private folders
 /EK
 CLAUDE.md
 .mcp.json

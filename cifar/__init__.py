@@ -1,4 +1,1 @@
-from cifar.model import CNN
-from cifar.utils import CIFAR10DataModule
-
-__all__ = ["CNN", "CIFAR10DataModule"]
+"""CIFAR-10 image classification task with CNN architecture."""

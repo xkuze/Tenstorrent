@@ -1,49 +1,35 @@
-# CIFAR-10 CNN - Task 2
+# CIFAR-10
 
-## What I Implemented
+Image classification across 10 categories (airplane, car, bird, etc.). CNN architecture with Optuna tuning.
 
-- **Architecture**: Convolutional neural network with configurable layers
-- **Framework**: PyTorch Lightning
-- **Hyperparameter Search**: Optuna with TPE algorithm
-- **Data Split**: 45k train / 5k validation / 10k test
-- **Optimization**: Adam, SGD, RMSprop
+## Structure
 
-## Architecture Details
+```
+cifar/
+├── model.py          # CNN definition
+├── train.py          # Training with Optuna
+├── utils.py          # DataModule
+├── inference_ttnn.py # Inference on TensTorrent
+├── weights/          # Checkpoints
+└── logs/             # Training logs
+```
 
-CNN structure: Conv2d -> ReLU -> MaxPool2d -> Dropout -> Flatten -> FC layers
+## Training
 
-Each convolutional layer:
+```bash
+python -m cifar.train
+```
 
-- Configurable number of filters (32, 64, 128, 256)
-- Kernel size (3x3 or 5x5)
-- MaxPooling reduces spatial dimensions by 2
-- Dropout for regularization
+Optuna explores conv layer counts, filter sizes, kernel dimensions, and dropout. Trains best model for 30 epochs.
 
-### Hyperparameter Search
+## Inference
 
-Optuna tries different configurations:
+```bash
+python -m cifar.inference_ttnn --device_id 2
+```
 
-- Number of convolutional layers (2-4)
-- Number of filters per layer (32, 64, 128, 256)
-- Kernel size (3 or 5)
-- Dropout rate (0.0-0.5)
-- Learning rate (0.0001-0.01)
-- Batch size (32, 64, 128)
-- Optimizer (Adam, SGD, RMSprop)
+Conv layers run on CPU, FC layers on TensTorrent device. Hybrid approach due to ttnn.conv2d complexity.
 
-It runs 5 trials with 5 epochs each, then picks the best configuration.
+## Results
 
-### Training Flow
-
-1. Run hyperparameter search (5 trials x 5 epochs)
-2. Find best configuration based on validation accuracy
-3. Train final model with best params for 20 epochs
-4. Use early stopping if validation accuracy stops improving
-5. Save best model checkpoint
-6. Test on test set and report final accuracy
-
-### Results
-
-- Best validation accuracy: 76.3%
-- Test accuracy: 75.36%
-- Model saved to: weights_cifar/best_model.ckpt
+Test accuracy: 75.36%

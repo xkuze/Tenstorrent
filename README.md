@@ -1,23 +1,83 @@
-## Structure
-- `mnist/` - Task 1: MNIST digit classification with MLP
-- `cifar/` - Task 2: CIFAR-10 image classification with CNN
+# TensTorrent ML Project
 
-The code between these two folders is very similar. I basically copied and adapted it for each task. Ideally I would have created a common module with shared functions for both tasks but I didn't want to spend time on that. I could also increase the number of TRIALS for the models but I settled on five for faster training completion and result validation.
+Training and inference on TensTorrent hardware. Three tasks: digit classification, image classification, and segmentation.
 
-I should have also written better docstrings but I decided not to spend time on that. If shared modules or more detailed docstrings are important for you, I can add them to the code.
+## Quick Start
 
-I used uv as the package manager and ruff for linting.
+```bash
+# SSH to server (requires VPN)
+ssh ekaterina_kuzmina1@10.30.0.207
 
-I split the data into train/val/test with 90/10 split (train from validation) plus a separate test set. More detailed data split information is in each task's README.
+# Activate environment
+cd ~/tenstorrent
+source .venv/bin/activate
 
-I didn't implement explicit layer analysis or dimension tracking code. PyTorch Lightning automatically handles model summaries and shows layer dimensions, parameter counts and architecture details during training. For fast prototyping I relied on Lightning's built-in analysis rather than building custom layer inspection tools. If there was a separate research phase requirement with deeper model analysis needs, I would add more detailed layer-by-layer analysis, feature map visualization and dimension tracking.
+# Run inference (replace N with device 0-7)
+python -m mnist.inference_ttnn --device_id N
+python -m cifar.inference_ttnn --device_id N
+python -m unet.inference_ttnn --device_id N
+```
 
-## Weights
+## Project Structure
 
-Model weights are saved in:
-- `weights_mnist/` - for MNIST task
-- `weights_cifar/` - for CIFAR-10 task
+```
+tenstorrent/
+├── mnist/            # Digit classification (MLP)
+│   ├── model.py
+│   ├── train.py
+│   ├── inference_ttnn.py
+│   ├── weights/
+│   └── logs/
+├── cifar/            # Image classification (CNN)
+│   ├── model.py
+│   ├── train.py
+│   ├── inference_ttnn.py
+│   ├── weights/
+│   └── logs/
+├── unet/             # Segmentation (VGG19 encoder)
+│   ├── model.py
+│   ├── train.py
+│   ├── inference_ttnn.py
+│   ├── benchmark.py
+│   ├── weights/
+│   └── logs/
+├── common/           # Shared utilities
+│   └── metrics.py
+├── configs/          # Configuration files
+└── data/             # Datasets (gitignored)
+```
 
-## Task Details
+## Training
 
-Each folder has its own README describing what was implemented from the Excel requirements.
+All models use PyTorch Lightning. MNIST and CIFAR include Optuna hyperparameter search.
+
+```bash
+python -m mnist.train
+python -m cifar.train
+python -m unet.train
+```
+
+## Results
+
+| Task | Architecture | Test Accuracy |
+|------|--------------|---------------|
+| MNIST | MLP | 97.76% |
+| CIFAR-10 | CNN | 75.36% |
+| UNet | VGG19 encoder | Dice ~0.29 |
+
+## Tools
+
+- **uv** — package manager
+- **ruff** — linting and formatting
+- **PyTorch Lightning** — training framework
+- **Optuna** — hyperparameter optimization
+- **TTNN** — TensTorrent inference library
+
+## Device Selection
+
+Eight devices available (0-3 local, 4-7 remote). Check Teams chat "TT Hardware Access" before using.
+
+```bash
+# Verify device works
+python -c "import ttnn; d = ttnn.open_device(device_id=2); print('OK'); ttnn.close_device(d)"
+```
