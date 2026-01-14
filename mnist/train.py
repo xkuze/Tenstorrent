@@ -74,7 +74,8 @@ def objective(trial: optuna.Trial):
 
     val_acc = trainer.callback_metrics["val_acc"].item()
     print(
-        f"  Trial {trial.number}: {hidden_sizes}, dropout={dropout:.2f}, lr={lr:.6f}, opt={optimizer} -> val_acc={val_acc * 100:.2f}%"
+        f"  Trial {trial.number}: {hidden_sizes}, dropout={dropout:.2f}, "
+        f"lr={lr:.6f}, opt={optimizer} -> val_acc={val_acc * 100:.2f}%"
     )
 
     return val_acc
@@ -90,7 +91,8 @@ def train_best_model(best_params, trial_number=0):
     optimizer_name = best_params["optimizer"]
 
     print(
-        f"\nTraining final model: {hidden_sizes}, dropout={dropout_rate:.2f}, lr={learning_rate:.6f}, batch={batch_size}, opt={optimizer_name}"
+        f"\nTraining final model: {hidden_sizes}, dropout={dropout_rate:.2f}, "
+        f"lr={learning_rate:.6f}, batch={batch_size}, opt={optimizer_name}"
     )
 
     dm = MNISTDataModule(data_dir=DATA_DIR, batch_size=batch_size)

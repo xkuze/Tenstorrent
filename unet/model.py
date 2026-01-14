@@ -189,10 +189,6 @@ class UNetVGG19(L.LightningModule):
         logits = self(images)
         loss = self.compute_loss(logits, masks)
 
-        # Metrics
-        preds = (
-            torch.sigmoid(logits) > 0.5 if self.num_classes == 1 else logits.argmax(1)
-        )
         self.log("train_loss", loss, prog_bar=True)
 
         return loss

@@ -26,3 +26,16 @@ dependencies = [
     "git-filter-repo>=2.47.0",
     "pytest>=9.0.2",
 ]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+exclude = [
+    "generated/tracer/codegen/",  # Auto-generated skeleton code from tracer
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "W"]
+ignore = [
+    "E402",  # Module level import not at top of file (needed for sys.path manipulation)
+]

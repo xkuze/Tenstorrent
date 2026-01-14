@@ -9,7 +9,8 @@ Usage:
     python scripts/run_visualizer_profiling.py --mode memory --device_id 3
 
     # Performance report (requires TT_METAL_DEVICE_PROFILER)
-    TT_METAL_DEVICE_PROFILER=1 python scripts/run_visualizer_profiling.py --mode performance --device_id 3
+    TT_METAL_DEVICE_PROFILER=1 python scripts/run_visualizer_profiling.py \\
+        --mode performance --device_id 3
 
 Output:
     - generated/visualizer/memory_reports/
@@ -55,8 +56,8 @@ def run_memory_profiling(device_id: int):
     try:
         # Run inference with profiling
         with torch.no_grad():
-            # PyTorch forward
-            pytorch_out = model(images)
+            # PyTorch forward (run for profiling)
+            _pytorch_out = model(images)  # noqa: F841
 
             # Flatten for simple TTNN ops
             batch_size = images.shape[0]
@@ -74,7 +75,7 @@ def run_memory_profiling(device_id: int):
             tt_out = ttnn.matmul(tt_input, tt_weights)
             tt_out = ttnn.add(tt_out, tt_bias)
 
-            result = ttnn.to_torch(tt_out)
+            _result = ttnn.to_torch(tt_out)  # noqa: F841
 
         print("Memory profiling complete!")
         print("Check generated/visualizer/memory_reports/ for output")
@@ -99,7 +100,8 @@ def run_performance_profiling(device_id: int):
     if os.environ.get("TT_METAL_DEVICE_PROFILER") != "1":
         print("Warning: TT_METAL_DEVICE_PROFILER not set to 1")
         print(
-            "Run with: TT_METAL_DEVICE_PROFILER=1 python scripts/run_visualizer_profiling.py --mode performance"
+            "Run with: TT_METAL_DEVICE_PROFILER=1 python "
+            "scripts/run_visualizer_profiling.py --mode performance"
         )
 
     # Load model
@@ -121,8 +123,8 @@ def run_performance_profiling(device_id: int):
 
     try:
         with torch.no_grad():
-            # PyTorch forward
-            pytorch_out = model(images)
+            # PyTorch forward (run for profiling)
+            _pytorch_out = model(images)  # noqa: F841
 
             # Simple TTNN ops for profiling
             batch_size = images.shape[0]
@@ -139,7 +141,7 @@ def run_performance_profiling(device_id: int):
             tt_out = ttnn.matmul(tt_input, tt_weights)
             tt_out = ttnn.add(tt_out, tt_bias)
 
-            result = ttnn.to_torch(tt_out)
+            _result = ttnn.to_torch(tt_out)  # noqa: F841
 
         print("Performance profiling complete!")
         print("Check generated/visualizer/profiler_logs/ for output")

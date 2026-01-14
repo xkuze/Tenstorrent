@@ -43,7 +43,6 @@ class CNN(L.LightningModule):
         # 32 -> 16 -> 8 -> 4
         feature_size = 32 // (2 ** len(num_filters))
         flatten_size = num_filters[-1] * feature_size * feature_size
-        # print(f"Feature size after conv: {feature_size}x{feature_size}, flatten to: {flatten_size}")
 
         # Build connected layers
         self.fc_layers = nn.Sequential(
