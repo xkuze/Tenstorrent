@@ -16,6 +16,7 @@ import numpy as np
 
 from unet.model import UNetVGG19
 from unet.dataset import SegmentationDataModule, get_val_transforms
+from common.metrics import compute_pcc
 
 
 def load_pytorch_model(checkpoint_path: str) -> UNetVGG19:
@@ -137,23 +138,6 @@ def run_inference_ttnn(model: UNetVGG19, images: torch.Tensor, device) -> torch.
         output = out_flat.reshape(batch_size, height, width, -1).permute(0, 3, 1, 2)
 
     return output
-
-
-def compute_pcc(tensor1: torch.Tensor, tensor2: torch.Tensor) -> float:
-    """Compute Pearson Correlation Coefficient between two tensors."""
-    t1 = tensor1.flatten().float()
-    t2 = tensor2.flatten().float()
-
-    t1_centered = t1 - t1.mean()
-    t2_centered = t2 - t2.mean()
-
-    numerator = (t1_centered * t2_centered).sum()
-    denominator = torch.sqrt((t1_centered ** 2).sum() * (t2_centered ** 2).sum())
-
-    if denominator == 0:
-        return 1.0 if numerator == 0 else 0.0
-
-    return (numerator / denominator).item()
 
 
 def compute_dice(pred: torch.Tensor, target: torch.Tensor, threshold: float = 0.5) -> float:
