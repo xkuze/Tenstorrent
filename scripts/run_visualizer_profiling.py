@@ -51,7 +51,7 @@ def run_memory_profiling(device_id: int):
 
     # Open device
     print(f"\nOpening device {device_id}...")
-    device = ttnn.open_device(device_id)
+    device = ttnn.open_device(device_id=device_id)
 
     try:
         # Run inference with profiling
@@ -115,7 +115,7 @@ def run_performance_profiling(device_id: int):
 
     # Open device
     print(f"\nOpening device {device_id}...")
-    device = ttnn.open_device(device_id)
+    device = ttnn.open_device(device_id=device_id)
 
     try:
         with torch.no_grad():
