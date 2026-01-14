@@ -74,9 +74,7 @@ def main():
     parser.add_argument("--device_id", type=int, default=2, help="TT device ID")
     parser.add_argument("--checkpoint", type=str, default=str(DEFAULT_CHECKPOINT))
     parser.add_argument("--batch_size", type=int, default=4)
-    parser.add_argument(
-        "--num_runs", type=int, default=10, help="Number of benchmark runs"
-    )
+    parser.add_argument("--num_runs", type=int, default=10, help="Number of benchmark runs")
     parser.add_argument("--warmup", type=int, default=2, help="Warmup runs")
     args = parser.parse_args()
 

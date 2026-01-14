@@ -210,18 +210,12 @@ def run_hyperparameter_search():
     print("Top 20 Trials")
     print(f"{'=' * 60}")
 
-    sorted_trials = sorted(
-        study.trials, key=lambda t: t.value if t.value else 0, reverse=True
-    )
+    sorted_trials = sorted(study.trials, key=lambda t: t.value if t.value else 0, reverse=True)
     for i, trial in enumerate(sorted_trials[:20]):
         if trial.value:
-            print(
-                f"{i + 1:2d}. Trial #{trial.number}: val_acc={trial.value * 100:.2f}%"
-            )
+            print(f"{i + 1:2d}. Trial #{trial.number}: val_acc={trial.value * 100:.2f}%")
 
-    print(
-        f"\nBest trial #{study.best_trial.number}: Val Acc={study.best_value * 100:.2f}%"
-    )
+    print(f"\nBest trial #{study.best_trial.number}: Val Acc={study.best_value * 100:.2f}%")
 
     # Save results of all trials
     trials_path = Path(SAVE_DIR) / "all_trials.json"
@@ -237,9 +231,7 @@ def run_hyperparameter_search():
             )
 
     with open(trials_path, "w") as f:
-        json.dump(
-            sorted(trials_data, key=lambda x: x["value"], reverse=True), f, indent=2
-        )
+        json.dump(sorted(trials_data, key=lambda x: x["value"], reverse=True), f, indent=2)
 
     print(f"All trials saved to: {trials_path}")
 

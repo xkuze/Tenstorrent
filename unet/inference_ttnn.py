@@ -144,9 +144,7 @@ def run_inference_ttnn(model: UNetVGG19, images: torch.Tensor, device) -> torch.
     return output
 
 
-def compute_dice(
-    pred: torch.Tensor, target: torch.Tensor, threshold: float = 0.5
-) -> float:
+def compute_dice(pred: torch.Tensor, target: torch.Tensor, threshold: float = 0.5) -> float:
     """Compute Dice score."""
     pred_binary = (torch.sigmoid(pred) > threshold).float()
     target_binary = (target > threshold).float()
@@ -165,9 +163,7 @@ def main():
     parser.add_argument("--device_id", type=int, default=0, help="TT device ID (0-7)")
     parser.add_argument("--checkpoint", type=str, default=str(DEFAULT_CHECKPOINT))
     parser.add_argument("--batch_size", type=int, default=4)
-    parser.add_argument(
-        "--num_samples", type=int, default=8, help="Number of test samples"
-    )
+    parser.add_argument("--num_samples", type=int, default=8, help="Number of test samples")
     args = parser.parse_args()
 
     print(f"\n{'=' * 60}")

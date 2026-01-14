@@ -79,9 +79,7 @@ class UNetVGG19(L.LightningModule):
         self.learning_rate = learning_rate
 
         # Load VGG19 encoder
-        vgg19 = models.vgg19(
-            weights=models.VGG19_Weights.IMAGENET1K_V1 if pretrained else None
-        )
+        vgg19 = models.vgg19(weights=models.VGG19_Weights.IMAGENET1K_V1 if pretrained else None)
         features = list(vgg19.features.children())
 
         # Encoder blocks (extract features at different scales)
@@ -171,9 +169,7 @@ class UNetVGG19(L.LightningModule):
         else:
             # Multi-class segmentation
             bce_loss = nn.functional.cross_entropy(logits, masks.long().squeeze(1))
-            dice_loss = self._dice_loss(
-                torch.softmax(logits, dim=1), masks.long().squeeze(1)
-            )
+            dice_loss = self._dice_loss(torch.softmax(logits, dim=1), masks.long().squeeze(1))
         return bce_loss + dice_loss
 
     def _dice_loss(self, pred, target, smooth=1e-6):
@@ -201,9 +197,7 @@ class UNetVGG19(L.LightningModule):
         # Metrics
         if self.num_classes == 1:
             preds = (torch.sigmoid(logits) > 0.5).long().squeeze(1)  # [B, H, W]
-            masks_int = (
-                masks.long() if masks.dim() == 3 else masks.long().squeeze(1)
-            )  # [B, H, W]
+            masks_int = masks.long() if masks.dim() == 3 else masks.long().squeeze(1)  # [B, H, W]
         else:
             preds = logits.argmax(1)
             masks_int = masks.long().squeeze(1)
@@ -224,9 +218,7 @@ class UNetVGG19(L.LightningModule):
 
         if self.num_classes == 1:
             preds = (torch.sigmoid(logits) > 0.5).long().squeeze(1)  # [B, H, W]
-            masks_int = (
-                masks.long() if masks.dim() == 3 else masks.long().squeeze(1)
-            )  # [B, H, W]
+            masks_int = masks.long() if masks.dim() == 3 else masks.long().squeeze(1)  # [B, H, W]
         else:
             preds = logits.argmax(1)
             masks_int = masks.long().squeeze(1)
@@ -242,9 +234,7 @@ class UNetVGG19(L.LightningModule):
 
     def configure_optimizers(self):
         optimizer = torch.optim.AdamW(self.parameters(), lr=self.learning_rate)
-        scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
-            optimizer, T_max=50, eta_min=1e-6
-        )
+        scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=50, eta_min=1e-6)
         return {"optimizer": optimizer, "lr_scheduler": scheduler}
 
     def get_num_parameters(self):

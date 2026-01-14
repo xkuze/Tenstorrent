@@ -73,9 +73,7 @@ def run_inference_ttnn(model: CNN, images: torch.Tensor, device) -> torch.Tensor
     x = x.view(batch_size, -1)
 
     # Convert to ttnn for FC layers (these work well on TT hardware)
-    x_ttnn = ttnn.from_torch(
-        x, dtype=ttnn.bfloat16, layout=ttnn.TILE_LAYOUT, device=device
-    )
+    x_ttnn = ttnn.from_torch(x, dtype=ttnn.bfloat16, layout=ttnn.TILE_LAYOUT, device=device)
 
     # Process FC layers on TT-NN
     for module in model.fc_layers:
@@ -113,9 +111,7 @@ def main():
     parser.add_argument("--device_id", type=int, default=0, help="TT device ID (0-3)")
     parser.add_argument("--checkpoint", type=str, default=str(DEFAULT_CHECKPOINT))
     parser.add_argument("--batch_size", type=int, default=32)
-    parser.add_argument(
-        "--num_samples", type=int, default=32, help="Number of test samples"
-    )
+    parser.add_argument("--num_samples", type=int, default=32, help="Number of test samples")
     args = parser.parse_args()
 
     print(f"\n{'=' * 60}")

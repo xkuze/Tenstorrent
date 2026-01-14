@@ -86,17 +86,13 @@ class MLP(L.LightningModule):
 
     def configure_optimizers(self):
         if self.hparams.optimizer_name == "Adam":
-            optimizer = torch.optim.Adam(
-                self.parameters(), lr=self.hparams.learning_rate
-            )
+            optimizer = torch.optim.Adam(self.parameters(), lr=self.hparams.learning_rate)
         elif self.hparams.optimizer_name == "SGD":
             optimizer = torch.optim.SGD(
                 self.parameters(), lr=self.hparams.learning_rate, momentum=0.9
             )
         else:  # RMSprop
-            optimizer = torch.optim.RMSprop(
-                self.parameters(), lr=self.hparams.learning_rate
-            )
+            optimizer = torch.optim.RMSprop(self.parameters(), lr=self.hparams.learning_rate)
 
         return optimizer
 

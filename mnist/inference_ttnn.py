@@ -58,9 +58,7 @@ def run_inference_ttnn(model: MLP, images: torch.Tensor, device) -> torch.Tensor
     x = images.view(images.size(0), -1)
 
     # Convert input to ttnn tensor
-    x_ttnn = ttnn.from_torch(
-        x, dtype=ttnn.bfloat16, layout=ttnn.TILE_LAYOUT, device=device
-    )
+    x_ttnn = ttnn.from_torch(x, dtype=ttnn.bfloat16, layout=ttnn.TILE_LAYOUT, device=device)
 
     # Get weights from PyTorch model and run through layers
     layer_idx = 0
@@ -108,9 +106,7 @@ def main():
     parser.add_argument("--device_id", type=int, default=0, help="TT device ID (0-3)")
     parser.add_argument("--checkpoint", type=str, default=str(DEFAULT_CHECKPOINT))
     parser.add_argument("--batch_size", type=int, default=32)
-    parser.add_argument(
-        "--num_samples", type=int, default=100, help="Number of test samples"
-    )
+    parser.add_argument("--num_samples", type=int, default=100, help="Number of test samples")
     args = parser.parse_args()
 
     print(f"\n{'=' * 60}")

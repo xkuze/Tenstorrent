@@ -38,9 +38,7 @@ class TestConv2dOperations:
         """Test conv2d operation PCC between PyTorch and TTNN."""
         # PyTorch reference
         x = torch.randn(input_shape)
-        conv = torch.nn.Conv2d(
-            in_channels, out_channels, kernel_size, padding=kernel_size // 2
-        )
+        conv = torch.nn.Conv2d(in_channels, out_channels, kernel_size, padding=kernel_size // 2)
         with torch.no_grad():
             pytorch_out = conv(x)
 

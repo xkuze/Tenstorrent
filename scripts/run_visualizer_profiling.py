@@ -68,9 +68,7 @@ def run_memory_profiling(device_id: int):
             # TTNN operations (these get profiled)
             tt_input = ttnn.from_torch(flat_input, dtype=ttnn.bfloat16, device=device)
             tt_weights = ttnn.from_torch(weights.T, dtype=ttnn.bfloat16, device=device)
-            tt_bias = ttnn.from_torch(
-                bias.unsqueeze(0), dtype=ttnn.bfloat16, device=device
-            )
+            tt_bias = ttnn.from_torch(bias.unsqueeze(0), dtype=ttnn.bfloat16, device=device)
 
             tt_out = ttnn.matmul(tt_input, tt_weights)
             tt_out = ttnn.add(tt_out, tt_bias)
@@ -93,9 +91,7 @@ def run_performance_profiling(device_id: int):
     from unet.dataset import OxfordIIITPetDataModule
 
     print("=== Performance Profiling ===")
-    print(
-        f"TT_METAL_DEVICE_PROFILER: {os.environ.get('TT_METAL_DEVICE_PROFILER', 'Not set')}"
-    )
+    print(f"TT_METAL_DEVICE_PROFILER: {os.environ.get('TT_METAL_DEVICE_PROFILER', 'Not set')}")
 
     if os.environ.get("TT_METAL_DEVICE_PROFILER") != "1":
         print("Warning: TT_METAL_DEVICE_PROFILER not set to 1")
@@ -134,9 +130,7 @@ def run_performance_profiling(device_id: int):
 
             tt_input = ttnn.from_torch(flat_input, dtype=ttnn.bfloat16, device=device)
             tt_weights = ttnn.from_torch(weights.T, dtype=ttnn.bfloat16, device=device)
-            tt_bias = ttnn.from_torch(
-                bias.unsqueeze(0), dtype=ttnn.bfloat16, device=device
-            )
+            tt_bias = ttnn.from_torch(bias.unsqueeze(0), dtype=ttnn.bfloat16, device=device)
 
             tt_out = ttnn.matmul(tt_input, tt_weights)
             tt_out = ttnn.add(tt_out, tt_bias)

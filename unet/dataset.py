@@ -112,9 +112,7 @@ class OxfordPetSegmentation(Dataset):
 
         # Resize
         image = cv2.resize(image, (self.img_size, self.img_size))
-        mask = cv2.resize(
-            mask, (self.img_size, self.img_size), interpolation=cv2.INTER_NEAREST
-        )
+        mask = cv2.resize(mask, (self.img_size, self.img_size), interpolation=cv2.INTER_NEAREST)
 
         # Oxford Pet mask: 1=foreground, 2=background, 3=boundary
         # Convert to binary: 1 (pet) vs 0 (background/boundary)
@@ -140,9 +138,7 @@ def get_train_transforms(img_size: int = 256):
             A.HorizontalFlip(p=0.5),
             A.VerticalFlip(p=0.5),
             A.RandomRotate90(p=0.5),
-            A.ShiftScaleRotate(
-                shift_limit=0.1, scale_limit=0.1, rotate_limit=15, p=0.5
-            ),
+            A.ShiftScaleRotate(shift_limit=0.1, scale_limit=0.1, rotate_limit=15, p=0.5),
             A.OneOf(
                 [
                     A.ElasticTransform(alpha=120, sigma=120 * 0.05, p=0.5),

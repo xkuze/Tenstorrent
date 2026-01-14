@@ -27,9 +27,7 @@ class CNN(L.LightningModule):
 
         for out_channels in num_filters:
             layers.append(
-                nn.Conv2d(
-                    in_channels, out_channels, kernel_size, padding=kernel_size // 2
-                )
+                nn.Conv2d(in_channels, out_channels, kernel_size, padding=kernel_size // 2)
             )
             layers.append(nn.ReLU())
             layers.append(nn.MaxPool2d(2, 2))
@@ -105,17 +103,13 @@ class CNN(L.LightningModule):
 
     def configure_optimizers(self):
         if self.hparams.optimizer_name == "Adam":
-            optimizer = torch.optim.Adam(
-                self.parameters(), lr=self.hparams.learning_rate
-            )
+            optimizer = torch.optim.Adam(self.parameters(), lr=self.hparams.learning_rate)
         elif self.hparams.optimizer_name == "SGD":
             optimizer = torch.optim.SGD(
                 self.parameters(), lr=self.hparams.learning_rate, momentum=0.9
             )
         else:  # RMSprop
-            optimizer = torch.optim.RMSprop(
-                self.parameters(), lr=self.hparams.learning_rate
-            )
+            optimizer = torch.optim.RMSprop(self.parameters(), lr=self.hparams.learning_rate)
 
         return optimizer
 
