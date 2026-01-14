@@ -16,6 +16,9 @@ from cifar.model import CNN
 from cifar.utils import CIFAR10DataModule
 from common.metrics import compute_pcc
 
+MODULE_DIR = Path(__file__).parent
+DEFAULT_CHECKPOINT = MODULE_DIR / "weights" / "best_model.ckpt"
+
 
 def load_pytorch_model(checkpoint_path: str) -> CNN:
     """Load trained PyTorch model from checkpoint."""
@@ -113,7 +116,7 @@ def run_inference_ttnn(model: CNN, images: torch.Tensor, device) -> torch.Tensor
 def main():
     parser = argparse.ArgumentParser(description="CIFAR-10 inference on Tenstorrent")
     parser.add_argument("--device_id", type=int, default=0, help="TT device ID (0-3)")
-    parser.add_argument("--checkpoint", type=str, default="weights_cifar/best_model.ckpt")
+    parser.add_argument("--checkpoint", type=str, default=str(DEFAULT_CHECKPOINT))
     parser.add_argument("--batch_size", type=int, default=32)
     parser.add_argument("--num_samples", type=int, default=32, help="Number of test samples")
     args = parser.parse_args()

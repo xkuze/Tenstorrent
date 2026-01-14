@@ -22,8 +22,9 @@ BATCH_SIZE = 8
 MAX_EPOCHS = 5  # Reduced for CPU training; increase with GPU
 LEARNING_RATE = 1e-4
 DATA_DIR = "./data"
-SAVE_DIR = "weights_unet"
-LOG_DIR = "logs_unet"
+MODULE_DIR = Path(__file__).parent
+SAVE_DIR = MODULE_DIR / "weights"
+LOG_DIR = MODULE_DIR / "logs"
 
 
 def train():

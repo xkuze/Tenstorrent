@@ -16,8 +16,9 @@ N_TRIALS = 20  # Increased for better search
 EPOCHS_PER_TRIAL = 5
 FINAL_EPOCHS = 30
 DATA_DIR = "./data"
-SAVE_DIR = "weights_cifar"
-LOG_DIR = "logs_cifar"
+MODULE_DIR = Path(__file__).parent
+SAVE_DIR = MODULE_DIR / "weights"
+LOG_DIR = MODULE_DIR / "logs"
 
 
 def objective(trial: optuna.Trial):

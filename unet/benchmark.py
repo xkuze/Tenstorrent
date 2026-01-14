@@ -18,8 +18,11 @@ from unet.inference_ttnn import (
     load_pytorch_model,
     run_inference_pytorch,
     run_inference_ttnn,
-    compute_pcc,
 )
+from common.metrics import compute_pcc
+
+MODULE_DIR = Path(__file__).parent
+DEFAULT_CHECKPOINT = MODULE_DIR / "weights" / "best_model.ckpt"
 
 
 def benchmark_pytorch(model, images, num_runs=10, warmup=2):
@@ -72,7 +75,7 @@ def print_stats(name, times):
 def main():
     parser = argparse.ArgumentParser(description="UNet Performance Benchmark")
     parser.add_argument("--device_id", type=int, default=2, help="TT device ID")
-    parser.add_argument("--checkpoint", type=str, default="weights_unet/best_model.ckpt")
+    parser.add_argument("--checkpoint", type=str, default=str(DEFAULT_CHECKPOINT))
     parser.add_argument("--batch_size", type=int, default=4)
     parser.add_argument("--num_runs", type=int, default=10, help="Number of benchmark runs")
     parser.add_argument("--warmup", type=int, default=2, help="Warmup runs")

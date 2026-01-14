@@ -18,6 +18,9 @@ from unet.model import UNetVGG19
 from unet.dataset import SegmentationDataModule, get_val_transforms
 from common.metrics import compute_pcc
 
+MODULE_DIR = Path(__file__).parent
+DEFAULT_CHECKPOINT = MODULE_DIR / "weights" / "best_model.ckpt"
+
 
 def load_pytorch_model(checkpoint_path: str) -> UNetVGG19:
     """Load trained PyTorch model from checkpoint."""
@@ -157,7 +160,7 @@ def compute_dice(pred: torch.Tensor, target: torch.Tensor, threshold: float = 0.
 def main():
     parser = argparse.ArgumentParser(description="UNet inference on Tenstorrent")
     parser.add_argument("--device_id", type=int, default=0, help="TT device ID (0-7)")
-    parser.add_argument("--checkpoint", type=str, default="weights_unet/best_model.ckpt")
+    parser.add_argument("--checkpoint", type=str, default=str(DEFAULT_CHECKPOINT))
     parser.add_argument("--batch_size", type=int, default=4)
     parser.add_argument("--num_samples", type=int, default=8, help="Number of test samples")
     args = parser.parse_args()
