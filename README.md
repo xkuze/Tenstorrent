@@ -1,6 +1,28 @@
 # TensTorrent ML Project
 
-Training and inference on TensTorrent hardware. Three tasks: digit classification, image classification, and segmentation.
+ML project for training and inference on TensTorrent hardware using PyTorch Lightning and TT-NN.
+
+## Table of Contents
+
+- [Tasks](#tasks)
+- [Quick Start](#quick-start)
+- [Project Structure](#project-structure)
+- [Training](#training)
+- [Inference on TensTorrent](#inference-on-tenstorrent)
+- [Evaluation Scripts](#evaluation-scripts)
+- [Profiling](#profiling)
+- [Device Selection](#device-selection)
+- [Tools](#tools)
+- [Documentation](#documentation)
+- [Module READMEs](#module-readmes)
+
+## Tasks
+
+| Task | Architecture | Dataset | Test Metric |
+|------|--------------|---------|-------------|
+| MNIST | MLP | 70k images | **97.76%** accuracy |
+| CIFAR-10 | CNN | 60k images | **75.36%** accuracy |
+| UNet | VGG19 encoder | Oxford-IIIT Pet | **0.93** Dice score |
 
 ## Quick Start
 
@@ -12,72 +34,143 @@ ssh ekaterina_kuzmina1@10.30.0.207
 cd ~/tenstorrent
 source .venv/bin/activate
 
-# Run inference (replace N with device 0-7)
-python -m mnist.inference_ttnn --device_id N
-python -m cifar.inference_ttnn --device_id N
-python -m unet.inference_ttnn --device_id N
+# Verify TT-NN installation
+python scripts/sanity_check.py --device_id 3
+
+# Run inference
+python -m mnist.inference_ttnn --device_id 3
+python -m cifar.inference_ttnn --device_id 3
+python -m unet.inference_ttnn --device_id 3
 ```
 
 ## Project Structure
 
 ```
 tenstorrent/
-├── mnist/            # Digit classification (MLP)
-│   ├── model.py
-│   ├── train.py
-│   ├── inference_ttnn.py
+├── mnist/                # Digit classification (MLP)
+│   ├── model.py              # MLP LightningModule
+│   ├── train.py              # Optuna hyperparameter search
+│   ├── inference_ttnn.py     # TT-NN inference
+│   ├── weights/              # Checkpoints
+│   └── logs/                 # Training logs
+│
+├── cifar/                # Image classification (CNN)
+│   ├── model.py              # CNN LightningModule
+│   ├── train.py              # Optuna hyperparameter search
+│   ├── inference_ttnn.py     # Hybrid inference (Conv CPU + FC TT-NN)
 │   ├── weights/
 │   └── logs/
-├── cifar/            # Image classification (CNN)
-│   ├── model.py
-│   ├── train.py
-│   ├── inference_ttnn.py
+│
+├── unet/                 # Segmentation (VGG19 encoder)
+│   ├── model.py              # UNetVGG19 LightningModule
+│   ├── dataset.py            # Oxford-IIIT Pet DataModule
+│   ├── train.py              # Training with early stopping
+│   ├── inference_ttnn.py     # TT-NN inference
+│   ├── benchmark.py          # PyTorch vs TT-NN timing
 │   ├── weights/
 │   └── logs/
-├── unet/             # Segmentation (VGG19 encoder)
-│   ├── model.py
-│   ├── train.py
-│   ├── inference_ttnn.py
-│   ├── benchmark.py
-│   ├── weights/
-│   └── logs/
-├── common/           # Shared utilities
-│   └── metrics.py
-├── configs/          # Configuration files
-└── data/             # Datasets (gitignored)
+│
+├── common/               # Shared utilities
+│   └── metrics.py            # compute_pcc for output validation
+│
+├── scripts/              # Evaluation and demo scripts
+│   ├── sanity_check.py       # Environment verification
+│   ├── demo_ttnn_basics.py   # TT-NN API tutorial
+│   ├── check_ttnn_ops.py     # Operation support checker
+│   ├── run_tracer.py         # Model tracing and codegen
+│   └── run_visualizer_profiling.py  # Memory/performance profiling
+│
+├── configs/              # Configuration files
+│   └── vis_config.json       # TT-NN Visualizer config
+│
+├── generated/            # Auto-generated outputs
+│   ├── tracer/               # Traced graphs, tests, codegen
+│   └── visualizer/           # Memory and performance reports
+│
+└── data/                 # Datasets (gitignored)
 ```
 
 ## Training
 
-All models use PyTorch Lightning. MNIST and CIFAR include Optuna hyperparameter search.
+All models use PyTorch Lightning with automatic checkpointing and early stopping.
 
 ```bash
+# MNIST - MLP with Optuna (20 trials)
 python -m mnist.train
+
+# CIFAR-10 - CNN with Optuna (20 trials)
 python -m cifar.train
+
+# UNet - VGG19 encoder (50 epochs, early stopping)
 python -m unet.train
 ```
 
-## Results
+## Inference on TensTorrent
 
-| Task | Architecture | Test Accuracy |
-|------|--------------|---------------|
-| MNIST | MLP | 97.76% |
-| CIFAR-10 | CNN | 75.36% |
-| UNet | VGG19 encoder | Dice ~0.29 |
+```bash
+# Basic inference with PCC validation
+python -m mnist.inference_ttnn --device_id 3
+python -m cifar.inference_ttnn --device_id 3
+python -m unet.inference_ttnn --device_id 3
+
+# UNet benchmark (timing comparison)
+python -m unet.benchmark --device_id 3 --batch_size 4 --num_runs 10
+```
+
+## Evaluation Scripts
+
+```bash
+# Verify environment
+python scripts/sanity_check.py --device_id 3
+
+# Learn TT-NN basics (layouts, conversion patterns, API)
+python scripts/demo_ttnn_basics.py --device_id 3
+
+# Check which PyTorch ops have TT-NN equivalents
+python scripts/check_ttnn_ops.py
+
+# Trace model and generate tests/codegen
+python scripts/run_tracer.py --phase all
+
+# Run auto-generated unit tests
+pytest generated/tracer/tests/test_unet_ops.py -v
+```
+
+## Profiling
+
+```bash
+# Memory profiling
+export TTNN_CONFIG_PATH=configs/vis_config.json
+python scripts/run_visualizer_profiling.py --mode memory --device_id 3
+
+# Performance profiling
+TT_METAL_DEVICE_PROFILER=1 python scripts/run_visualizer_profiling.py \
+    --mode performance --device_id 3
+
+# View reports
+uv run ttnn-visualizer  # Opens http://localhost:8000
+```
 
 ## Tools
 
-- **uv** — package manager
-- **ruff** — linting and formatting
-- **PyTorch Lightning** — training framework
-- **Optuna** — hyperparameter optimization
-- **TTNN** — TensTorrent inference library
+| Tool | Purpose |
+|------|---------|
+| **uv** | Package manager |
+| **ruff** | Linting and formatting |
+| **PyTorch Lightning** | Training framework |
+| **Optuna** | Hyperparameter optimization |
+| **TT-NN** | TensTorrent inference library |
+| **ttnn-visualizer** | Memory/performance visualization |
 
-## Device Selection
 
-Eight devices available (0-3 local, 4-7 remote). Check Teams chat "TT Hardware Access" before using.
+## Module READMEs
 
-```bash
-# Verify device works
-python -c "import ttnn; d = ttnn.open_device(device_id=2); print('OK'); ttnn.close_device(d)"
-```
+Each module has its own README with detailed documentation:
+
+- [mnist/README.md](mnist/README.md) - MLP architecture, Optuna search space
+- [cifar/README.md](cifar/README.md) - CNN architecture, hybrid inference
+- [unet/README.md](unet/README.md) - VGG19 encoder, segmentation results
+- [common/README.md](common/README.md) - PCC metric, thresholds
+- [scripts/README.md](scripts/README.md) - All evaluation scripts
+- [configs/README.md](configs/README.md) - Visualizer configuration
+- [generated/README.md](generated/README.md) - Tracer and visualizer outputs
