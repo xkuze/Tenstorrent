@@ -13,13 +13,10 @@ import torch
 import ttnn
 from pathlib import Path
 
-from unet.model import UNetVGG19
 from unet.inference_ttnn import (
     load_pytorch_model,
-    run_inference_pytorch,
     run_inference_ttnn,
 )
-from common.metrics import compute_pcc
 
 MODULE_DIR = Path(__file__).parent
 DEFAULT_CHECKPOINT = MODULE_DIR / "weights" / "best_model.ckpt"
@@ -65,10 +62,10 @@ def print_stats(name, times):
     min_t = min(times)
     max_t = max(times)
     print(f"\n{name}:")
-    print(f"  Average: {avg*1000:.2f} ms")
-    print(f"  Min:     {min_t*1000:.2f} ms")
-    print(f"  Max:     {max_t*1000:.2f} ms")
-    print(f"  Throughput: {1/avg:.2f} inferences/sec")
+    print(f"  Average: {avg * 1000:.2f} ms")
+    print(f"  Min:     {min_t * 1000:.2f} ms")
+    print(f"  Max:     {max_t * 1000:.2f} ms")
+    print(f"  Throughput: {1 / avg:.2f} inferences/sec")
     return avg
 
 
@@ -77,7 +74,9 @@ def main():
     parser.add_argument("--device_id", type=int, default=2, help="TT device ID")
     parser.add_argument("--checkpoint", type=str, default=str(DEFAULT_CHECKPOINT))
     parser.add_argument("--batch_size", type=int, default=4)
-    parser.add_argument("--num_runs", type=int, default=10, help="Number of benchmark runs")
+    parser.add_argument(
+        "--num_runs", type=int, default=10, help="Number of benchmark runs"
+    )
     parser.add_argument("--warmup", type=int, default=2, help="Warmup runs")
     args = parser.parse_args()
 
@@ -125,8 +124,8 @@ def main():
         print("\n" + "=" * 60)
         print("RESULTS SUMMARY")
         print("=" * 60)
-        print(f"PyTorch avg:  {pytorch_avg*1000:.2f} ms")
-        print(f"TT-NN avg:    {ttnn_avg*1000:.2f} ms")
+        print(f"PyTorch avg:  {pytorch_avg * 1000:.2f} ms")
+        print(f"TT-NN avg:    {ttnn_avg * 1000:.2f} ms")
 
         if ttnn_avg < pytorch_avg:
             speedup = pytorch_avg / ttnn_avg
@@ -145,7 +144,7 @@ def main():
         print("\nTry resetting the device: tt-smi -r <device_id>")
 
     finally:
-        if 'device' in locals():
+        if "device" in locals():
             print("\nClosing device...")
             ttnn.close_device(device)
             print("Done!")

@@ -9,13 +9,11 @@ Usage:
 
 import argparse
 import torch
-import torch.nn as nn
 import ttnn
 from pathlib import Path
-import numpy as np
 
 from unet.model import UNetVGG19
-from unet.dataset import SegmentationDataModule, get_val_transforms
+from unet.dataset import SegmentationDataModule
 from common.metrics import compute_pcc
 
 MODULE_DIR = Path(__file__).parent
@@ -24,23 +22,23 @@ DEFAULT_CHECKPOINT = MODULE_DIR / "weights" / "best_model.ckpt"
 
 def load_pytorch_model(checkpoint_path: str) -> UNetVGG19:
     """Load trained PyTorch model from checkpoint."""
-    checkpoint = torch.load(checkpoint_path, map_location='cpu')
+    checkpoint = torch.load(checkpoint_path, map_location="cpu")
 
     # Handle different checkpoint formats
-    if 'pytorch-lightning_version' in checkpoint:
+    if "pytorch-lightning_version" in checkpoint:
         # Lightning checkpoint
         model = UNetVGG19.load_from_checkpoint(checkpoint_path)
     else:
         # Simple torch.save checkpoint
-        hparams = checkpoint.get('hyper_parameters', {})
+        hparams = checkpoint.get("hyper_parameters", {})
         model = UNetVGG19(
-            num_classes=hparams.get('num_classes', 1),
-            pretrained=hparams.get('pretrained', False),
-            freeze_encoder=hparams.get('freeze_encoder', False),
-            learning_rate=hparams.get('learning_rate', 1e-4),
-            bilinear=hparams.get('bilinear', True),
+            num_classes=hparams.get("num_classes", 1),
+            pretrained=hparams.get("pretrained", False),
+            freeze_encoder=hparams.get("freeze_encoder", False),
+            learning_rate=hparams.get("learning_rate", 1e-4),
+            bilinear=hparams.get("bilinear", True),
         )
-        model.load_state_dict(checkpoint['state_dict'])
+        model.load_state_dict(checkpoint["state_dict"])
 
     model.eval()
     return model
@@ -60,7 +58,9 @@ def run_conv2d_ttnn(x, conv_module, device):
     bias = conv_module.bias.data if conv_module.bias is not None else None
 
     out = torch.nn.functional.conv2d(
-        x, weight, bias,
+        x,
+        weight,
+        bias,
         stride=conv_module.stride,
         padding=conv_module.padding,
     )
@@ -106,28 +106,29 @@ def run_inference_ttnn(model: UNetVGG19, images: torch.Tensor, device) -> torch.
 
         # Get final conv weights (1x1 conv is equivalent to linear)
         weight = model.final.weight.data.squeeze()  # [out_ch, in_ch]
-        bias = model.final.bias.data if model.final.bias is not None else torch.zeros(model.num_classes)
+        bias = (
+            model.final.bias.data
+            if model.final.bias is not None
+            else torch.zeros(model.num_classes)
+        )
 
         # Convert to TT-NN tensors
         x_ttnn = ttnn.from_torch(
-            x_flat,
-            dtype=ttnn.bfloat16,
-            layout=ttnn.TILE_LAYOUT,
-            device=device
+            x_flat, dtype=ttnn.bfloat16, layout=ttnn.TILE_LAYOUT, device=device
         )
 
         weight_ttnn = ttnn.from_torch(
             weight.T,  # Transpose for matmul
             dtype=ttnn.bfloat16,
             layout=ttnn.TILE_LAYOUT,
-            device=device
+            device=device,
         )
 
         bias_ttnn = ttnn.from_torch(
             bias.unsqueeze(0),
             dtype=ttnn.bfloat16,
             layout=ttnn.TILE_LAYOUT,
-            device=device
+            device=device,
         )
 
         # Matmul on TT-NN
@@ -143,7 +144,9 @@ def run_inference_ttnn(model: UNetVGG19, images: torch.Tensor, device) -> torch.
     return output
 
 
-def compute_dice(pred: torch.Tensor, target: torch.Tensor, threshold: float = 0.5) -> float:
+def compute_dice(
+    pred: torch.Tensor, target: torch.Tensor, threshold: float = 0.5
+) -> float:
     """Compute Dice score."""
     pred_binary = (torch.sigmoid(pred) > threshold).float()
     target_binary = (target > threshold).float()
@@ -162,12 +165,14 @@ def main():
     parser.add_argument("--device_id", type=int, default=0, help="TT device ID (0-7)")
     parser.add_argument("--checkpoint", type=str, default=str(DEFAULT_CHECKPOINT))
     parser.add_argument("--batch_size", type=int, default=4)
-    parser.add_argument("--num_samples", type=int, default=8, help="Number of test samples")
+    parser.add_argument(
+        "--num_samples", type=int, default=8, help="Number of test samples"
+    )
     args = parser.parse_args()
 
-    print(f"\n{'='*60}")
+    print(f"\n{'=' * 60}")
     print(f"UNet Inference on Tenstorrent Device {args.device_id}")
-    print(f"{'='*60}\n")
+    print(f"{'=' * 60}\n")
 
     # Check if checkpoint exists
     if not Path(args.checkpoint).exists():
@@ -189,8 +194,8 @@ def main():
 
     # Get a batch of test images
     images, masks = next(iter(test_loader))
-    images = images[:args.num_samples]
-    masks = masks[:args.num_samples]
+    images = images[: args.num_samples]
+    masks = masks[: args.num_samples]
     print(f"Test batch: {images.shape}")
 
     # Run PyTorch inference
@@ -214,14 +219,14 @@ def main():
         # Compare outputs
         pcc = compute_pcc(pytorch_output, ttnn_output)
 
-        print(f"\n{'='*60}")
+        print(f"\n{'=' * 60}")
         print("Results Comparison")
-        print(f"{'='*60}")
+        print(f"{'=' * 60}")
         print(f"PyTorch Dice:  {pytorch_dice:.4f}")
         print(f"TT-NN Dice:    {ttnn_dice:.4f}")
         print(f"PCC:           {pcc:.6f}")
         print(f"PCC > 0.99:    {'YES' if pcc > 0.99 else 'NO'}")
-        print(f"{'='*60}\n")
+        print(f"{'=' * 60}\n")
 
     finally:
         print("Closing device...")

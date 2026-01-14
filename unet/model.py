@@ -129,8 +129,14 @@ class UNetVGG19(L.LightningModule):
         self.final = nn.Conv2d(64, num_classes, kernel_size=1)
 
         # Loss and metrics (F1Score = Dice for binary classification)
-        self.dice_metric = F1Score(task="binary" if num_classes == 1 else "multiclass", num_classes=num_classes if num_classes > 1 else None)
-        self.iou_metric = JaccardIndex(task="binary" if num_classes == 1 else "multiclass", num_classes=num_classes if num_classes > 1 else None)
+        self.dice_metric = F1Score(
+            task="binary" if num_classes == 1 else "multiclass",
+            num_classes=num_classes if num_classes > 1 else None,
+        )
+        self.iou_metric = JaccardIndex(
+            task="binary" if num_classes == 1 else "multiclass",
+            num_classes=num_classes if num_classes > 1 else None,
+        )
 
     def forward(self, x):
         # Encoder
@@ -184,7 +190,9 @@ class UNetVGG19(L.LightningModule):
         loss = self.compute_loss(logits, masks)
 
         # Metrics
-        preds = torch.sigmoid(logits) > 0.5 if self.num_classes == 1 else logits.argmax(1)
+        preds = (
+            torch.sigmoid(logits) > 0.5 if self.num_classes == 1 else logits.argmax(1)
+        )
         self.log("train_loss", loss, prog_bar=True)
 
         return loss
@@ -197,7 +205,9 @@ class UNetVGG19(L.LightningModule):
         # Metrics
         if self.num_classes == 1:
             preds = (torch.sigmoid(logits) > 0.5).long().squeeze(1)  # [B, H, W]
-            masks_int = masks.long() if masks.dim() == 3 else masks.long().squeeze(1)  # [B, H, W]
+            masks_int = (
+                masks.long() if masks.dim() == 3 else masks.long().squeeze(1)
+            )  # [B, H, W]
         else:
             preds = logits.argmax(1)
             masks_int = masks.long().squeeze(1)
@@ -218,7 +228,9 @@ class UNetVGG19(L.LightningModule):
 
         if self.num_classes == 1:
             preds = (torch.sigmoid(logits) > 0.5).long().squeeze(1)  # [B, H, W]
-            masks_int = masks.long() if masks.dim() == 3 else masks.long().squeeze(1)  # [B, H, W]
+            masks_int = (
+                masks.long() if masks.dim() == 3 else masks.long().squeeze(1)
+            )  # [B, H, W]
         else:
             preds = logits.argmax(1)
             masks_int = masks.long().squeeze(1)

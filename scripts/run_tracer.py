@@ -240,8 +240,14 @@ def generate_metadata(graph, output_dir: Path):
             "batch_norm": {"ttnn": "ttnn.batch_norm", "notes": "Direct equivalent"},
             "max_pool2d": {"ttnn": "ttnn.max_pool2d", "notes": "Direct equivalent"},
             "pad": {"ttnn": "ttnn.pad", "notes": "Direct equivalent"},
-            "cat": {"ttnn": "ttnn.concat", "notes": "Use ttnn.concat for concatenation"},
-            "randn": {"ttnn": "torch.randn + ttnn.from_torch", "notes": "Generate on host"},
+            "cat": {
+                "ttnn": "ttnn.concat",
+                "notes": "Use ttnn.concat for concatenation",
+            },
+            "randn": {
+                "ttnn": "torch.randn + ttnn.from_torch",
+                "notes": "Generate on host",
+            },
         },
         "partial_support": {
             "interpolate": {

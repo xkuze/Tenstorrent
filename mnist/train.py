@@ -1,7 +1,11 @@
 import optuna
 from optuna.integration import PyTorchLightningPruningCallback
 import lightning as L
-from lightning.pytorch.callbacks import ModelCheckpoint, EarlyStopping, LearningRateMonitor
+from lightning.pytorch.callbacks import (
+    ModelCheckpoint,
+    EarlyStopping,
+    LearningRateMonitor,
+)
 from lightning.pytorch.loggers import CSVLogger, TensorBoardLogger
 from pathlib import Path
 import json
@@ -69,7 +73,9 @@ def objective(trial: optuna.Trial):
     trainer.fit(model, dm)
 
     val_acc = trainer.callback_metrics["val_acc"].item()
-    print(f"  Trial {trial.number}: {hidden_sizes}, dropout={dropout:.2f}, lr={lr:.6f}, opt={optimizer} -> val_acc={val_acc*100:.2f}%")
+    print(
+        f"  Trial {trial.number}: {hidden_sizes}, dropout={dropout:.2f}, lr={lr:.6f}, opt={optimizer} -> val_acc={val_acc * 100:.2f}%"
+    )
 
     return val_acc
 
@@ -143,38 +149,42 @@ def train_best_model(best_params, trial_number=0):
     # Save parameters to JSON
     params_path = Path(SAVE_DIR) / "best_params.json"
     with open(params_path, "w") as f:
-        json.dump({
-            "hidden_sizes": hidden_sizes,
-            "dropout_rate": dropout_rate,
-            "learning_rate": learning_rate,
-            "batch_size": batch_size,
-            "optimizer": optimizer_name,
-            "val_acc": best_val_acc,
-            "test_acc": test_acc,
-            "timestamp": datetime.now().isoformat(),
-        }, f, indent=2)
+        json.dump(
+            {
+                "hidden_sizes": hidden_sizes,
+                "dropout_rate": dropout_rate,
+                "learning_rate": learning_rate,
+                "batch_size": batch_size,
+                "optimizer": optimizer_name,
+                "val_acc": best_val_acc,
+                "test_acc": test_acc,
+                "timestamp": datetime.now().isoformat(),
+            },
+            f,
+            indent=2,
+        )
 
-    print(f"\n{'='*60}")
-    print(f"Results")
-    print(f"{'='*60}")
+    print(f"\n{'=' * 60}")
+    print("Results")
+    print(f"{'=' * 60}")
     print(f"Val Acc:  {best_val_acc * 100:.2f}%")
     print(f"Test Acc: {test_acc * 100:.2f}%")
     print(f"Model:    {final_model_path}")
     print(f"Params:   {params_path}")
     print(f"Logs:     {LOG_DIR}/")
     print(f"Top-20:   {SAVE_DIR}/top20_*.ckpt")
-    print(f"{'='*60}")
+    print(f"{'=' * 60}")
 
     return model, best_val_acc
 
 
 def run_hyperparameter_search():
     """Run Optuna search to find best hyperparameters"""
-    print(f"\n{'='*60}")
-    print(f"Optuna Hyperparameter Search")
-    print(f"{'='*60}")
+    print(f"\n{'=' * 60}")
+    print("Optuna Hyperparameter Search")
+    print(f"{'=' * 60}")
     print(f"Trials: {N_TRIALS}, Epochs per trial: {EPOCHS_PER_TRIAL}")
-    print(f"{'='*60}\n")
+    print(f"{'=' * 60}\n")
 
     study = optuna.create_study(
         direction="maximize",
@@ -188,30 +198,40 @@ def run_hyperparameter_search():
     )
 
     # Output top-20 best trials
-    print(f"\n{'='*60}")
-    print(f"Top 20 Trials")
-    print(f"{'='*60}")
+    print(f"\n{'=' * 60}")
+    print("Top 20 Trials")
+    print(f"{'=' * 60}")
 
-    sorted_trials = sorted(study.trials, key=lambda t: t.value if t.value else 0, reverse=True)
+    sorted_trials = sorted(
+        study.trials, key=lambda t: t.value if t.value else 0, reverse=True
+    )
     for i, trial in enumerate(sorted_trials[:20]):
         if trial.value:
-            print(f"{i+1:2d}. Trial #{trial.number}: val_acc={trial.value*100:.2f}%")
+            print(
+                f"{i + 1:2d}. Trial #{trial.number}: val_acc={trial.value * 100:.2f}%"
+            )
 
-    print(f"\nBest trial #{study.best_trial.number}: Val Acc={study.best_value * 100:.2f}%")
+    print(
+        f"\nBest trial #{study.best_trial.number}: Val Acc={study.best_value * 100:.2f}%"
+    )
 
     # Save results of all trials
     trials_path = Path(SAVE_DIR) / "all_trials.json"
     trials_data = []
     for trial in study.trials:
         if trial.value:
-            trials_data.append({
-                "number": trial.number,
-                "value": trial.value,
-                "params": trial.params,
-            })
+            trials_data.append(
+                {
+                    "number": trial.number,
+                    "value": trial.value,
+                    "params": trial.params,
+                }
+            )
 
     with open(trials_path, "w") as f:
-        json.dump(sorted(trials_data, key=lambda x: x["value"], reverse=True), f, indent=2)
+        json.dump(
+            sorted(trials_data, key=lambda x: x["value"], reverse=True), f, indent=2
+        )
 
     print(f"All trials saved to: {trials_path}")
 

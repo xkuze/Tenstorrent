@@ -55,9 +55,7 @@ def run_inference_ttnn(model: CNN, images: torch.Tensor, device) -> torch.Tensor
 
             # Run conv2d on CPU/GPU for now (ttnn.conv2d requires special setup)
             x = torch.nn.functional.conv2d(
-                x, weight, bias,
-                stride=module.stride,
-                padding=module.padding
+                x, weight, bias, stride=module.stride, padding=module.padding
             )
 
         elif isinstance(module, torch.nn.ReLU):
@@ -65,9 +63,7 @@ def run_inference_ttnn(model: CNN, images: torch.Tensor, device) -> torch.Tensor
 
         elif isinstance(module, torch.nn.MaxPool2d):
             x = torch.nn.functional.max_pool2d(
-                x,
-                kernel_size=module.kernel_size,
-                stride=module.stride
+                x, kernel_size=module.kernel_size, stride=module.stride
             )
 
         elif isinstance(module, torch.nn.Dropout):
@@ -77,7 +73,9 @@ def run_inference_ttnn(model: CNN, images: torch.Tensor, device) -> torch.Tensor
     x = x.view(batch_size, -1)
 
     # Convert to ttnn for FC layers (these work well on TT hardware)
-    x_ttnn = ttnn.from_torch(x, dtype=ttnn.bfloat16, layout=ttnn.TILE_LAYOUT, device=device)
+    x_ttnn = ttnn.from_torch(
+        x, dtype=ttnn.bfloat16, layout=ttnn.TILE_LAYOUT, device=device
+    )
 
     # Process FC layers on TT-NN
     for module in model.fc_layers:
@@ -86,16 +84,13 @@ def run_inference_ttnn(model: CNN, images: torch.Tensor, device) -> torch.Tensor
             bias = module.bias.data
 
             weight_ttnn = ttnn.from_torch(
-                weight.T,
-                dtype=ttnn.bfloat16,
-                layout=ttnn.TILE_LAYOUT,
-                device=device
+                weight.T, dtype=ttnn.bfloat16, layout=ttnn.TILE_LAYOUT, device=device
             )
             bias_ttnn = ttnn.from_torch(
                 bias.unsqueeze(0),
                 dtype=ttnn.bfloat16,
                 layout=ttnn.TILE_LAYOUT,
-                device=device
+                device=device,
             )
 
             x_ttnn = ttnn.matmul(x_ttnn, weight_ttnn)
@@ -118,12 +113,14 @@ def main():
     parser.add_argument("--device_id", type=int, default=0, help="TT device ID (0-3)")
     parser.add_argument("--checkpoint", type=str, default=str(DEFAULT_CHECKPOINT))
     parser.add_argument("--batch_size", type=int, default=32)
-    parser.add_argument("--num_samples", type=int, default=32, help="Number of test samples")
+    parser.add_argument(
+        "--num_samples", type=int, default=32, help="Number of test samples"
+    )
     args = parser.parse_args()
 
-    print(f"\n{'='*60}")
+    print(f"\n{'=' * 60}")
     print(f"CIFAR-10 CNN Inference on Tenstorrent Device {args.device_id}")
-    print(f"{'='*60}\n")
+    print(f"{'=' * 60}\n")
 
     # Load PyTorch model
     print(f"Loading model from {args.checkpoint}...")
@@ -139,8 +136,8 @@ def main():
 
     # Get a batch of test images
     images, labels = next(iter(test_loader))
-    images = images[:args.num_samples]
-    labels = labels[:args.num_samples]
+    images = images[: args.num_samples]
+    labels = labels[: args.num_samples]
     print(f"Test batch: {images.shape}")
 
     # Run PyTorch inference
@@ -165,14 +162,14 @@ def main():
 
         # Compare outputs
         pcc = compute_pcc(pytorch_output, ttnn_output)
-        print(f"\n{'='*60}")
-        print(f"Results Comparison")
-        print(f"{'='*60}")
+        print(f"\n{'=' * 60}")
+        print("Results Comparison")
+        print(f"{'=' * 60}")
         print(f"PyTorch accuracy:  {pytorch_acc * 100:.2f}%")
         print(f"TT-NN accuracy:    {ttnn_acc * 100:.2f}%")
         print(f"PCC (correlation): {pcc:.6f}")
         print(f"PCC > 0.99:        {'YES' if pcc > 0.99 else 'NO'}")
-        print(f"{'='*60}\n")
+        print(f"{'=' * 60}\n")
 
     finally:
         print("Closing device...")

@@ -8,7 +8,11 @@ Usage:
 """
 
 import lightning as L
-from lightning.pytorch.callbacks import ModelCheckpoint, EarlyStopping, LearningRateMonitor
+from lightning.pytorch.callbacks import (
+    ModelCheckpoint,
+    EarlyStopping,
+    LearningRateMonitor,
+)
 from lightning.pytorch.loggers import CSVLogger, TensorBoardLogger
 from pathlib import Path
 
@@ -29,14 +33,14 @@ LOG_DIR = MODULE_DIR / "logs"
 
 def train():
     """Train UNet model on Oxford-IIIT Pet Dataset"""
-    print(f"\n{'='*60}")
+    print(f"\n{'=' * 60}")
     print("UNet-VGG19 Training - Image Segmentation")
-    print(f"{'='*60}")
+    print(f"{'=' * 60}")
     print(f"Image size: {IMG_SIZE}x{IMG_SIZE}")
     print(f"Batch size: {BATCH_SIZE}")
     print(f"Max epochs: {MAX_EPOCHS}")
     print(f"Learning rate: {LEARNING_RATE}")
-    print(f"{'='*60}\n")
+    print(f"{'=' * 60}\n")
 
     # Create directories
     Path(SAVE_DIR).mkdir(parents=True, exist_ok=True)
@@ -113,15 +117,15 @@ def train():
     final_model_path = Path(SAVE_DIR) / "best_model.ckpt"
     trainer.save_checkpoint(final_model_path)
 
-    print(f"\n{'='*60}")
+    print(f"\n{'=' * 60}")
     print("Training Results")
-    print(f"{'='*60}")
+    print(f"{'=' * 60}")
     print(f"Best Val Dice:  {best_dice:.4f}")
     print(f"Test Dice:      {test_dice:.4f}")
     print(f"Test IoU:       {test_iou:.4f}")
     print(f"Model saved:    {final_model_path}")
     print(f"Logs:           {LOG_DIR}/")
-    print(f"{'='*60}\n")
+    print(f"{'=' * 60}\n")
 
     return model, best_dice
 
@@ -131,9 +135,9 @@ def train_unfrozen():
     Fine-tune with unfrozen encoder.
     Run this after initial training for better results.
     """
-    print(f"\n{'='*60}")
+    print(f"\n{'=' * 60}")
     print("UNet-VGG19 Fine-tuning (Unfrozen Encoder)")
-    print(f"{'='*60}\n")
+    print(f"{'=' * 60}\n")
 
     # Load best model from initial training
     checkpoint_path = Path(SAVE_DIR) / "best_model.ckpt"

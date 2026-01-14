@@ -3,9 +3,8 @@ Dataset for image segmentation.
 Supports Oxford-IIIT Pet Dataset or custom image/mask pairs.
 """
 
-import os
 from pathlib import Path
-from typing import Optional, Tuple
+from typing import Optional
 
 import albumentations as A
 from albumentations.pytorch import ToTensorV2
@@ -36,8 +35,9 @@ class SegmentationDataset(Dataset):
         self.img_size = img_size
 
         # Get list of images
-        self.images = sorted(list(self.images_dir.glob("*.jpg")) +
-                           list(self.images_dir.glob("*.png")))
+        self.images = sorted(
+            list(self.images_dir.glob("*.jpg")) + list(self.images_dir.glob("*.png"))
+        )
 
     def __len__(self):
         return len(self.images)
@@ -112,7 +112,9 @@ class OxfordPetSegmentation(Dataset):
 
         # Resize
         image = cv2.resize(image, (self.img_size, self.img_size))
-        mask = cv2.resize(mask, (self.img_size, self.img_size), interpolation=cv2.INTER_NEAREST)
+        mask = cv2.resize(
+            mask, (self.img_size, self.img_size), interpolation=cv2.INTER_NEAREST
+        )
 
         # Oxford Pet mask: 1=foreground, 2=background, 3=boundary
         # Convert to binary: 1 (pet) vs 0 (background/boundary)
@@ -132,29 +134,38 @@ class OxfordPetSegmentation(Dataset):
 
 def get_train_transforms(img_size: int = 256):
     """Training augmentations"""
-    return A.Compose([
-        A.Resize(img_size, img_size),
-        A.HorizontalFlip(p=0.5),
-        A.VerticalFlip(p=0.5),
-        A.RandomRotate90(p=0.5),
-        A.ShiftScaleRotate(shift_limit=0.1, scale_limit=0.1, rotate_limit=15, p=0.5),
-        A.OneOf([
-            A.ElasticTransform(alpha=120, sigma=120 * 0.05, p=0.5),
-            A.GridDistortion(p=0.5),
-        ], p=0.3),
-        A.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.1, p=0.5),
-        A.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-        ToTensorV2(),
-    ])
+    return A.Compose(
+        [
+            A.Resize(img_size, img_size),
+            A.HorizontalFlip(p=0.5),
+            A.VerticalFlip(p=0.5),
+            A.RandomRotate90(p=0.5),
+            A.ShiftScaleRotate(
+                shift_limit=0.1, scale_limit=0.1, rotate_limit=15, p=0.5
+            ),
+            A.OneOf(
+                [
+                    A.ElasticTransform(alpha=120, sigma=120 * 0.05, p=0.5),
+                    A.GridDistortion(p=0.5),
+                ],
+                p=0.3,
+            ),
+            A.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.1, p=0.5),
+            A.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+            ToTensorV2(),
+        ]
+    )
 
 
 def get_val_transforms(img_size: int = 256):
     """Validation/test transforms (no augmentation)"""
-    return A.Compose([
-        A.Resize(img_size, img_size),
-        A.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-        ToTensorV2(),
-    ])
+    return A.Compose(
+        [
+            A.Resize(img_size, img_size),
+            A.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+            ToTensorV2(),
+        ]
+    )
 
 
 class SegmentationDataModule(L.LightningDataModule):
