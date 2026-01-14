@@ -1,0 +1,5 @@
+bilinear: true
+freeze_encoder: true
+learning_rate: 0.0001
+num_classes: 1
+pretrained: true
