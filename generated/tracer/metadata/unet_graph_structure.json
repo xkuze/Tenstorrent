@@ -1,0 +1,3136 @@
+{
+  "nodes": [
+    {
+      "id": "Node(name='torch_input_0', unique_id=0)",
+      "shapes": [
+        [
+          1,
+          3,
+          256,
+          256
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "randn"
+    },
+    {
+      "id": "Node(name='torch_input_1', unique_id=1)",
+      "shapes": [
+        [
+          1,
+          3,
+          256,
+          256
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchTensor"
+    },
+    {
+      "id": "Node(name='torch_parameter_5', unique_id=5)",
+      "shapes": [
+        [
+          64,
+          3,
+          3,
+          3
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_6', unique_id=6)",
+      "shapes": [
+        [
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='conv2d_7', unique_id=7)",
+      "shapes": [
+        [
+          1,
+          64,
+          256,
+          256
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "conv2d"
+    },
+    {
+      "id": "Node(name='relu_10', unique_id=10)",
+      "shapes": [
+        [
+          1,
+          64,
+          256,
+          256
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "relu"
+    },
+    {
+      "id": "Node(name='torch_parameter_13', unique_id=13)",
+      "shapes": [
+        [
+          64,
+          64,
+          3,
+          3
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_14', unique_id=14)",
+      "shapes": [
+        [
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='conv2d_15', unique_id=15)",
+      "shapes": [
+        [
+          1,
+          64,
+          256,
+          256
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "conv2d"
+    },
+    {
+      "id": "Node(name='relu_18', unique_id=18)",
+      "shapes": [
+        [
+          1,
+          64,
+          256,
+          256
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "relu"
+    },
+    {
+      "id": "Node(name='max_pool2d_22', unique_id=22)",
+      "shapes": [
+        [
+          1,
+          64,
+          128,
+          128
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "max_pool2d"
+    },
+    {
+      "id": "Node(name='torch_parameter_26', unique_id=26)",
+      "shapes": [
+        [
+          128,
+          64,
+          3,
+          3
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_27', unique_id=27)",
+      "shapes": [
+        [
+          128
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='conv2d_28', unique_id=28)",
+      "shapes": [
+        [
+          1,
+          128,
+          128,
+          128
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "conv2d"
+    },
+    {
+      "id": "Node(name='relu_31', unique_id=31)",
+      "shapes": [
+        [
+          1,
+          128,
+          128,
+          128
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "relu"
+    },
+    {
+      "id": "Node(name='torch_parameter_34', unique_id=34)",
+      "shapes": [
+        [
+          128,
+          128,
+          3,
+          3
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_35', unique_id=35)",
+      "shapes": [
+        [
+          128
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='conv2d_36', unique_id=36)",
+      "shapes": [
+        [
+          1,
+          128,
+          128,
+          128
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "conv2d"
+    },
+    {
+      "id": "Node(name='relu_39', unique_id=39)",
+      "shapes": [
+        [
+          1,
+          128,
+          128,
+          128
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "relu"
+    },
+    {
+      "id": "Node(name='max_pool2d_43', unique_id=43)",
+      "shapes": [
+        [
+          1,
+          128,
+          64,
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "max_pool2d"
+    },
+    {
+      "id": "Node(name='torch_parameter_47', unique_id=47)",
+      "shapes": [
+        [
+          256,
+          128,
+          3,
+          3
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_48', unique_id=48)",
+      "shapes": [
+        [
+          256
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='conv2d_49', unique_id=49)",
+      "shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "conv2d"
+    },
+    {
+      "id": "Node(name='relu_52', unique_id=52)",
+      "shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "relu"
+    },
+    {
+      "id": "Node(name='torch_parameter_55', unique_id=55)",
+      "shapes": [
+        [
+          256,
+          256,
+          3,
+          3
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_56', unique_id=56)",
+      "shapes": [
+        [
+          256
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='conv2d_57', unique_id=57)",
+      "shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "conv2d"
+    },
+    {
+      "id": "Node(name='relu_60', unique_id=60)",
+      "shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "relu"
+    },
+    {
+      "id": "Node(name='torch_parameter_63', unique_id=63)",
+      "shapes": [
+        [
+          256,
+          256,
+          3,
+          3
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_64', unique_id=64)",
+      "shapes": [
+        [
+          256
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='conv2d_65', unique_id=65)",
+      "shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "conv2d"
+    },
+    {
+      "id": "Node(name='relu_68', unique_id=68)",
+      "shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "relu"
+    },
+    {
+      "id": "Node(name='torch_parameter_71', unique_id=71)",
+      "shapes": [
+        [
+          256,
+          256,
+          3,
+          3
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_72', unique_id=72)",
+      "shapes": [
+        [
+          256
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='conv2d_73', unique_id=73)",
+      "shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "conv2d"
+    },
+    {
+      "id": "Node(name='relu_76', unique_id=76)",
+      "shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "relu"
+    },
+    {
+      "id": "Node(name='max_pool2d_80', unique_id=80)",
+      "shapes": [
+        [
+          1,
+          256,
+          32,
+          32
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "max_pool2d"
+    },
+    {
+      "id": "Node(name='torch_parameter_84', unique_id=84)",
+      "shapes": [
+        [
+          512,
+          256,
+          3,
+          3
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_85', unique_id=85)",
+      "shapes": [
+        [
+          512
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='conv2d_86', unique_id=86)",
+      "shapes": [
+        [
+          1,
+          512,
+          32,
+          32
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "conv2d"
+    },
+    {
+      "id": "Node(name='relu_89', unique_id=89)",
+      "shapes": [
+        [
+          1,
+          512,
+          32,
+          32
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "relu"
+    },
+    {
+      "id": "Node(name='torch_parameter_92', unique_id=92)",
+      "shapes": [
+        [
+          512,
+          512,
+          3,
+          3
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_93', unique_id=93)",
+      "shapes": [
+        [
+          512
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='conv2d_94', unique_id=94)",
+      "shapes": [
+        [
+          1,
+          512,
+          32,
+          32
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "conv2d"
+    },
+    {
+      "id": "Node(name='relu_97', unique_id=97)",
+      "shapes": [
+        [
+          1,
+          512,
+          32,
+          32
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "relu"
+    },
+    {
+      "id": "Node(name='torch_parameter_100', unique_id=100)",
+      "shapes": [
+        [
+          512,
+          512,
+          3,
+          3
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_101', unique_id=101)",
+      "shapes": [
+        [
+          512
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='conv2d_102', unique_id=102)",
+      "shapes": [
+        [
+          1,
+          512,
+          32,
+          32
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "conv2d"
+    },
+    {
+      "id": "Node(name='relu_105', unique_id=105)",
+      "shapes": [
+        [
+          1,
+          512,
+          32,
+          32
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "relu"
+    },
+    {
+      "id": "Node(name='torch_parameter_108', unique_id=108)",
+      "shapes": [
+        [
+          512,
+          512,
+          3,
+          3
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_109', unique_id=109)",
+      "shapes": [
+        [
+          512
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='conv2d_110', unique_id=110)",
+      "shapes": [
+        [
+          1,
+          512,
+          32,
+          32
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "conv2d"
+    },
+    {
+      "id": "Node(name='relu_113', unique_id=113)",
+      "shapes": [
+        [
+          1,
+          512,
+          32,
+          32
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "relu"
+    },
+    {
+      "id": "Node(name='max_pool2d_117', unique_id=117)",
+      "shapes": [
+        [
+          1,
+          512,
+          16,
+          16
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "max_pool2d"
+    },
+    {
+      "id": "Node(name='torch_parameter_121', unique_id=121)",
+      "shapes": [
+        [
+          512,
+          512,
+          3,
+          3
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_122', unique_id=122)",
+      "shapes": [
+        [
+          512
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='conv2d_123', unique_id=123)",
+      "shapes": [
+        [
+          1,
+          512,
+          16,
+          16
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "conv2d"
+    },
+    {
+      "id": "Node(name='relu_126', unique_id=126)",
+      "shapes": [
+        [
+          1,
+          512,
+          16,
+          16
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "relu"
+    },
+    {
+      "id": "Node(name='torch_parameter_129', unique_id=129)",
+      "shapes": [
+        [
+          512,
+          512,
+          3,
+          3
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_130', unique_id=130)",
+      "shapes": [
+        [
+          512
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='conv2d_131', unique_id=131)",
+      "shapes": [
+        [
+          1,
+          512,
+          16,
+          16
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "conv2d"
+    },
+    {
+      "id": "Node(name='relu_134', unique_id=134)",
+      "shapes": [
+        [
+          1,
+          512,
+          16,
+          16
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "relu"
+    },
+    {
+      "id": "Node(name='torch_parameter_137', unique_id=137)",
+      "shapes": [
+        [
+          512,
+          512,
+          3,
+          3
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_138', unique_id=138)",
+      "shapes": [
+        [
+          512
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='conv2d_139', unique_id=139)",
+      "shapes": [
+        [
+          1,
+          512,
+          16,
+          16
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "conv2d"
+    },
+    {
+      "id": "Node(name='relu_142', unique_id=142)",
+      "shapes": [
+        [
+          1,
+          512,
+          16,
+          16
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "relu"
+    },
+    {
+      "id": "Node(name='torch_parameter_145', unique_id=145)",
+      "shapes": [
+        [
+          512,
+          512,
+          3,
+          3
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_146', unique_id=146)",
+      "shapes": [
+        [
+          512
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='conv2d_147', unique_id=147)",
+      "shapes": [
+        [
+          1,
+          512,
+          16,
+          16
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "conv2d"
+    },
+    {
+      "id": "Node(name='relu_150', unique_id=150)",
+      "shapes": [
+        [
+          1,
+          512,
+          16,
+          16
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "relu"
+    },
+    {
+      "id": "Node(name='max_pool2d_154', unique_id=154)",
+      "shapes": [
+        [
+          1,
+          512,
+          8,
+          8
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "max_pool2d"
+    },
+    {
+      "id": "Node(name='torch_parameter_159', unique_id=159)",
+      "shapes": [
+        [
+          1024,
+          512,
+          3,
+          3
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_160', unique_id=160)",
+      "shapes": [
+        [
+          1024
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='conv2d_161', unique_id=161)",
+      "shapes": [
+        [
+          1,
+          1024,
+          8,
+          8
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "conv2d"
+    },
+    {
+      "id": "Node(name='torch_input_164', unique_id=164)",
+      "shapes": [
+        [
+          1024
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchTensor"
+    },
+    {
+      "id": "Node(name='torch_input_165', unique_id=165)",
+      "shapes": [
+        [
+          1024
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchTensor"
+    },
+    {
+      "id": "Node(name='torch_parameter_166', unique_id=166)",
+      "shapes": [
+        [
+          1024
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_167', unique_id=167)",
+      "shapes": [
+        [
+          1024
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='batch_norm_168', unique_id=168)",
+      "shapes": [
+        [
+          1,
+          1024,
+          8,
+          8
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "batch_norm"
+    },
+    {
+      "id": "Node(name='relu_171', unique_id=171)",
+      "shapes": [
+        [
+          1,
+          1024,
+          8,
+          8
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "relu"
+    },
+    {
+      "id": "Node(name='torch_parameter_174', unique_id=174)",
+      "shapes": [
+        [
+          1024,
+          1024,
+          3,
+          3
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_175', unique_id=175)",
+      "shapes": [
+        [
+          1024
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='conv2d_176', unique_id=176)",
+      "shapes": [
+        [
+          1,
+          1024,
+          8,
+          8
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "conv2d"
+    },
+    {
+      "id": "Node(name='torch_input_179', unique_id=179)",
+      "shapes": [
+        [
+          1024
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchTensor"
+    },
+    {
+      "id": "Node(name='torch_input_180', unique_id=180)",
+      "shapes": [
+        [
+          1024
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchTensor"
+    },
+    {
+      "id": "Node(name='torch_parameter_181', unique_id=181)",
+      "shapes": [
+        [
+          1024
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_182', unique_id=182)",
+      "shapes": [
+        [
+          1024
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='batch_norm_183', unique_id=183)",
+      "shapes": [
+        [
+          1,
+          1024,
+          8,
+          8
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "batch_norm"
+    },
+    {
+      "id": "Node(name='relu_186', unique_id=186)",
+      "shapes": [
+        [
+          1,
+          1024,
+          8,
+          8
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "relu"
+    },
+    {
+      "id": "Node(name='interpolate_193', unique_id=193)",
+      "shapes": [
+        [
+          1,
+          1024,
+          16,
+          16
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "interpolate"
+    },
+    {
+      "id": "Node(name='pad_195', unique_id=195)",
+      "shapes": [
+        [
+          1,
+          1024,
+          16,
+          16
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "pad"
+    },
+    {
+      "id": "Node(name='cat_196', unique_id=196)",
+      "shapes": [
+        [
+          1,
+          1536,
+          16,
+          16
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "cat"
+    },
+    {
+      "id": "Node(name='torch_parameter_200', unique_id=200)",
+      "shapes": [
+        [
+          512,
+          1536,
+          3,
+          3
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_201', unique_id=201)",
+      "shapes": [
+        [
+          512
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='conv2d_202', unique_id=202)",
+      "shapes": [
+        [
+          1,
+          512,
+          16,
+          16
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "conv2d"
+    },
+    {
+      "id": "Node(name='torch_input_205', unique_id=205)",
+      "shapes": [
+        [
+          512
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchTensor"
+    },
+    {
+      "id": "Node(name='torch_input_206', unique_id=206)",
+      "shapes": [
+        [
+          512
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchTensor"
+    },
+    {
+      "id": "Node(name='torch_parameter_207', unique_id=207)",
+      "shapes": [
+        [
+          512
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_208', unique_id=208)",
+      "shapes": [
+        [
+          512
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='batch_norm_209', unique_id=209)",
+      "shapes": [
+        [
+          1,
+          512,
+          16,
+          16
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "batch_norm"
+    },
+    {
+      "id": "Node(name='relu_212', unique_id=212)",
+      "shapes": [
+        [
+          1,
+          512,
+          16,
+          16
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "relu"
+    },
+    {
+      "id": "Node(name='torch_parameter_215', unique_id=215)",
+      "shapes": [
+        [
+          512,
+          512,
+          3,
+          3
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_216', unique_id=216)",
+      "shapes": [
+        [
+          512
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='conv2d_217', unique_id=217)",
+      "shapes": [
+        [
+          1,
+          512,
+          16,
+          16
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "conv2d"
+    },
+    {
+      "id": "Node(name='torch_input_220', unique_id=220)",
+      "shapes": [
+        [
+          512
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchTensor"
+    },
+    {
+      "id": "Node(name='torch_input_221', unique_id=221)",
+      "shapes": [
+        [
+          512
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchTensor"
+    },
+    {
+      "id": "Node(name='torch_parameter_222', unique_id=222)",
+      "shapes": [
+        [
+          512
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_223', unique_id=223)",
+      "shapes": [
+        [
+          512
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='batch_norm_224', unique_id=224)",
+      "shapes": [
+        [
+          1,
+          512,
+          16,
+          16
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "batch_norm"
+    },
+    {
+      "id": "Node(name='relu_227', unique_id=227)",
+      "shapes": [
+        [
+          1,
+          512,
+          16,
+          16
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "relu"
+    },
+    {
+      "id": "Node(name='interpolate_235', unique_id=235)",
+      "shapes": [
+        [
+          1,
+          512,
+          32,
+          32
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "interpolate"
+    },
+    {
+      "id": "Node(name='pad_237', unique_id=237)",
+      "shapes": [
+        [
+          1,
+          512,
+          32,
+          32
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "pad"
+    },
+    {
+      "id": "Node(name='cat_238', unique_id=238)",
+      "shapes": [
+        [
+          1,
+          1024,
+          32,
+          32
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "cat"
+    },
+    {
+      "id": "Node(name='torch_parameter_242', unique_id=242)",
+      "shapes": [
+        [
+          256,
+          1024,
+          3,
+          3
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_243', unique_id=243)",
+      "shapes": [
+        [
+          256
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='conv2d_244', unique_id=244)",
+      "shapes": [
+        [
+          1,
+          256,
+          32,
+          32
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "conv2d"
+    },
+    {
+      "id": "Node(name='torch_input_247', unique_id=247)",
+      "shapes": [
+        [
+          256
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchTensor"
+    },
+    {
+      "id": "Node(name='torch_input_248', unique_id=248)",
+      "shapes": [
+        [
+          256
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchTensor"
+    },
+    {
+      "id": "Node(name='torch_parameter_249', unique_id=249)",
+      "shapes": [
+        [
+          256
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_250', unique_id=250)",
+      "shapes": [
+        [
+          256
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='batch_norm_251', unique_id=251)",
+      "shapes": [
+        [
+          1,
+          256,
+          32,
+          32
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "batch_norm"
+    },
+    {
+      "id": "Node(name='relu_254', unique_id=254)",
+      "shapes": [
+        [
+          1,
+          256,
+          32,
+          32
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "relu"
+    },
+    {
+      "id": "Node(name='torch_parameter_257', unique_id=257)",
+      "shapes": [
+        [
+          256,
+          256,
+          3,
+          3
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_258', unique_id=258)",
+      "shapes": [
+        [
+          256
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='conv2d_259', unique_id=259)",
+      "shapes": [
+        [
+          1,
+          256,
+          32,
+          32
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "conv2d"
+    },
+    {
+      "id": "Node(name='torch_input_262', unique_id=262)",
+      "shapes": [
+        [
+          256
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchTensor"
+    },
+    {
+      "id": "Node(name='torch_input_263', unique_id=263)",
+      "shapes": [
+        [
+          256
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchTensor"
+    },
+    {
+      "id": "Node(name='torch_parameter_264', unique_id=264)",
+      "shapes": [
+        [
+          256
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_265', unique_id=265)",
+      "shapes": [
+        [
+          256
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='batch_norm_266', unique_id=266)",
+      "shapes": [
+        [
+          1,
+          256,
+          32,
+          32
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "batch_norm"
+    },
+    {
+      "id": "Node(name='relu_269', unique_id=269)",
+      "shapes": [
+        [
+          1,
+          256,
+          32,
+          32
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "relu"
+    },
+    {
+      "id": "Node(name='interpolate_277', unique_id=277)",
+      "shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "interpolate"
+    },
+    {
+      "id": "Node(name='pad_279', unique_id=279)",
+      "shapes": [
+        [
+          1,
+          256,
+          64,
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "pad"
+    },
+    {
+      "id": "Node(name='cat_280', unique_id=280)",
+      "shapes": [
+        [
+          1,
+          512,
+          64,
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "cat"
+    },
+    {
+      "id": "Node(name='torch_parameter_284', unique_id=284)",
+      "shapes": [
+        [
+          128,
+          512,
+          3,
+          3
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_285', unique_id=285)",
+      "shapes": [
+        [
+          128
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='conv2d_286', unique_id=286)",
+      "shapes": [
+        [
+          1,
+          128,
+          64,
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "conv2d"
+    },
+    {
+      "id": "Node(name='torch_input_289', unique_id=289)",
+      "shapes": [
+        [
+          128
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchTensor"
+    },
+    {
+      "id": "Node(name='torch_input_290', unique_id=290)",
+      "shapes": [
+        [
+          128
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchTensor"
+    },
+    {
+      "id": "Node(name='torch_parameter_291', unique_id=291)",
+      "shapes": [
+        [
+          128
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_292', unique_id=292)",
+      "shapes": [
+        [
+          128
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='batch_norm_293', unique_id=293)",
+      "shapes": [
+        [
+          1,
+          128,
+          64,
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "batch_norm"
+    },
+    {
+      "id": "Node(name='relu_296', unique_id=296)",
+      "shapes": [
+        [
+          1,
+          128,
+          64,
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "relu"
+    },
+    {
+      "id": "Node(name='torch_parameter_299', unique_id=299)",
+      "shapes": [
+        [
+          128,
+          128,
+          3,
+          3
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_300', unique_id=300)",
+      "shapes": [
+        [
+          128
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='conv2d_301', unique_id=301)",
+      "shapes": [
+        [
+          1,
+          128,
+          64,
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "conv2d"
+    },
+    {
+      "id": "Node(name='torch_input_304', unique_id=304)",
+      "shapes": [
+        [
+          128
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchTensor"
+    },
+    {
+      "id": "Node(name='torch_input_305', unique_id=305)",
+      "shapes": [
+        [
+          128
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchTensor"
+    },
+    {
+      "id": "Node(name='torch_parameter_306', unique_id=306)",
+      "shapes": [
+        [
+          128
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_307', unique_id=307)",
+      "shapes": [
+        [
+          128
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='batch_norm_308', unique_id=308)",
+      "shapes": [
+        [
+          1,
+          128,
+          64,
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "batch_norm"
+    },
+    {
+      "id": "Node(name='relu_311', unique_id=311)",
+      "shapes": [
+        [
+          1,
+          128,
+          64,
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "relu"
+    },
+    {
+      "id": "Node(name='interpolate_319', unique_id=319)",
+      "shapes": [
+        [
+          1,
+          128,
+          128,
+          128
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "interpolate"
+    },
+    {
+      "id": "Node(name='pad_321', unique_id=321)",
+      "shapes": [
+        [
+          1,
+          128,
+          128,
+          128
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "pad"
+    },
+    {
+      "id": "Node(name='cat_322', unique_id=322)",
+      "shapes": [
+        [
+          1,
+          256,
+          128,
+          128
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "cat"
+    },
+    {
+      "id": "Node(name='torch_parameter_326', unique_id=326)",
+      "shapes": [
+        [
+          64,
+          256,
+          3,
+          3
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_327', unique_id=327)",
+      "shapes": [
+        [
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='conv2d_328', unique_id=328)",
+      "shapes": [
+        [
+          1,
+          64,
+          128,
+          128
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "conv2d"
+    },
+    {
+      "id": "Node(name='torch_input_331', unique_id=331)",
+      "shapes": [
+        [
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchTensor"
+    },
+    {
+      "id": "Node(name='torch_input_332', unique_id=332)",
+      "shapes": [
+        [
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchTensor"
+    },
+    {
+      "id": "Node(name='torch_parameter_333', unique_id=333)",
+      "shapes": [
+        [
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_334', unique_id=334)",
+      "shapes": [
+        [
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='batch_norm_335', unique_id=335)",
+      "shapes": [
+        [
+          1,
+          64,
+          128,
+          128
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "batch_norm"
+    },
+    {
+      "id": "Node(name='relu_338', unique_id=338)",
+      "shapes": [
+        [
+          1,
+          64,
+          128,
+          128
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "relu"
+    },
+    {
+      "id": "Node(name='torch_parameter_341', unique_id=341)",
+      "shapes": [
+        [
+          64,
+          64,
+          3,
+          3
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_342', unique_id=342)",
+      "shapes": [
+        [
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='conv2d_343', unique_id=343)",
+      "shapes": [
+        [
+          1,
+          64,
+          128,
+          128
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "conv2d"
+    },
+    {
+      "id": "Node(name='torch_input_346', unique_id=346)",
+      "shapes": [
+        [
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchTensor"
+    },
+    {
+      "id": "Node(name='torch_input_347', unique_id=347)",
+      "shapes": [
+        [
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchTensor"
+    },
+    {
+      "id": "Node(name='torch_parameter_348', unique_id=348)",
+      "shapes": [
+        [
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_349', unique_id=349)",
+      "shapes": [
+        [
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='batch_norm_350', unique_id=350)",
+      "shapes": [
+        [
+          1,
+          64,
+          128,
+          128
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "batch_norm"
+    },
+    {
+      "id": "Node(name='relu_353', unique_id=353)",
+      "shapes": [
+        [
+          1,
+          64,
+          128,
+          128
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "relu"
+    },
+    {
+      "id": "Node(name='interpolate_361', unique_id=361)",
+      "shapes": [
+        [
+          1,
+          64,
+          256,
+          256
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "interpolate"
+    },
+    {
+      "id": "Node(name='pad_363', unique_id=363)",
+      "shapes": [
+        [
+          1,
+          64,
+          256,
+          256
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "pad"
+    },
+    {
+      "id": "Node(name='cat_364', unique_id=364)",
+      "shapes": [
+        [
+          1,
+          128,
+          256,
+          256
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "cat"
+    },
+    {
+      "id": "Node(name='torch_parameter_368', unique_id=368)",
+      "shapes": [
+        [
+          64,
+          128,
+          3,
+          3
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_369', unique_id=369)",
+      "shapes": [
+        [
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='conv2d_370', unique_id=370)",
+      "shapes": [
+        [
+          1,
+          64,
+          256,
+          256
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "conv2d"
+    },
+    {
+      "id": "Node(name='torch_input_373', unique_id=373)",
+      "shapes": [
+        [
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchTensor"
+    },
+    {
+      "id": "Node(name='torch_input_374', unique_id=374)",
+      "shapes": [
+        [
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchTensor"
+    },
+    {
+      "id": "Node(name='torch_parameter_375', unique_id=375)",
+      "shapes": [
+        [
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_376', unique_id=376)",
+      "shapes": [
+        [
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='batch_norm_377', unique_id=377)",
+      "shapes": [
+        [
+          1,
+          64,
+          256,
+          256
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "batch_norm"
+    },
+    {
+      "id": "Node(name='relu_380', unique_id=380)",
+      "shapes": [
+        [
+          1,
+          64,
+          256,
+          256
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "relu"
+    },
+    {
+      "id": "Node(name='torch_parameter_383', unique_id=383)",
+      "shapes": [
+        [
+          64,
+          64,
+          3,
+          3
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_384', unique_id=384)",
+      "shapes": [
+        [
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='conv2d_385', unique_id=385)",
+      "shapes": [
+        [
+          1,
+          64,
+          256,
+          256
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "conv2d"
+    },
+    {
+      "id": "Node(name='torch_input_388', unique_id=388)",
+      "shapes": [
+        [
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchTensor"
+    },
+    {
+      "id": "Node(name='torch_input_389', unique_id=389)",
+      "shapes": [
+        [
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchTensor"
+    },
+    {
+      "id": "Node(name='torch_parameter_390', unique_id=390)",
+      "shapes": [
+        [
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_391', unique_id=391)",
+      "shapes": [
+        [
+          64
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='batch_norm_392', unique_id=392)",
+      "shapes": [
+        [
+          1,
+          64,
+          256,
+          256
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "batch_norm"
+    },
+    {
+      "id": "Node(name='relu_395', unique_id=395)",
+      "shapes": [
+        [
+          1,
+          64,
+          256,
+          256
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "relu"
+    },
+    {
+      "id": "Node(name='torch_parameter_401', unique_id=401)",
+      "shapes": [
+        [
+          1,
+          64,
+          1,
+          1
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='torch_parameter_402', unique_id=402)",
+      "shapes": [
+        [
+          1
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "TorchParameter"
+    },
+    {
+      "id": "Node(name='conv2d_403', unique_id=403)",
+      "shapes": [
+        [
+          1,
+          1,
+          256,
+          256
+        ]
+      ],
+      "dtypes": "(torch.float32,)",
+      "op": "conv2d"
+    }
+  ],
+  "edges": [
+    {
+      "source": "Node(name='torch_input_1', unique_id=1)",
+      "target": "Node(name='conv2d_7', unique_id=7)"
+    },
+    {
+      "source": "Node(name='torch_parameter_5', unique_id=5)",
+      "target": "Node(name='conv2d_7', unique_id=7)"
+    },
+    {
+      "source": "Node(name='torch_parameter_6', unique_id=6)",
+      "target": "Node(name='conv2d_7', unique_id=7)"
+    },
+    {
+      "source": "Node(name='conv2d_7', unique_id=7)",
+      "target": "Node(name='relu_10', unique_id=10)"
+    },
+    {
+      "source": "Node(name='relu_10', unique_id=10)",
+      "target": "Node(name='conv2d_15', unique_id=15)"
+    },
+    {
+      "source": "Node(name='torch_parameter_13', unique_id=13)",
+      "target": "Node(name='conv2d_15', unique_id=15)"
+    },
+    {
+      "source": "Node(name='torch_parameter_14', unique_id=14)",
+      "target": "Node(name='conv2d_15', unique_id=15)"
+    },
+    {
+      "source": "Node(name='conv2d_15', unique_id=15)",
+      "target": "Node(name='relu_18', unique_id=18)"
+    },
+    {
+      "source": "Node(name='relu_18', unique_id=18)",
+      "target": "Node(name='max_pool2d_22', unique_id=22)"
+    },
+    {
+      "source": "Node(name='relu_18', unique_id=18)",
+      "target": "Node(name='cat_364', unique_id=364)"
+    },
+    {
+      "source": "Node(name='max_pool2d_22', unique_id=22)",
+      "target": "Node(name='conv2d_28', unique_id=28)"
+    },
+    {
+      "source": "Node(name='torch_parameter_26', unique_id=26)",
+      "target": "Node(name='conv2d_28', unique_id=28)"
+    },
+    {
+      "source": "Node(name='torch_parameter_27', unique_id=27)",
+      "target": "Node(name='conv2d_28', unique_id=28)"
+    },
+    {
+      "source": "Node(name='conv2d_28', unique_id=28)",
+      "target": "Node(name='relu_31', unique_id=31)"
+    },
+    {
+      "source": "Node(name='relu_31', unique_id=31)",
+      "target": "Node(name='conv2d_36', unique_id=36)"
+    },
+    {
+      "source": "Node(name='torch_parameter_34', unique_id=34)",
+      "target": "Node(name='conv2d_36', unique_id=36)"
+    },
+    {
+      "source": "Node(name='torch_parameter_35', unique_id=35)",
+      "target": "Node(name='conv2d_36', unique_id=36)"
+    },
+    {
+      "source": "Node(name='conv2d_36', unique_id=36)",
+      "target": "Node(name='relu_39', unique_id=39)"
+    },
+    {
+      "source": "Node(name='relu_39', unique_id=39)",
+      "target": "Node(name='max_pool2d_43', unique_id=43)"
+    },
+    {
+      "source": "Node(name='relu_39', unique_id=39)",
+      "target": "Node(name='cat_322', unique_id=322)"
+    },
+    {
+      "source": "Node(name='max_pool2d_43', unique_id=43)",
+      "target": "Node(name='conv2d_49', unique_id=49)"
+    },
+    {
+      "source": "Node(name='torch_parameter_47', unique_id=47)",
+      "target": "Node(name='conv2d_49', unique_id=49)"
+    },
+    {
+      "source": "Node(name='torch_parameter_48', unique_id=48)",
+      "target": "Node(name='conv2d_49', unique_id=49)"
+    },
+    {
+      "source": "Node(name='conv2d_49', unique_id=49)",
+      "target": "Node(name='relu_52', unique_id=52)"
+    },
+    {
+      "source": "Node(name='relu_52', unique_id=52)",
+      "target": "Node(name='conv2d_57', unique_id=57)"
+    },
+    {
+      "source": "Node(name='torch_parameter_55', unique_id=55)",
+      "target": "Node(name='conv2d_57', unique_id=57)"
+    },
+    {
+      "source": "Node(name='torch_parameter_56', unique_id=56)",
+      "target": "Node(name='conv2d_57', unique_id=57)"
+    },
+    {
+      "source": "Node(name='conv2d_57', unique_id=57)",
+      "target": "Node(name='relu_60', unique_id=60)"
+    },
+    {
+      "source": "Node(name='relu_60', unique_id=60)",
+      "target": "Node(name='conv2d_65', unique_id=65)"
+    },
+    {
+      "source": "Node(name='torch_parameter_63', unique_id=63)",
+      "target": "Node(name='conv2d_65', unique_id=65)"
+    },
+    {
+      "source": "Node(name='torch_parameter_64', unique_id=64)",
+      "target": "Node(name='conv2d_65', unique_id=65)"
+    },
+    {
+      "source": "Node(name='conv2d_65', unique_id=65)",
+      "target": "Node(name='relu_68', unique_id=68)"
+    },
+    {
+      "source": "Node(name='relu_68', unique_id=68)",
+      "target": "Node(name='conv2d_73', unique_id=73)"
+    },
+    {
+      "source": "Node(name='torch_parameter_71', unique_id=71)",
+      "target": "Node(name='conv2d_73', unique_id=73)"
+    },
+    {
+      "source": "Node(name='torch_parameter_72', unique_id=72)",
+      "target": "Node(name='conv2d_73', unique_id=73)"
+    },
+    {
+      "source": "Node(name='conv2d_73', unique_id=73)",
+      "target": "Node(name='relu_76', unique_id=76)"
+    },
+    {
+      "source": "Node(name='relu_76', unique_id=76)",
+      "target": "Node(name='max_pool2d_80', unique_id=80)"
+    },
+    {
+      "source": "Node(name='relu_76', unique_id=76)",
+      "target": "Node(name='cat_280', unique_id=280)"
+    },
+    {
+      "source": "Node(name='max_pool2d_80', unique_id=80)",
+      "target": "Node(name='conv2d_86', unique_id=86)"
+    },
+    {
+      "source": "Node(name='torch_parameter_84', unique_id=84)",
+      "target": "Node(name='conv2d_86', unique_id=86)"
+    },
+    {
+      "source": "Node(name='torch_parameter_85', unique_id=85)",
+      "target": "Node(name='conv2d_86', unique_id=86)"
+    },
+    {
+      "source": "Node(name='conv2d_86', unique_id=86)",
+      "target": "Node(name='relu_89', unique_id=89)"
+    },
+    {
+      "source": "Node(name='relu_89', unique_id=89)",
+      "target": "Node(name='conv2d_94', unique_id=94)"
+    },
+    {
+      "source": "Node(name='torch_parameter_92', unique_id=92)",
+      "target": "Node(name='conv2d_94', unique_id=94)"
+    },
+    {
+      "source": "Node(name='torch_parameter_93', unique_id=93)",
+      "target": "Node(name='conv2d_94', unique_id=94)"
+    },
+    {
+      "source": "Node(name='conv2d_94', unique_id=94)",
+      "target": "Node(name='relu_97', unique_id=97)"
+    },
+    {
+      "source": "Node(name='relu_97', unique_id=97)",
+      "target": "Node(name='conv2d_102', unique_id=102)"
+    },
+    {
+      "source": "Node(name='torch_parameter_100', unique_id=100)",
+      "target": "Node(name='conv2d_102', unique_id=102)"
+    },
+    {
+      "source": "Node(name='torch_parameter_101', unique_id=101)",
+      "target": "Node(name='conv2d_102', unique_id=102)"
+    },
+    {
+      "source": "Node(name='conv2d_102', unique_id=102)",
+      "target": "Node(name='relu_105', unique_id=105)"
+    },
+    {
+      "source": "Node(name='relu_105', unique_id=105)",
+      "target": "Node(name='conv2d_110', unique_id=110)"
+    },
+    {
+      "source": "Node(name='torch_parameter_108', unique_id=108)",
+      "target": "Node(name='conv2d_110', unique_id=110)"
+    },
+    {
+      "source": "Node(name='torch_parameter_109', unique_id=109)",
+      "target": "Node(name='conv2d_110', unique_id=110)"
+    },
+    {
+      "source": "Node(name='conv2d_110', unique_id=110)",
+      "target": "Node(name='relu_113', unique_id=113)"
+    },
+    {
+      "source": "Node(name='relu_113', unique_id=113)",
+      "target": "Node(name='max_pool2d_117', unique_id=117)"
+    },
+    {
+      "source": "Node(name='relu_113', unique_id=113)",
+      "target": "Node(name='cat_238', unique_id=238)"
+    },
+    {
+      "source": "Node(name='max_pool2d_117', unique_id=117)",
+      "target": "Node(name='conv2d_123', unique_id=123)"
+    },
+    {
+      "source": "Node(name='torch_parameter_121', unique_id=121)",
+      "target": "Node(name='conv2d_123', unique_id=123)"
+    },
+    {
+      "source": "Node(name='torch_parameter_122', unique_id=122)",
+      "target": "Node(name='conv2d_123', unique_id=123)"
+    },
+    {
+      "source": "Node(name='conv2d_123', unique_id=123)",
+      "target": "Node(name='relu_126', unique_id=126)"
+    },
+    {
+      "source": "Node(name='relu_126', unique_id=126)",
+      "target": "Node(name='conv2d_131', unique_id=131)"
+    },
+    {
+      "source": "Node(name='torch_parameter_129', unique_id=129)",
+      "target": "Node(name='conv2d_131', unique_id=131)"
+    },
+    {
+      "source": "Node(name='torch_parameter_130', unique_id=130)",
+      "target": "Node(name='conv2d_131', unique_id=131)"
+    },
+    {
+      "source": "Node(name='conv2d_131', unique_id=131)",
+      "target": "Node(name='relu_134', unique_id=134)"
+    },
+    {
+      "source": "Node(name='relu_134', unique_id=134)",
+      "target": "Node(name='conv2d_139', unique_id=139)"
+    },
+    {
+      "source": "Node(name='torch_parameter_137', unique_id=137)",
+      "target": "Node(name='conv2d_139', unique_id=139)"
+    },
+    {
+      "source": "Node(name='torch_parameter_138', unique_id=138)",
+      "target": "Node(name='conv2d_139', unique_id=139)"
+    },
+    {
+      "source": "Node(name='conv2d_139', unique_id=139)",
+      "target": "Node(name='relu_142', unique_id=142)"
+    },
+    {
+      "source": "Node(name='relu_142', unique_id=142)",
+      "target": "Node(name='conv2d_147', unique_id=147)"
+    },
+    {
+      "source": "Node(name='torch_parameter_145', unique_id=145)",
+      "target": "Node(name='conv2d_147', unique_id=147)"
+    },
+    {
+      "source": "Node(name='torch_parameter_146', unique_id=146)",
+      "target": "Node(name='conv2d_147', unique_id=147)"
+    },
+    {
+      "source": "Node(name='conv2d_147', unique_id=147)",
+      "target": "Node(name='relu_150', unique_id=150)"
+    },
+    {
+      "source": "Node(name='relu_150', unique_id=150)",
+      "target": "Node(name='max_pool2d_154', unique_id=154)"
+    },
+    {
+      "source": "Node(name='relu_150', unique_id=150)",
+      "target": "Node(name='cat_196', unique_id=196)"
+    },
+    {
+      "source": "Node(name='max_pool2d_154', unique_id=154)",
+      "target": "Node(name='conv2d_161', unique_id=161)"
+    },
+    {
+      "source": "Node(name='torch_parameter_159', unique_id=159)",
+      "target": "Node(name='conv2d_161', unique_id=161)"
+    },
+    {
+      "source": "Node(name='torch_parameter_160', unique_id=160)",
+      "target": "Node(name='conv2d_161', unique_id=161)"
+    },
+    {
+      "source": "Node(name='conv2d_161', unique_id=161)",
+      "target": "Node(name='batch_norm_168', unique_id=168)"
+    },
+    {
+      "source": "Node(name='torch_input_164', unique_id=164)",
+      "target": "Node(name='batch_norm_168', unique_id=168)"
+    },
+    {
+      "source": "Node(name='torch_input_165', unique_id=165)",
+      "target": "Node(name='batch_norm_168', unique_id=168)"
+    },
+    {
+      "source": "Node(name='torch_parameter_166', unique_id=166)",
+      "target": "Node(name='batch_norm_168', unique_id=168)"
+    },
+    {
+      "source": "Node(name='torch_parameter_167', unique_id=167)",
+      "target": "Node(name='batch_norm_168', unique_id=168)"
+    },
+    {
+      "source": "Node(name='batch_norm_168', unique_id=168)",
+      "target": "Node(name='relu_171', unique_id=171)"
+    },
+    {
+      "source": "Node(name='relu_171', unique_id=171)",
+      "target": "Node(name='conv2d_176', unique_id=176)"
+    },
+    {
+      "source": "Node(name='torch_parameter_174', unique_id=174)",
+      "target": "Node(name='conv2d_176', unique_id=176)"
+    },
+    {
+      "source": "Node(name='torch_parameter_175', unique_id=175)",
+      "target": "Node(name='conv2d_176', unique_id=176)"
+    },
+    {
+      "source": "Node(name='conv2d_176', unique_id=176)",
+      "target": "Node(name='batch_norm_183', unique_id=183)"
+    },
+    {
+      "source": "Node(name='torch_input_179', unique_id=179)",
+      "target": "Node(name='batch_norm_183', unique_id=183)"
+    },
+    {
+      "source": "Node(name='torch_input_180', unique_id=180)",
+      "target": "Node(name='batch_norm_183', unique_id=183)"
+    },
+    {
+      "source": "Node(name='torch_parameter_181', unique_id=181)",
+      "target": "Node(name='batch_norm_183', unique_id=183)"
+    },
+    {
+      "source": "Node(name='torch_parameter_182', unique_id=182)",
+      "target": "Node(name='batch_norm_183', unique_id=183)"
+    },
+    {
+      "source": "Node(name='batch_norm_183', unique_id=183)",
+      "target": "Node(name='relu_186', unique_id=186)"
+    },
+    {
+      "source": "Node(name='relu_186', unique_id=186)",
+      "target": "Node(name='interpolate_193', unique_id=193)"
+    },
+    {
+      "source": "Node(name='interpolate_193', unique_id=193)",
+      "target": "Node(name='pad_195', unique_id=195)"
+    },
+    {
+      "source": "Node(name='pad_195', unique_id=195)",
+      "target": "Node(name='cat_196', unique_id=196)"
+    },
+    {
+      "source": "Node(name='cat_196', unique_id=196)",
+      "target": "Node(name='conv2d_202', unique_id=202)"
+    },
+    {
+      "source": "Node(name='torch_parameter_200', unique_id=200)",
+      "target": "Node(name='conv2d_202', unique_id=202)"
+    },
+    {
+      "source": "Node(name='torch_parameter_201', unique_id=201)",
+      "target": "Node(name='conv2d_202', unique_id=202)"
+    },
+    {
+      "source": "Node(name='conv2d_202', unique_id=202)",
+      "target": "Node(name='batch_norm_209', unique_id=209)"
+    },
+    {
+      "source": "Node(name='torch_input_205', unique_id=205)",
+      "target": "Node(name='batch_norm_209', unique_id=209)"
+    },
+    {
+      "source": "Node(name='torch_input_206', unique_id=206)",
+      "target": "Node(name='batch_norm_209', unique_id=209)"
+    },
+    {
+      "source": "Node(name='torch_parameter_207', unique_id=207)",
+      "target": "Node(name='batch_norm_209', unique_id=209)"
+    },
+    {
+      "source": "Node(name='torch_parameter_208', unique_id=208)",
+      "target": "Node(name='batch_norm_209', unique_id=209)"
+    },
+    {
+      "source": "Node(name='batch_norm_209', unique_id=209)",
+      "target": "Node(name='relu_212', unique_id=212)"
+    },
+    {
+      "source": "Node(name='relu_212', unique_id=212)",
+      "target": "Node(name='conv2d_217', unique_id=217)"
+    },
+    {
+      "source": "Node(name='torch_parameter_215', unique_id=215)",
+      "target": "Node(name='conv2d_217', unique_id=217)"
+    },
+    {
+      "source": "Node(name='torch_parameter_216', unique_id=216)",
+      "target": "Node(name='conv2d_217', unique_id=217)"
+    },
+    {
+      "source": "Node(name='conv2d_217', unique_id=217)",
+      "target": "Node(name='batch_norm_224', unique_id=224)"
+    },
+    {
+      "source": "Node(name='torch_input_220', unique_id=220)",
+      "target": "Node(name='batch_norm_224', unique_id=224)"
+    },
+    {
+      "source": "Node(name='torch_input_221', unique_id=221)",
+      "target": "Node(name='batch_norm_224', unique_id=224)"
+    },
+    {
+      "source": "Node(name='torch_parameter_222', unique_id=222)",
+      "target": "Node(name='batch_norm_224', unique_id=224)"
+    },
+    {
+      "source": "Node(name='torch_parameter_223', unique_id=223)",
+      "target": "Node(name='batch_norm_224', unique_id=224)"
+    },
+    {
+      "source": "Node(name='batch_norm_224', unique_id=224)",
+      "target": "Node(name='relu_227', unique_id=227)"
+    },
+    {
+      "source": "Node(name='relu_227', unique_id=227)",
+      "target": "Node(name='interpolate_235', unique_id=235)"
+    },
+    {
+      "source": "Node(name='interpolate_235', unique_id=235)",
+      "target": "Node(name='pad_237', unique_id=237)"
+    },
+    {
+      "source": "Node(name='pad_237', unique_id=237)",
+      "target": "Node(name='cat_238', unique_id=238)"
+    },
+    {
+      "source": "Node(name='cat_238', unique_id=238)",
+      "target": "Node(name='conv2d_244', unique_id=244)"
+    },
+    {
+      "source": "Node(name='torch_parameter_242', unique_id=242)",
+      "target": "Node(name='conv2d_244', unique_id=244)"
+    },
+    {
+      "source": "Node(name='torch_parameter_243', unique_id=243)",
+      "target": "Node(name='conv2d_244', unique_id=244)"
+    },
+    {
+      "source": "Node(name='conv2d_244', unique_id=244)",
+      "target": "Node(name='batch_norm_251', unique_id=251)"
+    },
+    {
+      "source": "Node(name='torch_input_247', unique_id=247)",
+      "target": "Node(name='batch_norm_251', unique_id=251)"
+    },
+    {
+      "source": "Node(name='torch_input_248', unique_id=248)",
+      "target": "Node(name='batch_norm_251', unique_id=251)"
+    },
+    {
+      "source": "Node(name='torch_parameter_249', unique_id=249)",
+      "target": "Node(name='batch_norm_251', unique_id=251)"
+    },
+    {
+      "source": "Node(name='torch_parameter_250', unique_id=250)",
+      "target": "Node(name='batch_norm_251', unique_id=251)"
+    },
+    {
+      "source": "Node(name='batch_norm_251', unique_id=251)",
+      "target": "Node(name='relu_254', unique_id=254)"
+    },
+    {
+      "source": "Node(name='relu_254', unique_id=254)",
+      "target": "Node(name='conv2d_259', unique_id=259)"
+    },
+    {
+      "source": "Node(name='torch_parameter_257', unique_id=257)",
+      "target": "Node(name='conv2d_259', unique_id=259)"
+    },
+    {
+      "source": "Node(name='torch_parameter_258', unique_id=258)",
+      "target": "Node(name='conv2d_259', unique_id=259)"
+    },
+    {
+      "source": "Node(name='conv2d_259', unique_id=259)",
+      "target": "Node(name='batch_norm_266', unique_id=266)"
+    },
+    {
+      "source": "Node(name='torch_input_262', unique_id=262)",
+      "target": "Node(name='batch_norm_266', unique_id=266)"
+    },
+    {
+      "source": "Node(name='torch_input_263', unique_id=263)",
+      "target": "Node(name='batch_norm_266', unique_id=266)"
+    },
+    {
+      "source": "Node(name='torch_parameter_264', unique_id=264)",
+      "target": "Node(name='batch_norm_266', unique_id=266)"
+    },
+    {
+      "source": "Node(name='torch_parameter_265', unique_id=265)",
+      "target": "Node(name='batch_norm_266', unique_id=266)"
+    },
+    {
+      "source": "Node(name='batch_norm_266', unique_id=266)",
+      "target": "Node(name='relu_269', unique_id=269)"
+    },
+    {
+      "source": "Node(name='relu_269', unique_id=269)",
+      "target": "Node(name='interpolate_277', unique_id=277)"
+    },
+    {
+      "source": "Node(name='interpolate_277', unique_id=277)",
+      "target": "Node(name='pad_279', unique_id=279)"
+    },
+    {
+      "source": "Node(name='pad_279', unique_id=279)",
+      "target": "Node(name='cat_280', unique_id=280)"
+    },
+    {
+      "source": "Node(name='cat_280', unique_id=280)",
+      "target": "Node(name='conv2d_286', unique_id=286)"
+    },
+    {
+      "source": "Node(name='torch_parameter_284', unique_id=284)",
+      "target": "Node(name='conv2d_286', unique_id=286)"
+    },
+    {
+      "source": "Node(name='torch_parameter_285', unique_id=285)",
+      "target": "Node(name='conv2d_286', unique_id=286)"
+    },
+    {
+      "source": "Node(name='conv2d_286', unique_id=286)",
+      "target": "Node(name='batch_norm_293', unique_id=293)"
+    },
+    {
+      "source": "Node(name='torch_input_289', unique_id=289)",
+      "target": "Node(name='batch_norm_293', unique_id=293)"
+    },
+    {
+      "source": "Node(name='torch_input_290', unique_id=290)",
+      "target": "Node(name='batch_norm_293', unique_id=293)"
+    },
+    {
+      "source": "Node(name='torch_parameter_291', unique_id=291)",
+      "target": "Node(name='batch_norm_293', unique_id=293)"
+    },
+    {
+      "source": "Node(name='torch_parameter_292', unique_id=292)",
+      "target": "Node(name='batch_norm_293', unique_id=293)"
+    },
+    {
+      "source": "Node(name='batch_norm_293', unique_id=293)",
+      "target": "Node(name='relu_296', unique_id=296)"
+    },
+    {
+      "source": "Node(name='relu_296', unique_id=296)",
+      "target": "Node(name='conv2d_301', unique_id=301)"
+    },
+    {
+      "source": "Node(name='torch_parameter_299', unique_id=299)",
+      "target": "Node(name='conv2d_301', unique_id=301)"
+    },
+    {
+      "source": "Node(name='torch_parameter_300', unique_id=300)",
+      "target": "Node(name='conv2d_301', unique_id=301)"
+    },
+    {
+      "source": "Node(name='conv2d_301', unique_id=301)",
+      "target": "Node(name='batch_norm_308', unique_id=308)"
+    },
+    {
+      "source": "Node(name='torch_input_304', unique_id=304)",
+      "target": "Node(name='batch_norm_308', unique_id=308)"
+    },
+    {
+      "source": "Node(name='torch_input_305', unique_id=305)",
+      "target": "Node(name='batch_norm_308', unique_id=308)"
+    },
+    {
+      "source": "Node(name='torch_parameter_306', unique_id=306)",
+      "target": "Node(name='batch_norm_308', unique_id=308)"
+    },
+    {
+      "source": "Node(name='torch_parameter_307', unique_id=307)",
+      "target": "Node(name='batch_norm_308', unique_id=308)"
+    },
+    {
+      "source": "Node(name='batch_norm_308', unique_id=308)",
+      "target": "Node(name='relu_311', unique_id=311)"
+    },
+    {
+      "source": "Node(name='relu_311', unique_id=311)",
+      "target": "Node(name='interpolate_319', unique_id=319)"
+    },
+    {
+      "source": "Node(name='interpolate_319', unique_id=319)",
+      "target": "Node(name='pad_321', unique_id=321)"
+    },
+    {
+      "source": "Node(name='pad_321', unique_id=321)",
+      "target": "Node(name='cat_322', unique_id=322)"
+    },
+    {
+      "source": "Node(name='cat_322', unique_id=322)",
+      "target": "Node(name='conv2d_328', unique_id=328)"
+    },
+    {
+      "source": "Node(name='torch_parameter_326', unique_id=326)",
+      "target": "Node(name='conv2d_328', unique_id=328)"
+    },
+    {
+      "source": "Node(name='torch_parameter_327', unique_id=327)",
+      "target": "Node(name='conv2d_328', unique_id=328)"
+    },
+    {
+      "source": "Node(name='conv2d_328', unique_id=328)",
+      "target": "Node(name='batch_norm_335', unique_id=335)"
+    },
+    {
+      "source": "Node(name='torch_input_331', unique_id=331)",
+      "target": "Node(name='batch_norm_335', unique_id=335)"
+    },
+    {
+      "source": "Node(name='torch_input_332', unique_id=332)",
+      "target": "Node(name='batch_norm_335', unique_id=335)"
+    },
+    {
+      "source": "Node(name='torch_parameter_333', unique_id=333)",
+      "target": "Node(name='batch_norm_335', unique_id=335)"
+    },
+    {
+      "source": "Node(name='torch_parameter_334', unique_id=334)",
+      "target": "Node(name='batch_norm_335', unique_id=335)"
+    },
+    {
+      "source": "Node(name='batch_norm_335', unique_id=335)",
+      "target": "Node(name='relu_338', unique_id=338)"
+    },
+    {
+      "source": "Node(name='relu_338', unique_id=338)",
+      "target": "Node(name='conv2d_343', unique_id=343)"
+    },
+    {
+      "source": "Node(name='torch_parameter_341', unique_id=341)",
+      "target": "Node(name='conv2d_343', unique_id=343)"
+    },
+    {
+      "source": "Node(name='torch_parameter_342', unique_id=342)",
+      "target": "Node(name='conv2d_343', unique_id=343)"
+    },
+    {
+      "source": "Node(name='conv2d_343', unique_id=343)",
+      "target": "Node(name='batch_norm_350', unique_id=350)"
+    },
+    {
+      "source": "Node(name='torch_input_346', unique_id=346)",
+      "target": "Node(name='batch_norm_350', unique_id=350)"
+    },
+    {
+      "source": "Node(name='torch_input_347', unique_id=347)",
+      "target": "Node(name='batch_norm_350', unique_id=350)"
+    },
+    {
+      "source": "Node(name='torch_parameter_348', unique_id=348)",
+      "target": "Node(name='batch_norm_350', unique_id=350)"
+    },
+    {
+      "source": "Node(name='torch_parameter_349', unique_id=349)",
+      "target": "Node(name='batch_norm_350', unique_id=350)"
+    },
+    {
+      "source": "Node(name='batch_norm_350', unique_id=350)",
+      "target": "Node(name='relu_353', unique_id=353)"
+    },
+    {
+      "source": "Node(name='relu_353', unique_id=353)",
+      "target": "Node(name='interpolate_361', unique_id=361)"
+    },
+    {
+      "source": "Node(name='interpolate_361', unique_id=361)",
+      "target": "Node(name='pad_363', unique_id=363)"
+    },
+    {
+      "source": "Node(name='pad_363', unique_id=363)",
+      "target": "Node(name='cat_364', unique_id=364)"
+    },
+    {
+      "source": "Node(name='cat_364', unique_id=364)",
+      "target": "Node(name='conv2d_370', unique_id=370)"
+    },
+    {
+      "source": "Node(name='torch_parameter_368', unique_id=368)",
+      "target": "Node(name='conv2d_370', unique_id=370)"
+    },
+    {
+      "source": "Node(name='torch_parameter_369', unique_id=369)",
+      "target": "Node(name='conv2d_370', unique_id=370)"
+    },
+    {
+      "source": "Node(name='conv2d_370', unique_id=370)",
+      "target": "Node(name='batch_norm_377', unique_id=377)"
+    },
+    {
+      "source": "Node(name='torch_input_373', unique_id=373)",
+      "target": "Node(name='batch_norm_377', unique_id=377)"
+    },
+    {
+      "source": "Node(name='torch_input_374', unique_id=374)",
+      "target": "Node(name='batch_norm_377', unique_id=377)"
+    },
+    {
+      "source": "Node(name='torch_parameter_375', unique_id=375)",
+      "target": "Node(name='batch_norm_377', unique_id=377)"
+    },
+    {
+      "source": "Node(name='torch_parameter_376', unique_id=376)",
+      "target": "Node(name='batch_norm_377', unique_id=377)"
+    },
+    {
+      "source": "Node(name='batch_norm_377', unique_id=377)",
+      "target": "Node(name='relu_380', unique_id=380)"
+    },
+    {
+      "source": "Node(name='relu_380', unique_id=380)",
+      "target": "Node(name='conv2d_385', unique_id=385)"
+    },
+    {
+      "source": "Node(name='torch_parameter_383', unique_id=383)",
+      "target": "Node(name='conv2d_385', unique_id=385)"
+    },
+    {
+      "source": "Node(name='torch_parameter_384', unique_id=384)",
+      "target": "Node(name='conv2d_385', unique_id=385)"
+    },
+    {
+      "source": "Node(name='conv2d_385', unique_id=385)",
+      "target": "Node(name='batch_norm_392', unique_id=392)"
+    },
+    {
+      "source": "Node(name='torch_input_388', unique_id=388)",
+      "target": "Node(name='batch_norm_392', unique_id=392)"
+    },
+    {
+      "source": "Node(name='torch_input_389', unique_id=389)",
+      "target": "Node(name='batch_norm_392', unique_id=392)"
+    },
+    {
+      "source": "Node(name='torch_parameter_390', unique_id=390)",
+      "target": "Node(name='batch_norm_392', unique_id=392)"
+    },
+    {
+      "source": "Node(name='torch_parameter_391', unique_id=391)",
+      "target": "Node(name='batch_norm_392', unique_id=392)"
+    },
+    {
+      "source": "Node(name='batch_norm_392', unique_id=392)",
+      "target": "Node(name='relu_395', unique_id=395)"
+    },
+    {
+      "source": "Node(name='relu_395', unique_id=395)",
+      "target": "Node(name='conv2d_403', unique_id=403)"
+    },
+    {
+      "source": "Node(name='torch_parameter_401', unique_id=401)",
+      "target": "Node(name='conv2d_403', unique_id=403)"
+    },
+    {
+      "source": "Node(name='torch_parameter_402', unique_id=402)",
+      "target": "Node(name='conv2d_403', unique_id=403)"
+    }
+  ]
+}

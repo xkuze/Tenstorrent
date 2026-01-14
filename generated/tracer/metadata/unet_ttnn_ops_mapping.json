@@ -1,0 +1,79 @@
+{
+  "model": "UNetVGG19",
+  "supported_ops": {
+    "conv2d": {
+      "pytorch": "torch.nn.functional.conv2d",
+      "ttnn": "ttnn.conv2d",
+      "status": "supported",
+      "count": 29,
+      "notes": "Full support with Conv2dConfig"
+    },
+    "relu": {
+      "pytorch": "torch.relu",
+      "ttnn": "ttnn.relu",
+      "status": "supported",
+      "count": 28,
+      "notes": "Direct mapping"
+    },
+    "batch_norm": {
+      "pytorch": "torch.nn.functional.batch_norm",
+      "ttnn": "ttnn.batch_norm",
+      "status": "supported",
+      "count": 12,
+      "notes": "Available in ttnn; alternatively fold into conv weights"
+    },
+    "max_pool2d": {
+      "pytorch": "torch.nn.functional.max_pool2d",
+      "ttnn": "ttnn.max_pool2d",
+      "status": "supported",
+      "count": 5,
+      "notes": "Full support"
+    },
+    "pad": {
+      "pytorch": "torch.nn.functional.pad",
+      "ttnn": "ttnn.pad",
+      "status": "supported",
+      "count": 5,
+      "notes": "Check padding modes supported"
+    },
+    "cat": {
+      "pytorch": "torch.cat",
+      "ttnn": "ttnn.concat",
+      "status": "supported",
+      "count": 5,
+      "notes": "Use ttnn.concat with dim parameter"
+    },
+    "randn": {
+      "pytorch": "torch.randn",
+      "ttnn": "torch.randn + ttnn.from_torch",
+      "status": "supported",
+      "count": 1,
+      "notes": "Generate on host, transfer to device"
+    }
+  },
+  "partial_ops": {
+    "interpolate": {
+      "pytorch": "torch.nn.functional.interpolate",
+      "ttnn": "ttnn.upsample",
+      "status": "partial",
+      "count": 5,
+      "notes": "ttnn.upsample supports scale_factor=2; bilinear may need workaround",
+      "workaround": "Use ttnn.upsample or transpose_conv2d for 2x upsampling"
+    },
+    "flatten": {
+      "pytorch": "torch.flatten",
+      "ttnn": "ttnn.reshape",
+      "status": "partial",
+      "count": 1,
+      "notes": "Use ttnn.reshape to flatten dimensions",
+      "workaround": "ttnn.reshape(tensor, [batch, -1])"
+    }
+  },
+  "unsupported_ops": {},
+  "recommendations": [
+    "All core UNet ops have TTNN equivalents",
+    "interpolate (bilinear) may need transpose_conv2d workaround",
+    "Consider batch_norm folding into conv for inference optimization",
+    "Test each op with PCC > 0.99 threshold"
+  ]
+}

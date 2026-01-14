@@ -1,0 +1,15 @@
+=== UNet Operations Extracted by TT-NN Tracer ===
+
+Total nodes: 198
+Total functions: 91
+
+=== Operation Counts ===
+conv2d: 29
+relu: 28
+batch_norm: 12
+max_pool2d: 5
+interpolate: 5
+pad: 5
+cat: 5
+randn: 1
+flatten: 1

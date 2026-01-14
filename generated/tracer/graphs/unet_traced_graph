@@ -1,0 +1,3755 @@
+digraph {
+	graph [ordering=in rankdir=TB]
+	node [border=1 fontname="Linux libertine" fontsize=10 height=0.2 margin=0 ranksep=0.1 shape=box style=filled]
+	edge [fontsize=10]
+	torch_input_0 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.randn<BR/>duration: 1.4 ms</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 3, 256, 256)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+	torch_input_1 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.Tensor</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 3, 256, 256)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+	subgraph _405 {
+		node [style=filled]
+		bgcolor="#0000ff80" cluster=true fontcolor=black label="unet.model.UNetVGG19
+duration: 277.5 ms" rankdir=TB shape=hexagon
+		module_input_2 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">x</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 3, 256, 256)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+		subgraph enc1_20 {
+			node [style=filled]
+			bgcolor="#ee00ee80   " cluster=true fontcolor=black label="torch.nn.modules.container.Sequential
+enc1
+duration: 19.3 ms" rankdir=TB shape=hexagon
+			module_input_3 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 3, 256, 256)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			subgraph "enc1.0_8" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="torch.nn.modules.conv.Conv2d
+enc1.0
+duration: 6.0 ms" rankdir=TB shape=hexagon
+				module_input_4 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 3, 256, 256)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				torch_parameter_5 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>enc1.0.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(64, 3, 3, 3)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				torch_parameter_6 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>enc1.0.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(64,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				conv2d_7 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.conv2d<BR/>duration: 5.5 ms</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 3, 256, 256)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(64, 3, 3, 3)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(64,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="3">Output 0<BR/>(1, 64, 256, 256)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				module_input_4:"#0" -> conv2d_7:"$0" [label="0 -> 0" fontcolor=white]
+				torch_parameter_5:"#0" -> conv2d_7:"$1" [label="0 -> 1" fontcolor=white]
+				torch_parameter_6:"#0" -> conv2d_7:"$2" [label="0 -> 2" fontcolor=white]
+			}
+			subgraph "enc1.1_11" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="torch.nn.modules.activation.ReLU
+enc1.1
+duration: 1.0 ms" rankdir=TB shape=hexagon
+				module_input_9 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 64, 256, 256)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				relu_10 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.relu<BR/>duration: 699.3 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 64, 256, 256)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 64, 256, 256)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				module_input_9:"#0" -> relu_10:"$0" [label="0 -> 0" fontcolor=white]
+			}
+			subgraph "enc1.2_16" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="torch.nn.modules.conv.Conv2d
+enc1.2
+duration: 10.1 ms" rankdir=TB shape=hexagon
+				module_input_12 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 64, 256, 256)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				torch_parameter_13 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>enc1.2.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(64, 64, 3, 3)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				torch_parameter_14 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>enc1.2.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(64,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				conv2d_15 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.conv2d<BR/>duration: 9.6 ms</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 64, 256, 256)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(64, 64, 3, 3)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(64,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="3">Output 0<BR/>(1, 64, 256, 256)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				module_input_12:"#0" -> conv2d_15:"$0" [label="0 -> 0" fontcolor=white]
+				torch_parameter_13:"#0" -> conv2d_15:"$1" [label="0 -> 1" fontcolor=white]
+				torch_parameter_14:"#0" -> conv2d_15:"$2" [label="0 -> 2" fontcolor=white]
+			}
+			subgraph "enc1.3_19" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="torch.nn.modules.activation.ReLU
+enc1.3
+duration: 910.8 µs" rankdir=TB shape=hexagon
+				module_input_17 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 64, 256, 256)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				relu_18 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.relu<BR/>duration: 556.7 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 64, 256, 256)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 64, 256, 256)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				module_input_17:"#0" -> relu_18:"$0" [label="0 -> 0" fontcolor=white]
+			}
+			module_input_3:"#0" -> module_input_4 [label="0 -> 0" fontcolor=white]
+			conv2d_7:"#0" -> module_input_9 [label="0 -> 0" fontcolor=white]
+			relu_10:"#0" -> module_input_12 [label="0 -> 0" fontcolor=white]
+			conv2d_15:"#0" -> module_input_17 [label="0 -> 0" fontcolor=white]
+		}
+		subgraph pool1_23 {
+			node [style=filled]
+			bgcolor="#ee00ee80   " cluster=true fontcolor=black label="torch.nn.modules.pooling.MaxPool2d
+pool1
+duration: 3.6 ms" rankdir=TB shape=hexagon
+			module_input_21 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 64, 256, 256)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			max_pool2d_22 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.max_pool2d<BR/>duration: 3.2 ms</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 64, 256, 256)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 64, 128, 128)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			module_input_21:"#0" -> max_pool2d_22:"$0" [label="0 -> 0" fontcolor=white]
+		}
+		subgraph enc2_41 {
+			node [style=filled]
+			bgcolor="#ee00ee80   " cluster=true fontcolor=black label="torch.nn.modules.container.Sequential
+enc2
+duration: 14.4 ms" rankdir=TB shape=hexagon
+			module_input_24 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 64, 128, 128)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			subgraph "enc2.0_29" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="torch.nn.modules.conv.Conv2d
+enc2.0
+duration: 5.1 ms" rankdir=TB shape=hexagon
+				module_input_25 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 64, 128, 128)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				torch_parameter_26 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>enc2.0.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(128, 64, 3, 3)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				torch_parameter_27 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>enc2.0.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(128,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				conv2d_28 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.conv2d<BR/>duration: 4.7 ms</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 64, 128, 128)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(128, 64, 3, 3)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(128,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="3">Output 0<BR/>(1, 128, 128, 128)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				module_input_25:"#0" -> conv2d_28:"$0" [label="0 -> 0" fontcolor=white]
+				torch_parameter_26:"#0" -> conv2d_28:"$1" [label="0 -> 1" fontcolor=white]
+				torch_parameter_27:"#0" -> conv2d_28:"$2" [label="0 -> 2" fontcolor=white]
+			}
+			subgraph "enc2.1_32" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="torch.nn.modules.activation.ReLU
+enc2.1
+duration: 531.0 µs" rankdir=TB shape=hexagon
+				module_input_30 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 128, 128, 128)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				relu_31 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.relu<BR/>duration: 290.9 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 128, 128, 128)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 128, 128, 128)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				module_input_30:"#0" -> relu_31:"$0" [label="0 -> 0" fontcolor=white]
+			}
+			subgraph "enc2.2_37" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="torch.nn.modules.conv.Conv2d
+enc2.2
+duration: 7.1 ms" rankdir=TB shape=hexagon
+				module_input_33 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 128, 128, 128)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				torch_parameter_34 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>enc2.2.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(128, 128, 3, 3)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				torch_parameter_35 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>enc2.2.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(128,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				conv2d_36 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.conv2d<BR/>duration: 6.6 ms</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 128, 128, 128)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(128, 128, 3, 3)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(128,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="3">Output 0<BR/>(1, 128, 128, 128)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				module_input_33:"#0" -> conv2d_36:"$0" [label="0 -> 0" fontcolor=white]
+				torch_parameter_34:"#0" -> conv2d_36:"$1" [label="0 -> 1" fontcolor=white]
+				torch_parameter_35:"#0" -> conv2d_36:"$2" [label="0 -> 2" fontcolor=white]
+			}
+			subgraph "enc2.3_40" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="torch.nn.modules.activation.ReLU
+enc2.3
+duration: 487.6 µs" rankdir=TB shape=hexagon
+				module_input_38 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 128, 128, 128)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				relu_39 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.relu<BR/>duration: 256.3 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 128, 128, 128)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 128, 128, 128)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				module_input_38:"#0" -> relu_39:"$0" [label="0 -> 0" fontcolor=white]
+			}
+			module_input_24:"#0" -> module_input_25 [label="0 -> 0" fontcolor=white]
+			conv2d_28:"#0" -> module_input_30 [label="0 -> 0" fontcolor=white]
+			relu_31:"#0" -> module_input_33 [label="0 -> 0" fontcolor=white]
+			conv2d_36:"#0" -> module_input_38 [label="0 -> 0" fontcolor=white]
+		}
+		subgraph pool2_44 {
+			node [style=filled]
+			bgcolor="#ee00ee80   " cluster=true fontcolor=black label="torch.nn.modules.pooling.MaxPool2d
+pool2
+duration: 1.7 ms" rankdir=TB shape=hexagon
+			module_input_42 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 128, 128, 128)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			max_pool2d_43 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.max_pool2d<BR/>duration: 1.4 ms</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 128, 128, 128)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 128, 64, 64)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			module_input_42:"#0" -> max_pool2d_43:"$0" [label="0 -> 0" fontcolor=white]
+		}
+		subgraph enc3_78 {
+			node [style=filled]
+			bgcolor="#ee00ee80   " cluster=true fontcolor=black label="torch.nn.modules.container.Sequential
+enc3
+duration: 25.5 ms" rankdir=TB shape=hexagon
+			module_input_45 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 128, 64, 64)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			subgraph "enc3.0_50" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="torch.nn.modules.conv.Conv2d
+enc3.0
+duration: 4.7 ms" rankdir=TB shape=hexagon
+				module_input_46 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 128, 64, 64)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				torch_parameter_47 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>enc3.0.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(256, 128, 3, 3)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				torch_parameter_48 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>enc3.0.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(256,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				conv2d_49 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.conv2d<BR/>duration: 4.1 ms</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 128, 64, 64)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(256, 128, 3, 3)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(256,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="3">Output 0<BR/>(1, 256, 64, 64)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				module_input_46:"#0" -> conv2d_49:"$0" [label="0 -> 0" fontcolor=white]
+				torch_parameter_47:"#0" -> conv2d_49:"$1" [label="0 -> 1" fontcolor=white]
+				torch_parameter_48:"#0" -> conv2d_49:"$2" [label="0 -> 2" fontcolor=white]
+			}
+			subgraph "enc3.1_53" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="torch.nn.modules.activation.ReLU
+enc3.1
+duration: 280.4 µs" rankdir=TB shape=hexagon
+				module_input_51 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 256, 64, 64)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				relu_52 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.relu<BR/>duration: 111.6 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 256, 64, 64)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 256, 64, 64)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				module_input_51:"#0" -> relu_52:"$0" [label="0 -> 0" fontcolor=white]
+			}
+			subgraph "enc3.2_58" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="torch.nn.modules.conv.Conv2d
+enc3.2
+duration: 6.4 ms" rankdir=TB shape=hexagon
+				module_input_54 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 256, 64, 64)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				torch_parameter_55 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>enc3.2.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(256, 256, 3, 3)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				torch_parameter_56 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>enc3.2.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(256,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				conv2d_57 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.conv2d<BR/>duration: 6.0 ms</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 256, 64, 64)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(256, 256, 3, 3)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(256,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="3">Output 0<BR/>(1, 256, 64, 64)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				module_input_54:"#0" -> conv2d_57:"$0" [label="0 -> 0" fontcolor=white]
+				torch_parameter_55:"#0" -> conv2d_57:"$1" [label="0 -> 1" fontcolor=white]
+				torch_parameter_56:"#0" -> conv2d_57:"$2" [label="0 -> 2" fontcolor=white]
+			}
+			subgraph "enc3.3_61" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="torch.nn.modules.activation.ReLU
+enc3.3
+duration: 283.2 µs" rankdir=TB shape=hexagon
+				module_input_59 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 256, 64, 64)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				relu_60 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.relu<BR/>duration: 112.5 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 256, 64, 64)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 256, 64, 64)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				module_input_59:"#0" -> relu_60:"$0" [label="0 -> 0" fontcolor=white]
+			}
+			subgraph "enc3.4_66" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="torch.nn.modules.conv.Conv2d
+enc3.4
+duration: 5.4 ms" rankdir=TB shape=hexagon
+				module_input_62 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 256, 64, 64)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				torch_parameter_63 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>enc3.4.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(256, 256, 3, 3)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				torch_parameter_64 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>enc3.4.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(256,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				conv2d_65 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.conv2d<BR/>duration: 5.0 ms</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 256, 64, 64)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(256, 256, 3, 3)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(256,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="3">Output 0<BR/>(1, 256, 64, 64)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				module_input_62:"#0" -> conv2d_65:"$0" [label="0 -> 0" fontcolor=white]
+				torch_parameter_63:"#0" -> conv2d_65:"$1" [label="0 -> 1" fontcolor=white]
+				torch_parameter_64:"#0" -> conv2d_65:"$2" [label="0 -> 2" fontcolor=white]
+			}
+			subgraph "enc3.5_69" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="torch.nn.modules.activation.ReLU
+enc3.5
+duration: 271.8 µs" rankdir=TB shape=hexagon
+				module_input_67 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 256, 64, 64)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				relu_68 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.relu<BR/>duration: 107.0 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 256, 64, 64)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 256, 64, 64)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				module_input_67:"#0" -> relu_68:"$0" [label="0 -> 0" fontcolor=white]
+			}
+			subgraph "enc3.6_74" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="torch.nn.modules.conv.Conv2d
+enc3.6
+duration: 5.5 ms" rankdir=TB shape=hexagon
+				module_input_70 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 256, 64, 64)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				torch_parameter_71 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>enc3.6.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(256, 256, 3, 3)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				torch_parameter_72 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>enc3.6.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(256,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				conv2d_73 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.conv2d<BR/>duration: 5.1 ms</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 256, 64, 64)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(256, 256, 3, 3)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(256,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="3">Output 0<BR/>(1, 256, 64, 64)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				module_input_70:"#0" -> conv2d_73:"$0" [label="0 -> 0" fontcolor=white]
+				torch_parameter_71:"#0" -> conv2d_73:"$1" [label="0 -> 1" fontcolor=white]
+				torch_parameter_72:"#0" -> conv2d_73:"$2" [label="0 -> 2" fontcolor=white]
+			}
+			subgraph "enc3.7_77" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="torch.nn.modules.activation.ReLU
+enc3.7
+duration: 396.5 µs" rankdir=TB shape=hexagon
+				module_input_75 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 256, 64, 64)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				relu_76 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.relu<BR/>duration: 206.5 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 256, 64, 64)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 256, 64, 64)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				module_input_75:"#0" -> relu_76:"$0" [label="0 -> 0" fontcolor=white]
+			}
+			module_input_45:"#0" -> module_input_46 [label="0 -> 0" fontcolor=white]
+			conv2d_49:"#0" -> module_input_51 [label="0 -> 0" fontcolor=white]
+			relu_52:"#0" -> module_input_54 [label="0 -> 0" fontcolor=white]
+			conv2d_57:"#0" -> module_input_59 [label="0 -> 0" fontcolor=white]
+			relu_60:"#0" -> module_input_62 [label="0 -> 0" fontcolor=white]
+			conv2d_65:"#0" -> module_input_67 [label="0 -> 0" fontcolor=white]
+			relu_68:"#0" -> module_input_70 [label="0 -> 0" fontcolor=white]
+			conv2d_73:"#0" -> module_input_75 [label="0 -> 0" fontcolor=white]
+		}
+		subgraph pool3_81 {
+			node [style=filled]
+			bgcolor="#ee00ee80   " cluster=true fontcolor=black label="torch.nn.modules.pooling.MaxPool2d
+pool3
+duration: 1.0 ms" rankdir=TB shape=hexagon
+			module_input_79 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 256, 64, 64)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			max_pool2d_80 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.max_pool2d<BR/>duration: 777.0 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 256, 64, 64)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 256, 32, 32)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			module_input_79:"#0" -> max_pool2d_80:"$0" [label="0 -> 0" fontcolor=white]
+		}
+		subgraph enc4_115 {
+			node [style=filled]
+			bgcolor="#ee00ee80   " cluster=true fontcolor=black label="torch.nn.modules.container.Sequential
+enc4
+duration: 26.1 ms" rankdir=TB shape=hexagon
+			module_input_82 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 256, 32, 32)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			subgraph "enc4.0_87" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="torch.nn.modules.conv.Conv2d
+enc4.0
+duration: 4.4 ms" rankdir=TB shape=hexagon
+				module_input_83 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 256, 32, 32)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				torch_parameter_84 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>enc4.0.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(512, 256, 3, 3)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				torch_parameter_85 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>enc4.0.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(512,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				conv2d_86 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.conv2d<BR/>duration: 4.1 ms</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 256, 32, 32)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(512, 256, 3, 3)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(512,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="3">Output 0<BR/>(1, 512, 32, 32)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				module_input_83:"#0" -> conv2d_86:"$0" [label="0 -> 0" fontcolor=white]
+				torch_parameter_84:"#0" -> conv2d_86:"$1" [label="0 -> 1" fontcolor=white]
+				torch_parameter_85:"#0" -> conv2d_86:"$2" [label="0 -> 2" fontcolor=white]
+			}
+			subgraph "enc4.1_90" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="torch.nn.modules.activation.ReLU
+enc4.1
+duration: 232.2 µs" rankdir=TB shape=hexagon
+				module_input_88 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 32, 32)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				relu_89 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.relu<BR/>duration: 77.5 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 512, 32, 32)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 32, 32)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				module_input_88:"#0" -> relu_89:"$0" [label="0 -> 0" fontcolor=white]
+			}
+			subgraph "enc4.2_95" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="torch.nn.modules.conv.Conv2d
+enc4.2
+duration: 6.7 ms" rankdir=TB shape=hexagon
+				module_input_91 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 32, 32)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				torch_parameter_92 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>enc4.2.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(512, 512, 3, 3)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				torch_parameter_93 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>enc4.2.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(512,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				conv2d_94 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.conv2d<BR/>duration: 6.2 ms</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 512, 32, 32)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(512, 512, 3, 3)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(512,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="3">Output 0<BR/>(1, 512, 32, 32)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				module_input_91:"#0" -> conv2d_94:"$0" [label="0 -> 0" fontcolor=white]
+				torch_parameter_92:"#0" -> conv2d_94:"$1" [label="0 -> 1" fontcolor=white]
+				torch_parameter_93:"#0" -> conv2d_94:"$2" [label="0 -> 2" fontcolor=white]
+			}
+			subgraph "enc4.3_98" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="torch.nn.modules.activation.ReLU
+enc4.3
+duration: 237.5 µs" rankdir=TB shape=hexagon
+				module_input_96 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 32, 32)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				relu_97 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.relu<BR/>duration: 75.6 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 512, 32, 32)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 32, 32)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				module_input_96:"#0" -> relu_97:"$0" [label="0 -> 0" fontcolor=white]
+			}
+			subgraph "enc4.4_103" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="torch.nn.modules.conv.Conv2d
+enc4.4
+duration: 5.9 ms" rankdir=TB shape=hexagon
+				module_input_99 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 32, 32)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				torch_parameter_100 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>enc4.4.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(512, 512, 3, 3)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				torch_parameter_101 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>enc4.4.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(512,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				conv2d_102 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.conv2d<BR/>duration: 5.4 ms</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 512, 32, 32)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(512, 512, 3, 3)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(512,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="3">Output 0<BR/>(1, 512, 32, 32)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				module_input_99:"#0" -> conv2d_102:"$0" [label="0 -> 0" fontcolor=white]
+				torch_parameter_100:"#0" -> conv2d_102:"$1" [label="0 -> 1" fontcolor=white]
+				torch_parameter_101:"#0" -> conv2d_102:"$2" [label="0 -> 2" fontcolor=white]
+			}
+			subgraph "enc4.5_106" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="torch.nn.modules.activation.ReLU
+enc4.5
+duration: 248.7 µs" rankdir=TB shape=hexagon
+				module_input_104 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 32, 32)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				relu_105 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.relu<BR/>duration: 79.4 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 512, 32, 32)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 32, 32)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				module_input_104:"#0" -> relu_105:"$0" [label="0 -> 0" fontcolor=white]
+			}
+			subgraph "enc4.6_111" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="torch.nn.modules.conv.Conv2d
+enc4.6
+duration: 5.8 ms" rankdir=TB shape=hexagon
+				module_input_107 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 32, 32)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				torch_parameter_108 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>enc4.6.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(512, 512, 3, 3)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				torch_parameter_109 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>enc4.6.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(512,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				conv2d_110 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.conv2d<BR/>duration: 5.4 ms</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 512, 32, 32)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(512, 512, 3, 3)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(512,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="3">Output 0<BR/>(1, 512, 32, 32)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				module_input_107:"#0" -> conv2d_110:"$0" [label="0 -> 0" fontcolor=white]
+				torch_parameter_108:"#0" -> conv2d_110:"$1" [label="0 -> 1" fontcolor=white]
+				torch_parameter_109:"#0" -> conv2d_110:"$2" [label="0 -> 2" fontcolor=white]
+			}
+			subgraph "enc4.7_114" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="torch.nn.modules.activation.ReLU
+enc4.7
+duration: 243.7 µs" rankdir=TB shape=hexagon
+				module_input_112 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 32, 32)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				relu_113 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.relu<BR/>duration: 85.6 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 512, 32, 32)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 32, 32)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				module_input_112:"#0" -> relu_113:"$0" [label="0 -> 0" fontcolor=white]
+			}
+			module_input_82:"#0" -> module_input_83 [label="0 -> 0" fontcolor=white]
+			conv2d_86:"#0" -> module_input_88 [label="0 -> 0" fontcolor=white]
+			relu_89:"#0" -> module_input_91 [label="0 -> 0" fontcolor=white]
+			conv2d_94:"#0" -> module_input_96 [label="0 -> 0" fontcolor=white]
+			relu_97:"#0" -> module_input_99 [label="0 -> 0" fontcolor=white]
+			conv2d_102:"#0" -> module_input_104 [label="0 -> 0" fontcolor=white]
+			relu_105:"#0" -> module_input_107 [label="0 -> 0" fontcolor=white]
+			conv2d_110:"#0" -> module_input_112 [label="0 -> 0" fontcolor=white]
+		}
+		subgraph pool4_118 {
+			node [style=filled]
+			bgcolor="#ee00ee80   " cluster=true fontcolor=black label="torch.nn.modules.pooling.MaxPool2d
+pool4
+duration: 540.0 µs" rankdir=TB shape=hexagon
+			module_input_116 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 32, 32)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			max_pool2d_117 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.max_pool2d<BR/>duration: 351.4 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 512, 32, 32)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			module_input_116:"#0" -> max_pool2d_117:"$0" [label="0 -> 0" fontcolor=white]
+		}
+		subgraph enc5_152 {
+			node [style=filled]
+			bgcolor="#ee00ee80   " cluster=true fontcolor=black label="torch.nn.modules.container.Sequential
+enc5
+duration: 15.5 ms" rankdir=TB shape=hexagon
+			module_input_119 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			subgraph "enc5.0_124" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="torch.nn.modules.conv.Conv2d
+enc5.0
+duration: 3.7 ms" rankdir=TB shape=hexagon
+				module_input_120 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				torch_parameter_121 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>enc5.0.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(512, 512, 3, 3)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				torch_parameter_122 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>enc5.0.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(512,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				conv2d_123 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.conv2d<BR/>duration: 3.3 ms</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(512, 512, 3, 3)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(512,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="3">Output 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				module_input_120:"#0" -> conv2d_123:"$0" [label="0 -> 0" fontcolor=white]
+				torch_parameter_121:"#0" -> conv2d_123:"$1" [label="0 -> 1" fontcolor=white]
+				torch_parameter_122:"#0" -> conv2d_123:"$2" [label="0 -> 2" fontcolor=white]
+			}
+			subgraph "enc5.1_127" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="torch.nn.modules.activation.ReLU
+enc5.1
+duration: 231.5 µs" rankdir=TB shape=hexagon
+				module_input_125 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				relu_126 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.relu<BR/>duration: 79.2 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				module_input_125:"#0" -> relu_126:"$0" [label="0 -> 0" fontcolor=white]
+			}
+			subgraph "enc5.2_132" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="torch.nn.modules.conv.Conv2d
+enc5.2
+duration: 2.9 ms" rankdir=TB shape=hexagon
+				module_input_128 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				torch_parameter_129 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>enc5.2.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(512, 512, 3, 3)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				torch_parameter_130 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>enc5.2.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(512,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				conv2d_131 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.conv2d<BR/>duration: 2.4 ms</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(512, 512, 3, 3)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(512,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="3">Output 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				module_input_128:"#0" -> conv2d_131:"$0" [label="0 -> 0" fontcolor=white]
+				torch_parameter_129:"#0" -> conv2d_131:"$1" [label="0 -> 1" fontcolor=white]
+				torch_parameter_130:"#0" -> conv2d_131:"$2" [label="0 -> 2" fontcolor=white]
+			}
+			subgraph "enc5.3_135" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="torch.nn.modules.activation.ReLU
+enc5.3
+duration: 223.9 µs" rankdir=TB shape=hexagon
+				module_input_133 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				relu_134 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.relu<BR/>duration: 74.4 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				module_input_133:"#0" -> relu_134:"$0" [label="0 -> 0" fontcolor=white]
+			}
+			subgraph "enc5.4_140" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="torch.nn.modules.conv.Conv2d
+enc5.4
+duration: 2.8 ms" rankdir=TB shape=hexagon
+				module_input_136 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				torch_parameter_137 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>enc5.4.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(512, 512, 3, 3)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				torch_parameter_138 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>enc5.4.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(512,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				conv2d_139 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.conv2d<BR/>duration: 2.4 ms</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(512, 512, 3, 3)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(512,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="3">Output 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				module_input_136:"#0" -> conv2d_139:"$0" [label="0 -> 0" fontcolor=white]
+				torch_parameter_137:"#0" -> conv2d_139:"$1" [label="0 -> 1" fontcolor=white]
+				torch_parameter_138:"#0" -> conv2d_139:"$2" [label="0 -> 2" fontcolor=white]
+			}
+			subgraph "enc5.5_143" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="torch.nn.modules.activation.ReLU
+enc5.5
+duration: 223.6 µs" rankdir=TB shape=hexagon
+				module_input_141 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				relu_142 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.relu<BR/>duration: 77.5 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				module_input_141:"#0" -> relu_142:"$0" [label="0 -> 0" fontcolor=white]
+			}
+			subgraph "enc5.6_148" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="torch.nn.modules.conv.Conv2d
+enc5.6
+duration: 3.0 ms" rankdir=TB shape=hexagon
+				module_input_144 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				torch_parameter_145 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>enc5.6.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(512, 512, 3, 3)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				torch_parameter_146 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>enc5.6.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(512,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				conv2d_147 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.conv2d<BR/>duration: 2.7 ms</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(512, 512, 3, 3)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(512,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="3">Output 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				module_input_144:"#0" -> conv2d_147:"$0" [label="0 -> 0" fontcolor=white]
+				torch_parameter_145:"#0" -> conv2d_147:"$1" [label="0 -> 1" fontcolor=white]
+				torch_parameter_146:"#0" -> conv2d_147:"$2" [label="0 -> 2" fontcolor=white]
+			}
+			subgraph "enc5.7_151" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="torch.nn.modules.activation.ReLU
+enc5.7
+duration: 236.3 µs" rankdir=TB shape=hexagon
+				module_input_149 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				relu_150 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.relu<BR/>duration: 72.0 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				module_input_149:"#0" -> relu_150:"$0" [label="0 -> 0" fontcolor=white]
+			}
+			module_input_119:"#0" -> module_input_120 [label="0 -> 0" fontcolor=white]
+			conv2d_123:"#0" -> module_input_125 [label="0 -> 0" fontcolor=white]
+			relu_126:"#0" -> module_input_128 [label="0 -> 0" fontcolor=white]
+			conv2d_131:"#0" -> module_input_133 [label="0 -> 0" fontcolor=white]
+			relu_134:"#0" -> module_input_136 [label="0 -> 0" fontcolor=white]
+			conv2d_139:"#0" -> module_input_141 [label="0 -> 0" fontcolor=white]
+			relu_142:"#0" -> module_input_144 [label="0 -> 0" fontcolor=white]
+			conv2d_147:"#0" -> module_input_149 [label="0 -> 0" fontcolor=white]
+		}
+		subgraph pool4_155 {
+			node [style=filled]
+			bgcolor="#ee00ee80   " cluster=true fontcolor=black label="torch.nn.modules.pooling.MaxPool2d
+pool4
+duration: 301.1 µs" rankdir=TB shape=hexagon
+			module_input_153 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			max_pool2d_154 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.max_pool2d<BR/>duration: 143.3 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 8, 8)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			module_input_153:"#0" -> max_pool2d_154:"$0" [label="0 -> 0" fontcolor=white]
+		}
+		subgraph bridge_189 {
+			node [style=filled]
+			bgcolor="#ee00ee80   " cluster=true fontcolor=black label="unet.model.DoubleConv
+bridge
+duration: 20.4 ms" rankdir=TB shape=hexagon
+			module_input_156 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">x</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 8, 8)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			subgraph "bridge.conv_188" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="torch.nn.modules.container.Sequential
+bridge.conv
+duration: 20.1 ms" rankdir=TB shape=hexagon
+				module_input_157 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 8, 8)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				subgraph "bridge.conv.0_162" {
+					node [style=filled]
+					bgcolor="#eeee0080" cluster=true fontcolor=black label="torch.nn.modules.conv.Conv2d
+bridge.conv.0
+duration: 3.4 ms" rankdir=TB shape=hexagon
+					module_input_158 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 8, 8)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+					torch_parameter_159 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>bridge.conv.0.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1024, 512, 3, 3)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+					torch_parameter_160 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>bridge.conv.0.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1024,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+					conv2d_161 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.conv2d<BR/>duration: 3.0 ms</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 512, 8, 8)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(1024, 512, 3, 3)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(1024,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="3">Output 0<BR/>(1, 1024, 8, 8)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+					module_input_158:"#0" -> conv2d_161:"$0" [label="0 -> 0" fontcolor=white]
+					torch_parameter_159:"#0" -> conv2d_161:"$1" [label="0 -> 1" fontcolor=white]
+					torch_parameter_160:"#0" -> conv2d_161:"$2" [label="0 -> 2" fontcolor=white]
+				}
+				subgraph "bridge.conv.1_169" {
+					node [style=filled]
+					bgcolor="#eeee0080" cluster=true fontcolor=black label="torch.nn.modules.batchnorm.BatchNorm2d
+bridge.conv.1
+duration: 1.4 ms" rankdir=TB shape=hexagon
+					module_input_163 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 1024, 8, 8)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+					torch_input_164 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.Tensor</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1024,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+					torch_input_165 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.Tensor</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1024,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+					torch_parameter_166 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>bridge.conv.1.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1024,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+					torch_parameter_167 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>bridge.conv.1.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1024,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+					batch_norm_168 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.batch_norm<BR/>duration: 343.6 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 1024, 8, 8)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(1024,)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(1024,)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$3" COLSPAN="1">Input 3<BR/>(1024,)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$4" COLSPAN="1">Input 4<BR/>(1024,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="5">Output 0<BR/>(1, 1024, 8, 8)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+					module_input_163:"#0" -> batch_norm_168:"$0" [label="0 -> 0" fontcolor=white]
+					torch_input_164:"#0" -> batch_norm_168:"$1" [label="0 -> 1" fontcolor=white]
+					torch_input_165:"#0" -> batch_norm_168:"$2" [label="0 -> 2" fontcolor=white]
+					torch_parameter_166:"#0" -> batch_norm_168:"$3" [label="0 -> 3" fontcolor=white]
+					torch_parameter_167:"#0" -> batch_norm_168:"$4" [label="0 -> 4" fontcolor=white]
+				}
+				subgraph "bridge.conv.2_172" {
+					node [style=filled]
+					bgcolor="#eeee0080" cluster=true fontcolor=black label="torch.nn.modules.activation.ReLU
+bridge.conv.2
+duration: 220.1 µs" rankdir=TB shape=hexagon
+					module_input_170 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 1024, 8, 8)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+					relu_171 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.relu<BR/>duration: 74.6 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 1024, 8, 8)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 1024, 8, 8)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+					module_input_170:"#0" -> relu_171:"$0" [label="0 -> 0" fontcolor=white]
+				}
+				subgraph "bridge.conv.3_177" {
+					node [style=filled]
+					bgcolor="#eeee0080" cluster=true fontcolor=black label="torch.nn.modules.conv.Conv2d
+bridge.conv.3
+duration: 12.2 ms" rankdir=TB shape=hexagon
+					module_input_173 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 1024, 8, 8)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+					torch_parameter_174 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>bridge.conv.3.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1024, 1024, 3, 3)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+					torch_parameter_175 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>bridge.conv.3.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1024,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+					conv2d_176 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.conv2d<BR/>duration: 11.7 ms</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 1024, 8, 8)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(1024, 1024, 3, 3)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(1024,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="3">Output 0<BR/>(1, 1024, 8, 8)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+					module_input_173:"#0" -> conv2d_176:"$0" [label="0 -> 0" fontcolor=white]
+					torch_parameter_174:"#0" -> conv2d_176:"$1" [label="0 -> 1" fontcolor=white]
+					torch_parameter_175:"#0" -> conv2d_176:"$2" [label="0 -> 2" fontcolor=white]
+				}
+				subgraph "bridge.conv.4_184" {
+					node [style=filled]
+					bgcolor="#eeee0080" cluster=true fontcolor=black label="torch.nn.modules.batchnorm.BatchNorm2d
+bridge.conv.4
+duration: 943.4 µs" rankdir=TB shape=hexagon
+					module_input_178 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 1024, 8, 8)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+					torch_input_179 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.Tensor</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1024,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+					torch_input_180 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.Tensor</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1024,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+					torch_parameter_181 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>bridge.conv.4.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1024,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+					torch_parameter_182 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>bridge.conv.4.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1024,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+					batch_norm_183 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.batch_norm<BR/>duration: 139.2 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 1024, 8, 8)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(1024,)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(1024,)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$3" COLSPAN="1">Input 3<BR/>(1024,)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$4" COLSPAN="1">Input 4<BR/>(1024,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="5">Output 0<BR/>(1, 1024, 8, 8)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+					module_input_178:"#0" -> batch_norm_183:"$0" [label="0 -> 0" fontcolor=white]
+					torch_input_179:"#0" -> batch_norm_183:"$1" [label="0 -> 1" fontcolor=white]
+					torch_input_180:"#0" -> batch_norm_183:"$2" [label="0 -> 2" fontcolor=white]
+					torch_parameter_181:"#0" -> batch_norm_183:"$3" [label="0 -> 3" fontcolor=white]
+					torch_parameter_182:"#0" -> batch_norm_183:"$4" [label="0 -> 4" fontcolor=white]
+				}
+				subgraph "bridge.conv.5_187" {
+					node [style=filled]
+					bgcolor="#eeee0080" cluster=true fontcolor=black label="torch.nn.modules.activation.ReLU
+bridge.conv.5
+duration: 225.3 µs" rankdir=TB shape=hexagon
+					module_input_185 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 1024, 8, 8)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+					relu_186 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.relu<BR/>duration: 84.2 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 1024, 8, 8)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 1024, 8, 8)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+					module_input_185:"#0" -> relu_186:"$0" [label="0 -> 0" fontcolor=white]
+				}
+				module_input_157:"#0" -> module_input_158 [label="0 -> 0" fontcolor=white]
+				conv2d_161:"#0" -> module_input_163 [label="0 -> 0" fontcolor=white]
+				batch_norm_168:"#0" -> module_input_170 [label="0 -> 0" fontcolor=white]
+				relu_171:"#0" -> module_input_173 [label="0 -> 0" fontcolor=white]
+				conv2d_176:"#0" -> module_input_178 [label="0 -> 0" fontcolor=white]
+				batch_norm_183:"#0" -> module_input_185 [label="0 -> 0" fontcolor=white]
+			}
+			module_input_156:"#0" -> module_input_157 [label="0 -> 0" fontcolor=white]
+		}
+		subgraph up5_231 {
+			node [style=filled]
+			bgcolor="#ee00ee80   " cluster=true fontcolor=black label="unet.model.UpBlock
+up5
+duration: 17.6 ms" rankdir=TB shape=hexagon
+			module_input_190 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">x</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 1024, 8, 8)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			module_input_191 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">skip</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			subgraph "up5.up_194" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="torch.nn.modules.upsampling.Upsample
+up5.up
+duration: 1.2 ms" rankdir=TB shape=hexagon
+				module_input_192 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 1024, 8, 8)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				interpolate_193 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.interpolate<BR/>duration: 875.9 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 1024, 8, 8)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 1024, 16, 16)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				module_input_192:"#0" -> interpolate_193:"$0" [label="0 -> 0" fontcolor=white]
+			}
+			pad_195 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.pad<BR/>duration: 232.7 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 1024, 16, 16)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 1024, 16, 16)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			cat_196 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.cat<BR/>duration: 308.8 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(1, 1024, 16, 16)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="2">Output 0<BR/>(1, 1536, 16, 16)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			subgraph "up5.conv_230" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="unet.model.DoubleConv
+up5.conv
+duration: 14.8 ms" rankdir=TB shape=hexagon
+				module_input_197 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">x</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 1536, 16, 16)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				subgraph "up5.conv.conv_229" {
+					node [style=filled]
+					bgcolor="#eeee0080" cluster=true fontcolor=black label="torch.nn.modules.container.Sequential
+up5.conv.conv
+duration: 14.5 ms" rankdir=TB shape=hexagon
+					module_input_198 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 1536, 16, 16)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+					subgraph "up5.conv.conv.0_203" {
+						node [style=filled]
+						bgcolor="#00ff0080" cluster=true fontcolor=black label="torch.nn.modules.conv.Conv2d
+up5.conv.conv.0
+duration: 8.0 ms" rankdir=TB shape=hexagon
+						module_input_199 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 1536, 16, 16)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_200 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up5.conv.conv.0.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(512, 1536, 3, 3)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_201 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up5.conv.conv.0.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(512,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						conv2d_202 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.conv2d<BR/>duration: 7.6 ms</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 1536, 16, 16)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(512, 1536, 3, 3)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(512,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="3">Output 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						module_input_199:"#0" -> conv2d_202:"$0" [label="0 -> 0" fontcolor=white]
+						torch_parameter_200:"#0" -> conv2d_202:"$1" [label="0 -> 1" fontcolor=white]
+						torch_parameter_201:"#0" -> conv2d_202:"$2" [label="0 -> 2" fontcolor=white]
+					}
+					subgraph "up5.conv.conv.1_210" {
+						node [style=filled]
+						bgcolor="#00ff0080" cluster=true fontcolor=black label="torch.nn.modules.batchnorm.BatchNorm2d
+up5.conv.conv.1
+duration: 928.2 µs" rankdir=TB shape=hexagon
+						module_input_204 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_input_205 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.Tensor</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(512,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_input_206 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.Tensor</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(512,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_207 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up5.conv.conv.1.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(512,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_208 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up5.conv.conv.1.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(512,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						batch_norm_209 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.batch_norm<BR/>duration: 126.1 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(512,)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(512,)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$3" COLSPAN="1">Input 3<BR/>(512,)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$4" COLSPAN="1">Input 4<BR/>(512,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="5">Output 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						module_input_204:"#0" -> batch_norm_209:"$0" [label="0 -> 0" fontcolor=white]
+						torch_input_205:"#0" -> batch_norm_209:"$1" [label="0 -> 1" fontcolor=white]
+						torch_input_206:"#0" -> batch_norm_209:"$2" [label="0 -> 2" fontcolor=white]
+						torch_parameter_207:"#0" -> batch_norm_209:"$3" [label="0 -> 3" fontcolor=white]
+						torch_parameter_208:"#0" -> batch_norm_209:"$4" [label="0 -> 4" fontcolor=white]
+					}
+					subgraph "up5.conv.conv.2_213" {
+						node [style=filled]
+						bgcolor="#00ff0080" cluster=true fontcolor=black label="torch.nn.modules.activation.ReLU
+up5.conv.conv.2
+duration: 216.5 µs" rankdir=TB shape=hexagon
+						module_input_211 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						relu_212 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.relu<BR/>duration: 76.5 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						module_input_211:"#0" -> relu_212:"$0" [label="0 -> 0" fontcolor=white]
+					}
+					subgraph "up5.conv.conv.3_218" {
+						node [style=filled]
+						bgcolor="#00ff0080" cluster=true fontcolor=black label="torch.nn.modules.conv.Conv2d
+up5.conv.conv.3
+duration: 2.9 ms" rankdir=TB shape=hexagon
+						module_input_214 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_215 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up5.conv.conv.3.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(512, 512, 3, 3)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_216 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up5.conv.conv.3.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(512,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						conv2d_217 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.conv2d<BR/>duration: 2.6 ms</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(512, 512, 3, 3)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(512,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="3">Output 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						module_input_214:"#0" -> conv2d_217:"$0" [label="0 -> 0" fontcolor=white]
+						torch_parameter_215:"#0" -> conv2d_217:"$1" [label="0 -> 1" fontcolor=white]
+						torch_parameter_216:"#0" -> conv2d_217:"$2" [label="0 -> 2" fontcolor=white]
+					}
+					subgraph "up5.conv.conv.4_225" {
+						node [style=filled]
+						bgcolor="#00ff0080" cluster=true fontcolor=black label="torch.nn.modules.batchnorm.BatchNorm2d
+up5.conv.conv.4
+duration: 718.4 µs" rankdir=TB shape=hexagon
+						module_input_219 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_input_220 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.Tensor</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(512,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_input_221 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.Tensor</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(512,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_222 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up5.conv.conv.4.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(512,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_223 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up5.conv.conv.4.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(512,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						batch_norm_224 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.batch_norm<BR/>duration: 100.6 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(512,)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(512,)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$3" COLSPAN="1">Input 3<BR/>(512,)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$4" COLSPAN="1">Input 4<BR/>(512,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="5">Output 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						module_input_219:"#0" -> batch_norm_224:"$0" [label="0 -> 0" fontcolor=white]
+						torch_input_220:"#0" -> batch_norm_224:"$1" [label="0 -> 1" fontcolor=white]
+						torch_input_221:"#0" -> batch_norm_224:"$2" [label="0 -> 2" fontcolor=white]
+						torch_parameter_222:"#0" -> batch_norm_224:"$3" [label="0 -> 3" fontcolor=white]
+						torch_parameter_223:"#0" -> batch_norm_224:"$4" [label="0 -> 4" fontcolor=white]
+					}
+					subgraph "up5.conv.conv.5_228" {
+						node [style=filled]
+						bgcolor="#00ff0080" cluster=true fontcolor=black label="torch.nn.modules.activation.ReLU
+up5.conv.conv.5
+duration: 205.0 µs" rankdir=TB shape=hexagon
+						module_input_226 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						relu_227 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.relu<BR/>duration: 68.9 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						module_input_226:"#0" -> relu_227:"$0" [label="0 -> 0" fontcolor=white]
+					}
+					module_input_198:"#0" -> module_input_199 [label="0 -> 0" fontcolor=white]
+					conv2d_202:"#0" -> module_input_204 [label="0 -> 0" fontcolor=white]
+					batch_norm_209:"#0" -> module_input_211 [label="0 -> 0" fontcolor=white]
+					relu_212:"#0" -> module_input_214 [label="0 -> 0" fontcolor=white]
+					conv2d_217:"#0" -> module_input_219 [label="0 -> 0" fontcolor=white]
+					batch_norm_224:"#0" -> module_input_226 [label="0 -> 0" fontcolor=white]
+				}
+				module_input_197:"#0" -> module_input_198 [label="0 -> 0" fontcolor=white]
+			}
+			module_input_190:"#0" -> module_input_192 [label="0 -> 0" fontcolor=white]
+			interpolate_193:"#0" -> pad_195:"$0" [label="0 -> 0" fontcolor=white]
+			module_input_191:"#0" -> cat_196:"$0" [label="0 -> 0" fontcolor=white]
+			pad_195:"#0" -> cat_196:"$1" [label="0 -> 1" fontcolor=white]
+			cat_196:"#0" -> module_input_197 [label="0 -> 0" fontcolor=white]
+		}
+		subgraph up4_273 {
+			node [style=filled]
+			bgcolor="#ee00ee80   " cluster=true fontcolor=black label="unet.model.UpBlock
+up4
+duration: 17.9 ms" rankdir=TB shape=hexagon
+			module_input_232 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">x</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			module_input_233 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">skip</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 32, 32)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			subgraph "up4.up_236" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="torch.nn.modules.upsampling.Upsample
+up4.up
+duration: 2.2 ms" rankdir=TB shape=hexagon
+				module_input_234 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				interpolate_235 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.interpolate<BR/>duration: 1.9 ms</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 512, 16, 16)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 32, 32)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				module_input_234:"#0" -> interpolate_235:"$0" [label="0 -> 0" fontcolor=white]
+			}
+			pad_237 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.pad<BR/>duration: 119.0 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 512, 32, 32)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 32, 32)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			cat_238 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.cat<BR/>duration: 299.0 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 512, 32, 32)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(1, 512, 32, 32)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="2">Output 0<BR/>(1, 1024, 32, 32)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			subgraph "up4.conv_272" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="unet.model.DoubleConv
+up4.conv
+duration: 14.2 ms" rankdir=TB shape=hexagon
+				module_input_239 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">x</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 1024, 32, 32)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				subgraph "up4.conv.conv_271" {
+					node [style=filled]
+					bgcolor="#eeee0080" cluster=true fontcolor=black label="torch.nn.modules.container.Sequential
+up4.conv.conv
+duration: 13.9 ms" rankdir=TB shape=hexagon
+					module_input_240 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 1024, 32, 32)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+					subgraph "up4.conv.conv.0_245" {
+						node [style=filled]
+						bgcolor="#00ff0080" cluster=true fontcolor=black label="torch.nn.modules.conv.Conv2d
+up4.conv.conv.0
+duration: 7.2 ms" rankdir=TB shape=hexagon
+						module_input_241 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 1024, 32, 32)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_242 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up4.conv.conv.0.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(256, 1024, 3, 3)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_243 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up4.conv.conv.0.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(256,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						conv2d_244 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.conv2d<BR/>duration: 6.8 ms</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 1024, 32, 32)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(256, 1024, 3, 3)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(256,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="3">Output 0<BR/>(1, 256, 32, 32)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						module_input_241:"#0" -> conv2d_244:"$0" [label="0 -> 0" fontcolor=white]
+						torch_parameter_242:"#0" -> conv2d_244:"$1" [label="0 -> 1" fontcolor=white]
+						torch_parameter_243:"#0" -> conv2d_244:"$2" [label="0 -> 2" fontcolor=white]
+					}
+					subgraph "up4.conv.conv.1_252" {
+						node [style=filled]
+						bgcolor="#00ff0080" cluster=true fontcolor=black label="torch.nn.modules.batchnorm.BatchNorm2d
+up4.conv.conv.1
+duration: 837.6 µs" rankdir=TB shape=hexagon
+						module_input_246 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 256, 32, 32)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_input_247 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.Tensor</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(256,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_input_248 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.Tensor</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(256,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_249 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up4.conv.conv.1.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(256,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_250 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up4.conv.conv.1.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(256,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						batch_norm_251 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.batch_norm<BR/>duration: 141.1 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 256, 32, 32)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(256,)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(256,)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$3" COLSPAN="1">Input 3<BR/>(256,)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$4" COLSPAN="1">Input 4<BR/>(256,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="5">Output 0<BR/>(1, 256, 32, 32)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						module_input_246:"#0" -> batch_norm_251:"$0" [label="0 -> 0" fontcolor=white]
+						torch_input_247:"#0" -> batch_norm_251:"$1" [label="0 -> 1" fontcolor=white]
+						torch_input_248:"#0" -> batch_norm_251:"$2" [label="0 -> 2" fontcolor=white]
+						torch_parameter_249:"#0" -> batch_norm_251:"$3" [label="0 -> 3" fontcolor=white]
+						torch_parameter_250:"#0" -> batch_norm_251:"$4" [label="0 -> 4" fontcolor=white]
+					}
+					subgraph "up4.conv.conv.2_255" {
+						node [style=filled]
+						bgcolor="#00ff0080" cluster=true fontcolor=black label="torch.nn.modules.activation.ReLU
+up4.conv.conv.2
+duration: 249.1 µs" rankdir=TB shape=hexagon
+						module_input_253 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 256, 32, 32)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						relu_254 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.relu<BR/>duration: 103.7 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 256, 32, 32)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 256, 32, 32)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						module_input_253:"#0" -> relu_254:"$0" [label="0 -> 0" fontcolor=white]
+					}
+					subgraph "up4.conv.conv.3_260" {
+						node [style=filled]
+						bgcolor="#00ff0080" cluster=true fontcolor=black label="torch.nn.modules.conv.Conv2d
+up4.conv.conv.3
+duration: 2.9 ms" rankdir=TB shape=hexagon
+						module_input_256 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 256, 32, 32)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_257 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up4.conv.conv.3.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(256, 256, 3, 3)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_258 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up4.conv.conv.3.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(256,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						conv2d_259 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.conv2d<BR/>duration: 2.5 ms</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 256, 32, 32)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(256, 256, 3, 3)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(256,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="3">Output 0<BR/>(1, 256, 32, 32)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						module_input_256:"#0" -> conv2d_259:"$0" [label="0 -> 0" fontcolor=white]
+						torch_parameter_257:"#0" -> conv2d_259:"$1" [label="0 -> 1" fontcolor=white]
+						torch_parameter_258:"#0" -> conv2d_259:"$2" [label="0 -> 2" fontcolor=white]
+					}
+					subgraph "up4.conv.conv.4_267" {
+						node [style=filled]
+						bgcolor="#00ff0080" cluster=true fontcolor=black label="torch.nn.modules.batchnorm.BatchNorm2d
+up4.conv.conv.4
+duration: 877.4 µs" rankdir=TB shape=hexagon
+						module_input_261 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 256, 32, 32)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_input_262 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.Tensor</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(256,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_input_263 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.Tensor</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(256,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_264 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up4.conv.conv.4.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(256,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_265 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up4.conv.conv.4.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(256,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						batch_norm_266 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.batch_norm<BR/>duration: 138.0 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 256, 32, 32)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(256,)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(256,)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$3" COLSPAN="1">Input 3<BR/>(256,)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$4" COLSPAN="1">Input 4<BR/>(256,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="5">Output 0<BR/>(1, 256, 32, 32)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						module_input_261:"#0" -> batch_norm_266:"$0" [label="0 -> 0" fontcolor=white]
+						torch_input_262:"#0" -> batch_norm_266:"$1" [label="0 -> 1" fontcolor=white]
+						torch_input_263:"#0" -> batch_norm_266:"$2" [label="0 -> 2" fontcolor=white]
+						torch_parameter_264:"#0" -> batch_norm_266:"$3" [label="0 -> 3" fontcolor=white]
+						torch_parameter_265:"#0" -> batch_norm_266:"$4" [label="0 -> 4" fontcolor=white]
+					}
+					subgraph "up4.conv.conv.5_270" {
+						node [style=filled]
+						bgcolor="#00ff0080" cluster=true fontcolor=black label="torch.nn.modules.activation.ReLU
+up4.conv.conv.5
+duration: 244.1 µs" rankdir=TB shape=hexagon
+						module_input_268 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 256, 32, 32)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						relu_269 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.relu<BR/>duration: 96.3 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 256, 32, 32)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 256, 32, 32)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						module_input_268:"#0" -> relu_269:"$0" [label="0 -> 0" fontcolor=white]
+					}
+					module_input_240:"#0" -> module_input_241 [label="0 -> 0" fontcolor=white]
+					conv2d_244:"#0" -> module_input_246 [label="0 -> 0" fontcolor=white]
+					batch_norm_251:"#0" -> module_input_253 [label="0 -> 0" fontcolor=white]
+					relu_254:"#0" -> module_input_256 [label="0 -> 0" fontcolor=white]
+					conv2d_259:"#0" -> module_input_261 [label="0 -> 0" fontcolor=white]
+					batch_norm_266:"#0" -> module_input_268 [label="0 -> 0" fontcolor=white]
+				}
+				module_input_239:"#0" -> module_input_240 [label="0 -> 0" fontcolor=white]
+			}
+			module_input_232:"#0" -> module_input_234 [label="0 -> 0" fontcolor=white]
+			interpolate_235:"#0" -> pad_237:"$0" [label="0 -> 0" fontcolor=white]
+			module_input_233:"#0" -> cat_238:"$0" [label="0 -> 0" fontcolor=white]
+			pad_237:"#0" -> cat_238:"$1" [label="0 -> 1" fontcolor=white]
+			cat_238:"#0" -> module_input_239 [label="0 -> 0" fontcolor=white]
+		}
+		subgraph up3_315 {
+			node [style=filled]
+			bgcolor="#ee00ee80   " cluster=true fontcolor=black label="unet.model.UpBlock
+up3
+duration: 19.0 ms" rankdir=TB shape=hexagon
+			module_input_274 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">x</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 256, 32, 32)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			module_input_275 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">skip</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 256, 64, 64)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			subgraph "up3.up_278" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="torch.nn.modules.upsampling.Upsample
+up3.up
+duration: 3.4 ms" rankdir=TB shape=hexagon
+				module_input_276 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 256, 32, 32)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				interpolate_277 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.interpolate<BR/>duration: 3.1 ms</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 256, 32, 32)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 256, 64, 64)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				module_input_276:"#0" -> interpolate_277:"$0" [label="0 -> 0" fontcolor=white]
+			}
+			pad_279 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.pad<BR/>duration: 192.4 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 256, 64, 64)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 256, 64, 64)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			cat_280 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.cat<BR/>duration: 526.7 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 256, 64, 64)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(1, 256, 64, 64)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="2">Output 0<BR/>(1, 512, 64, 64)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			subgraph "up3.conv_314" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="unet.model.DoubleConv
+up3.conv
+duration: 13.9 ms" rankdir=TB shape=hexagon
+				module_input_281 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">x</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 64, 64)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				subgraph "up3.conv.conv_313" {
+					node [style=filled]
+					bgcolor="#eeee0080" cluster=true fontcolor=black label="torch.nn.modules.container.Sequential
+up3.conv.conv
+duration: 13.6 ms" rankdir=TB shape=hexagon
+					module_input_282 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 64, 64)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+					subgraph "up3.conv.conv.0_287" {
+						node [style=filled]
+						bgcolor="#00ff0080" cluster=true fontcolor=black label="torch.nn.modules.conv.Conv2d
+up3.conv.conv.0
+duration: 6.9 ms" rankdir=TB shape=hexagon
+						module_input_283 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 512, 64, 64)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_284 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up3.conv.conv.0.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(128, 512, 3, 3)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_285 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up3.conv.conv.0.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(128,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						conv2d_286 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.conv2d<BR/>duration: 6.5 ms</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 512, 64, 64)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(128, 512, 3, 3)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(128,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="3">Output 0<BR/>(1, 128, 64, 64)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						module_input_283:"#0" -> conv2d_286:"$0" [label="0 -> 0" fontcolor=white]
+						torch_parameter_284:"#0" -> conv2d_286:"$1" [label="0 -> 1" fontcolor=white]
+						torch_parameter_285:"#0" -> conv2d_286:"$2" [label="0 -> 2" fontcolor=white]
+					}
+					subgraph "up3.conv.conv.1_294" {
+						node [style=filled]
+						bgcolor="#00ff0080" cluster=true fontcolor=black label="torch.nn.modules.batchnorm.BatchNorm2d
+up3.conv.conv.1
+duration: 1.0 ms" rankdir=TB shape=hexagon
+						module_input_288 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 128, 64, 64)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_input_289 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.Tensor</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(128,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_input_290 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.Tensor</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(128,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_291 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up3.conv.conv.1.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(128,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_292 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up3.conv.conv.1.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(128,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						batch_norm_293 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.batch_norm<BR/>duration: 180.0 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 128, 64, 64)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(128,)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(128,)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$3" COLSPAN="1">Input 3<BR/>(128,)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$4" COLSPAN="1">Input 4<BR/>(128,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="5">Output 0<BR/>(1, 128, 64, 64)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						module_input_288:"#0" -> batch_norm_293:"$0" [label="0 -> 0" fontcolor=white]
+						torch_input_289:"#0" -> batch_norm_293:"$1" [label="0 -> 1" fontcolor=white]
+						torch_input_290:"#0" -> batch_norm_293:"$2" [label="0 -> 2" fontcolor=white]
+						torch_parameter_291:"#0" -> batch_norm_293:"$3" [label="0 -> 3" fontcolor=white]
+						torch_parameter_292:"#0" -> batch_norm_293:"$4" [label="0 -> 4" fontcolor=white]
+					}
+					subgraph "up3.conv.conv.2_297" {
+						node [style=filled]
+						bgcolor="#00ff0080" cluster=true fontcolor=black label="torch.nn.modules.activation.ReLU
+up3.conv.conv.2
+duration: 227.9 µs" rankdir=TB shape=hexagon
+						module_input_295 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 128, 64, 64)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						relu_296 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.relu<BR/>duration: 80.1 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 128, 64, 64)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 128, 64, 64)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						module_input_295:"#0" -> relu_296:"$0" [label="0 -> 0" fontcolor=white]
+					}
+					subgraph "up3.conv.conv.3_302" {
+						node [style=filled]
+						bgcolor="#00ff0080" cluster=true fontcolor=black label="torch.nn.modules.conv.Conv2d
+up3.conv.conv.3
+duration: 2.8 ms" rankdir=TB shape=hexagon
+						module_input_298 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 128, 64, 64)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_299 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up3.conv.conv.3.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(128, 128, 3, 3)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_300 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up3.conv.conv.3.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(128,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						conv2d_301 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.conv2d<BR/>duration: 2.5 ms</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 128, 64, 64)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(128, 128, 3, 3)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(128,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="3">Output 0<BR/>(1, 128, 64, 64)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						module_input_298:"#0" -> conv2d_301:"$0" [label="0 -> 0" fontcolor=white]
+						torch_parameter_299:"#0" -> conv2d_301:"$1" [label="0 -> 1" fontcolor=white]
+						torch_parameter_300:"#0" -> conv2d_301:"$2" [label="0 -> 2" fontcolor=white]
+					}
+					subgraph "up3.conv.conv.4_309" {
+						node [style=filled]
+						bgcolor="#00ff0080" cluster=true fontcolor=black label="torch.nn.modules.batchnorm.BatchNorm2d
+up3.conv.conv.4
+duration: 803.5 µs" rankdir=TB shape=hexagon
+						module_input_303 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 128, 64, 64)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_input_304 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.Tensor</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(128,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_input_305 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.Tensor</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(128,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_306 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up3.conv.conv.4.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(128,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_307 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up3.conv.conv.4.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(128,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						batch_norm_308 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.batch_norm<BR/>duration: 191.0 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 128, 64, 64)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(128,)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(128,)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$3" COLSPAN="1">Input 3<BR/>(128,)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$4" COLSPAN="1">Input 4<BR/>(128,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="5">Output 0<BR/>(1, 128, 64, 64)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						module_input_303:"#0" -> batch_norm_308:"$0" [label="0 -> 0" fontcolor=white]
+						torch_input_304:"#0" -> batch_norm_308:"$1" [label="0 -> 1" fontcolor=white]
+						torch_input_305:"#0" -> batch_norm_308:"$2" [label="0 -> 2" fontcolor=white]
+						torch_parameter_306:"#0" -> batch_norm_308:"$3" [label="0 -> 3" fontcolor=white]
+						torch_parameter_307:"#0" -> batch_norm_308:"$4" [label="0 -> 4" fontcolor=white]
+					}
+					subgraph "up3.conv.conv.5_312" {
+						node [style=filled]
+						bgcolor="#00ff0080" cluster=true fontcolor=black label="torch.nn.modules.activation.ReLU
+up3.conv.conv.5
+duration: 211.5 µs" rankdir=TB shape=hexagon
+						module_input_310 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 128, 64, 64)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						relu_311 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.relu<BR/>duration: 67.5 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 128, 64, 64)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 128, 64, 64)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						module_input_310:"#0" -> relu_311:"$0" [label="0 -> 0" fontcolor=white]
+					}
+					module_input_282:"#0" -> module_input_283 [label="0 -> 0" fontcolor=white]
+					conv2d_286:"#0" -> module_input_288 [label="0 -> 0" fontcolor=white]
+					batch_norm_293:"#0" -> module_input_295 [label="0 -> 0" fontcolor=white]
+					relu_296:"#0" -> module_input_298 [label="0 -> 0" fontcolor=white]
+					conv2d_301:"#0" -> module_input_303 [label="0 -> 0" fontcolor=white]
+					batch_norm_308:"#0" -> module_input_310 [label="0 -> 0" fontcolor=white]
+				}
+				module_input_281:"#0" -> module_input_282 [label="0 -> 0" fontcolor=white]
+			}
+			module_input_274:"#0" -> module_input_276 [label="0 -> 0" fontcolor=white]
+			interpolate_277:"#0" -> pad_279:"$0" [label="0 -> 0" fontcolor=white]
+			module_input_275:"#0" -> cat_280:"$0" [label="0 -> 0" fontcolor=white]
+			pad_279:"#0" -> cat_280:"$1" [label="0 -> 1" fontcolor=white]
+			cat_280:"#0" -> module_input_281 [label="0 -> 0" fontcolor=white]
+		}
+		subgraph up2_357 {
+			node [style=filled]
+			bgcolor="#ee00ee80   " cluster=true fontcolor=black label="unet.model.UpBlock
+up2
+duration: 23.7 ms" rankdir=TB shape=hexagon
+			module_input_316 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">x</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 128, 64, 64)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			module_input_317 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">skip</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 128, 128, 128)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			subgraph "up2.up_320" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="torch.nn.modules.upsampling.Upsample
+up2.up
+duration: 1.9 ms" rankdir=TB shape=hexagon
+				module_input_318 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 128, 64, 64)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				interpolate_319 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.interpolate<BR/>duration: 796.6 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 128, 64, 64)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 128, 128, 128)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				module_input_318:"#0" -> interpolate_319:"$0" [label="0 -> 0" fontcolor=white]
+			}
+			pad_321 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.pad<BR/>duration: 411.3 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 128, 128, 128)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 128, 128, 128)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			cat_322 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.cat<BR/>duration: 1.0 ms</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 128, 128, 128)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(1, 128, 128, 128)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="2">Output 0<BR/>(1, 256, 128, 128)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			subgraph "up2.conv_356" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="unet.model.DoubleConv
+up2.conv
+duration: 19.3 ms" rankdir=TB shape=hexagon
+				module_input_323 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">x</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 256, 128, 128)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				subgraph "up2.conv.conv_355" {
+					node [style=filled]
+					bgcolor="#eeee0080" cluster=true fontcolor=black label="torch.nn.modules.container.Sequential
+up2.conv.conv
+duration: 19.1 ms" rankdir=TB shape=hexagon
+					module_input_324 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 256, 128, 128)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+					subgraph "up2.conv.conv.0_329" {
+						node [style=filled]
+						bgcolor="#00ff0080" cluster=true fontcolor=black label="torch.nn.modules.conv.Conv2d
+up2.conv.conv.0
+duration: 10.6 ms" rankdir=TB shape=hexagon
+						module_input_325 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 256, 128, 128)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_326 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up2.conv.conv.0.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(64, 256, 3, 3)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_327 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up2.conv.conv.0.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(64,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						conv2d_328 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.conv2d<BR/>duration: 10.1 ms</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 256, 128, 128)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(64, 256, 3, 3)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(64,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="3">Output 0<BR/>(1, 64, 128, 128)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						module_input_325:"#0" -> conv2d_328:"$0" [label="0 -> 0" fontcolor=white]
+						torch_parameter_326:"#0" -> conv2d_328:"$1" [label="0 -> 1" fontcolor=white]
+						torch_parameter_327:"#0" -> conv2d_328:"$2" [label="0 -> 2" fontcolor=white]
+					}
+					subgraph "up2.conv.conv.1_336" {
+						node [style=filled]
+						bgcolor="#00ff0080" cluster=true fontcolor=black label="torch.nn.modules.batchnorm.BatchNorm2d
+up2.conv.conv.1
+duration: 1.1 ms" rankdir=TB shape=hexagon
+						module_input_330 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 64, 128, 128)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_input_331 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.Tensor</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(64,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_input_332 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.Tensor</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(64,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_333 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up2.conv.conv.1.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(64,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_334 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up2.conv.conv.1.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(64,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						batch_norm_335 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.batch_norm<BR/>duration: 299.5 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 64, 128, 128)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(64,)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(64,)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$3" COLSPAN="1">Input 3<BR/>(64,)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$4" COLSPAN="1">Input 4<BR/>(64,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="5">Output 0<BR/>(1, 64, 128, 128)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						module_input_330:"#0" -> batch_norm_335:"$0" [label="0 -> 0" fontcolor=white]
+						torch_input_331:"#0" -> batch_norm_335:"$1" [label="0 -> 1" fontcolor=white]
+						torch_input_332:"#0" -> batch_norm_335:"$2" [label="0 -> 2" fontcolor=white]
+						torch_parameter_333:"#0" -> batch_norm_335:"$3" [label="0 -> 3" fontcolor=white]
+						torch_parameter_334:"#0" -> batch_norm_335:"$4" [label="0 -> 4" fontcolor=white]
+					}
+					subgraph "up2.conv.conv.2_339" {
+						node [style=filled]
+						bgcolor="#00ff0080" cluster=true fontcolor=black label="torch.nn.modules.activation.ReLU
+up2.conv.conv.2
+duration: 262.7 µs" rankdir=TB shape=hexagon
+						module_input_337 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 64, 128, 128)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						relu_338 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.relu<BR/>duration: 102.8 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 64, 128, 128)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 64, 128, 128)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						module_input_337:"#0" -> relu_338:"$0" [label="0 -> 0" fontcolor=white]
+					}
+					subgraph "up2.conv.conv.3_344" {
+						node [style=filled]
+						bgcolor="#00ff0080" cluster=true fontcolor=black label="torch.nn.modules.conv.Conv2d
+up2.conv.conv.3
+duration: 4.1 ms" rankdir=TB shape=hexagon
+						module_input_340 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 64, 128, 128)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_341 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up2.conv.conv.3.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(64, 64, 3, 3)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_342 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up2.conv.conv.3.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(64,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						conv2d_343 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.conv2d<BR/>duration: 3.8 ms</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 64, 128, 128)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(64, 64, 3, 3)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(64,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="3">Output 0<BR/>(1, 64, 128, 128)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						module_input_340:"#0" -> conv2d_343:"$0" [label="0 -> 0" fontcolor=white]
+						torch_parameter_341:"#0" -> conv2d_343:"$1" [label="0 -> 1" fontcolor=white]
+						torch_parameter_342:"#0" -> conv2d_343:"$2" [label="0 -> 2" fontcolor=white]
+					}
+					subgraph "up2.conv.conv.4_351" {
+						node [style=filled]
+						bgcolor="#00ff0080" cluster=true fontcolor=black label="torch.nn.modules.batchnorm.BatchNorm2d
+up2.conv.conv.4
+duration: 931.3 µs" rankdir=TB shape=hexagon
+						module_input_345 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 64, 128, 128)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_input_346 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.Tensor</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(64,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_input_347 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.Tensor</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(64,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_348 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up2.conv.conv.4.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(64,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_349 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up2.conv.conv.4.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(64,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						batch_norm_350 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.batch_norm<BR/>duration: 226.7 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 64, 128, 128)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(64,)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(64,)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$3" COLSPAN="1">Input 3<BR/>(64,)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$4" COLSPAN="1">Input 4<BR/>(64,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="5">Output 0<BR/>(1, 64, 128, 128)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						module_input_345:"#0" -> batch_norm_350:"$0" [label="0 -> 0" fontcolor=white]
+						torch_input_346:"#0" -> batch_norm_350:"$1" [label="0 -> 1" fontcolor=white]
+						torch_input_347:"#0" -> batch_norm_350:"$2" [label="0 -> 2" fontcolor=white]
+						torch_parameter_348:"#0" -> batch_norm_350:"$3" [label="0 -> 3" fontcolor=white]
+						torch_parameter_349:"#0" -> batch_norm_350:"$4" [label="0 -> 4" fontcolor=white]
+					}
+					subgraph "up2.conv.conv.5_354" {
+						node [style=filled]
+						bgcolor="#00ff0080" cluster=true fontcolor=black label="torch.nn.modules.activation.ReLU
+up2.conv.conv.5
+duration: 241.3 µs" rankdir=TB shape=hexagon
+						module_input_352 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 64, 128, 128)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						relu_353 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.relu<BR/>duration: 91.8 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 64, 128, 128)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 64, 128, 128)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						module_input_352:"#0" -> relu_353:"$0" [label="0 -> 0" fontcolor=white]
+					}
+					module_input_324:"#0" -> module_input_325 [label="0 -> 0" fontcolor=white]
+					conv2d_328:"#0" -> module_input_330 [label="0 -> 0" fontcolor=white]
+					batch_norm_335:"#0" -> module_input_337 [label="0 -> 0" fontcolor=white]
+					relu_338:"#0" -> module_input_340 [label="0 -> 0" fontcolor=white]
+					conv2d_343:"#0" -> module_input_345 [label="0 -> 0" fontcolor=white]
+					batch_norm_350:"#0" -> module_input_352 [label="0 -> 0" fontcolor=white]
+				}
+				module_input_323:"#0" -> module_input_324 [label="0 -> 0" fontcolor=white]
+			}
+			module_input_316:"#0" -> module_input_318 [label="0 -> 0" fontcolor=white]
+			interpolate_319:"#0" -> pad_321:"$0" [label="0 -> 0" fontcolor=white]
+			module_input_317:"#0" -> cat_322:"$0" [label="0 -> 0" fontcolor=white]
+			pad_321:"#0" -> cat_322:"$1" [label="0 -> 1" fontcolor=white]
+			cat_322:"#0" -> module_input_323 [label="0 -> 0" fontcolor=white]
+		}
+		subgraph up1_399 {
+			node [style=filled]
+			bgcolor="#ee00ee80   " cluster=true fontcolor=black label="unet.model.UpBlock
+up1
+duration: 53.1 ms" rankdir=TB shape=hexagon
+			module_input_358 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">x</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 64, 128, 128)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			module_input_359 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">skip</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 64, 256, 256)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			subgraph "up1.up_362" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="torch.nn.modules.upsampling.Upsample
+up1.up
+duration: 1.6 ms" rankdir=TB shape=hexagon
+				module_input_360 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 64, 128, 128)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				interpolate_361 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.interpolate<BR/>duration: 1.4 ms</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 64, 128, 128)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 64, 256, 256)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				module_input_360:"#0" -> interpolate_361:"$0" [label="0 -> 0" fontcolor=white]
+			}
+			pad_363 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.pad<BR/>duration: 2.0 ms</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 64, 256, 256)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 64, 256, 256)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			cat_364 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.cat<BR/>duration: 3.8 ms</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 64, 256, 256)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(1, 64, 256, 256)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="2">Output 0<BR/>(1, 128, 256, 256)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			subgraph "up1.conv_398" {
+				node [style=filled]
+				bgcolor="#ff000080" cluster=true fontcolor=black label="unet.model.DoubleConv
+up1.conv
+duration: 41.3 ms" rankdir=TB shape=hexagon
+				module_input_365 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">x</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 128, 256, 256)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+				subgraph "up1.conv.conv_397" {
+					node [style=filled]
+					bgcolor="#eeee0080" cluster=true fontcolor=black label="torch.nn.modules.container.Sequential
+up1.conv.conv
+duration: 41.0 ms" rankdir=TB shape=hexagon
+					module_input_366 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 128, 256, 256)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+					subgraph "up1.conv.conv.0_371" {
+						node [style=filled]
+						bgcolor="#00ff0080" cluster=true fontcolor=black label="torch.nn.modules.conv.Conv2d
+up1.conv.conv.0
+duration: 24.9 ms" rankdir=TB shape=hexagon
+						module_input_367 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 128, 256, 256)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_368 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up1.conv.conv.0.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(64, 128, 3, 3)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_369 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up1.conv.conv.0.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(64,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						conv2d_370 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.conv2d<BR/>duration: 24.3 ms</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 128, 256, 256)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(64, 128, 3, 3)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(64,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="3">Output 0<BR/>(1, 64, 256, 256)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						module_input_367:"#0" -> conv2d_370:"$0" [label="0 -> 0" fontcolor=white]
+						torch_parameter_368:"#0" -> conv2d_370:"$1" [label="0 -> 1" fontcolor=white]
+						torch_parameter_369:"#0" -> conv2d_370:"$2" [label="0 -> 2" fontcolor=white]
+					}
+					subgraph "up1.conv.conv.1_378" {
+						node [style=filled]
+						bgcolor="#00ff0080" cluster=true fontcolor=black label="torch.nn.modules.batchnorm.BatchNorm2d
+up1.conv.conv.1
+duration: 2.1 ms" rankdir=TB shape=hexagon
+						module_input_372 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 64, 256, 256)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_input_373 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.Tensor</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(64,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_input_374 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.Tensor</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(64,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_375 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up1.conv.conv.1.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(64,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_376 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up1.conv.conv.1.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(64,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						batch_norm_377 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.batch_norm<BR/>duration: 1.1 ms</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 64, 256, 256)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(64,)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(64,)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$3" COLSPAN="1">Input 3<BR/>(64,)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$4" COLSPAN="1">Input 4<BR/>(64,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="5">Output 0<BR/>(1, 64, 256, 256)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						module_input_372:"#0" -> batch_norm_377:"$0" [label="0 -> 0" fontcolor=white]
+						torch_input_373:"#0" -> batch_norm_377:"$1" [label="0 -> 1" fontcolor=white]
+						torch_input_374:"#0" -> batch_norm_377:"$2" [label="0 -> 2" fontcolor=white]
+						torch_parameter_375:"#0" -> batch_norm_377:"$3" [label="0 -> 3" fontcolor=white]
+						torch_parameter_376:"#0" -> batch_norm_377:"$4" [label="0 -> 4" fontcolor=white]
+					}
+					subgraph "up1.conv.conv.2_381" {
+						node [style=filled]
+						bgcolor="#00ff0080" cluster=true fontcolor=black label="torch.nn.modules.activation.ReLU
+up1.conv.conv.2
+duration: 720.3 µs" rankdir=TB shape=hexagon
+						module_input_379 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 64, 256, 256)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						relu_380 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.relu<BR/>duration: 437.3 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 64, 256, 256)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 64, 256, 256)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						module_input_379:"#0" -> relu_380:"$0" [label="0 -> 0" fontcolor=white]
+					}
+					subgraph "up1.conv.conv.3_386" {
+						node [style=filled]
+						bgcolor="#00ff0080" cluster=true fontcolor=black label="torch.nn.modules.conv.Conv2d
+up1.conv.conv.3
+duration: 8.5 ms" rankdir=TB shape=hexagon
+						module_input_382 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 64, 256, 256)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_383 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up1.conv.conv.3.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(64, 64, 3, 3)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_384 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up1.conv.conv.3.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(64,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						conv2d_385 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.conv2d<BR/>duration: 8.0 ms</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 64, 256, 256)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(64, 64, 3, 3)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(64,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="3">Output 0<BR/>(1, 64, 256, 256)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						module_input_382:"#0" -> conv2d_385:"$0" [label="0 -> 0" fontcolor=white]
+						torch_parameter_383:"#0" -> conv2d_385:"$1" [label="0 -> 1" fontcolor=white]
+						torch_parameter_384:"#0" -> conv2d_385:"$2" [label="0 -> 2" fontcolor=white]
+					}
+					subgraph "up1.conv.conv.4_393" {
+						node [style=filled]
+						bgcolor="#00ff0080" cluster=true fontcolor=black label="torch.nn.modules.batchnorm.BatchNorm2d
+up1.conv.conv.4
+duration: 2.0 ms" rankdir=TB shape=hexagon
+						module_input_387 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 64, 256, 256)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_input_388 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.Tensor</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(64,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_input_389 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.Tensor</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(64,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_390 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up1.conv.conv.4.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(64,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						torch_parameter_391 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>up1.conv.conv.4.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(64,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						batch_norm_392 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.batch_norm<BR/>duration: 1.1 ms</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 64, 256, 256)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(64,)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(64,)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$3" COLSPAN="1">Input 3<BR/>(64,)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$4" COLSPAN="1">Input 4<BR/>(64,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="5">Output 0<BR/>(1, 64, 256, 256)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						module_input_387:"#0" -> batch_norm_392:"$0" [label="0 -> 0" fontcolor=white]
+						torch_input_388:"#0" -> batch_norm_392:"$1" [label="0 -> 1" fontcolor=white]
+						torch_input_389:"#0" -> batch_norm_392:"$2" [label="0 -> 2" fontcolor=white]
+						torch_parameter_390:"#0" -> batch_norm_392:"$3" [label="0 -> 3" fontcolor=white]
+						torch_parameter_391:"#0" -> batch_norm_392:"$4" [label="0 -> 4" fontcolor=white]
+					}
+					subgraph "up1.conv.conv.5_396" {
+						node [style=filled]
+						bgcolor="#00ff0080" cluster=true fontcolor=black label="torch.nn.modules.activation.ReLU
+up1.conv.conv.5
+duration: 732.9 µs" rankdir=TB shape=hexagon
+						module_input_394 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 64, 256, 256)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						relu_395 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.nn.functional.relu<BR/>duration: 435.1 µs</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 64, 256, 256)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 64, 256, 256)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+						module_input_394:"#0" -> relu_395:"$0" [label="0 -> 0" fontcolor=white]
+					}
+					module_input_366:"#0" -> module_input_367 [label="0 -> 0" fontcolor=white]
+					conv2d_370:"#0" -> module_input_372 [label="0 -> 0" fontcolor=white]
+					batch_norm_377:"#0" -> module_input_379 [label="0 -> 0" fontcolor=white]
+					relu_380:"#0" -> module_input_382 [label="0 -> 0" fontcolor=white]
+					conv2d_385:"#0" -> module_input_387 [label="0 -> 0" fontcolor=white]
+					batch_norm_392:"#0" -> module_input_394 [label="0 -> 0" fontcolor=white]
+				}
+				module_input_365:"#0" -> module_input_366 [label="0 -> 0" fontcolor=white]
+			}
+			module_input_358:"#0" -> module_input_360 [label="0 -> 0" fontcolor=white]
+			interpolate_361:"#0" -> pad_363:"$0" [label="0 -> 0" fontcolor=white]
+			module_input_359:"#0" -> cat_364:"$0" [label="0 -> 0" fontcolor=white]
+			pad_363:"#0" -> cat_364:"$1" [label="0 -> 1" fontcolor=white]
+			cat_364:"#0" -> module_input_365 [label="0 -> 0" fontcolor=white]
+		}
+		subgraph final_404 {
+			node [style=filled]
+			bgcolor="#ee00ee80   " cluster=true fontcolor=black label="torch.nn.modules.conv.Conv2d
+final
+duration: 3.7 ms" rankdir=TB shape=hexagon
+			module_input_400 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">input</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 64, 256, 256)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			torch_parameter_401 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>final.weight</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1, 64, 1, 1)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			torch_parameter_402 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="1">torch.nn.Parameter<BR/>final.bias</TD>
+            </TR><TR>
+                    <TD PORT="#0" COLSPAN="1">Output 0<BR/>(1,)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			conv2d_403 [label=<
+            <TABLE BORDER="0" CELLBORDER="1"
+            CELLSPACING="1" CELLPADDING="1">
+            <TR>
+                <TD ROWSPAN="2">torch.conv2d<BR/>duration: 3.2 ms</TD>
+            
+                    <TD PORT="$0" COLSPAN="1">Input 0<BR/>(1, 64, 256, 256)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$1" COLSPAN="1">Input 1<BR/>(1, 64, 1, 1)<BR/>torch.float32</TD>
+                
+                    <TD PORT="$2" COLSPAN="1">Input 2<BR/>(1,)<BR/>torch.float32</TD>
+                </TR><TR>
+                    <TD PORT="#0" COLSPAN="3">Output 0<BR/>(1, 1, 256, 256)<BR/>torch.float32</TD>
+                </TR></TABLE>> fillcolor="#DCDCDC"]
+			module_input_400:"#0" -> conv2d_403:"$0" [label="0 -> 0" fontcolor=white]
+			torch_parameter_401:"#0" -> conv2d_403:"$1" [label="0 -> 1" fontcolor=white]
+			torch_parameter_402:"#0" -> conv2d_403:"$2" [label="0 -> 2" fontcolor=white]
+		}
+		module_input_2:"#0" -> module_input_3 [label="0 -> 0" fontcolor=white]
+		relu_18:"#0" -> module_input_21 [label="0 -> 0" fontcolor=white]
+		max_pool2d_22:"#0" -> module_input_24 [label="0 -> 0" fontcolor=white]
+		relu_39:"#0" -> module_input_42 [label="0 -> 0" fontcolor=white]
+		max_pool2d_43:"#0" -> module_input_45 [label="0 -> 0" fontcolor=white]
+		relu_76:"#0" -> module_input_79 [label="0 -> 0" fontcolor=white]
+		max_pool2d_80:"#0" -> module_input_82 [label="0 -> 0" fontcolor=white]
+		relu_113:"#0" -> module_input_116 [label="0 -> 0" fontcolor=white]
+		max_pool2d_117:"#0" -> module_input_119 [label="0 -> 0" fontcolor=white]
+		relu_150:"#0" -> module_input_153 [label="0 -> 0" fontcolor=white]
+		max_pool2d_154:"#0" -> module_input_156 [label="0 -> 0" fontcolor=white]
+		relu_186:"#0" -> module_input_190 [label="0 -> 0" fontcolor=white]
+		relu_150:"#0" -> module_input_191 [label="0 -> 0" fontcolor=white]
+		relu_227:"#0" -> module_input_232 [label="0 -> 0" fontcolor=white]
+		relu_113:"#0" -> module_input_233 [label="0 -> 0" fontcolor=white]
+		relu_269:"#0" -> module_input_274 [label="0 -> 0" fontcolor=white]
+		relu_76:"#0" -> module_input_275 [label="0 -> 0" fontcolor=white]
+		relu_311:"#0" -> module_input_316 [label="0 -> 0" fontcolor=white]
+		relu_39:"#0" -> module_input_317 [label="0 -> 0" fontcolor=white]
+		relu_353:"#0" -> module_input_358 [label="0 -> 0" fontcolor=white]
+		relu_18:"#0" -> module_input_359 [label="0 -> 0" fontcolor=white]
+		relu_395:"#0" -> module_input_400 [label="0 -> 0" fontcolor=white]
+	}
+	torch_input_1:"#0" -> module_input_2 [label="0 -> 0" fontcolor=black]
+}
